@@ -1,7 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
-import '../constants/assets.dart';
+import '../constants/assets.dart'
+    show levelGatesPath, levelStatesPath, levelsPath;
 
 class LevelLoader {
   static late final YamlMap levelGates;
@@ -12,24 +13,26 @@ class LevelLoader {
     levelStates = await _loadStates();
   }
 
-  static Future<List<dynamic>> loadLevels() async {
-    final levels = await rootBundle.loadString(levelsPath);
-    return loadYaml(levels)['levels'] as List<dynamic>;
+  static Future<YamlList> loadLevels() async {
+    final String levels = await rootBundle.loadString(levelsPath);
+    return loadYaml(levels)['levels'] as YamlList;
   }
 
   static Future<YamlMap> _loadGates() async {
-    final levelGates = await rootBundle.loadString(levelGatesPath);
+    final String levelGates = await rootBundle.loadString(levelGatesPath);
     return loadYaml(levelGates)['gates'] as YamlMap;
   }
 
   static Future<YamlMap> _loadStates() async {
-    final levelStates = await rootBundle.loadString(levelStatesPath);
+    final String levelStates = await rootBundle.loadString(levelStatesPath);
     return loadYaml(levelStates)['states'] as YamlMap;
   }
 
-  // TODO
-  static Future<void> getLevelgates() async {}
+  static Future<List<String>> getLevelGates(YamlMap level) async {
+    return level['gates'] as List<String>;
+  }
 
-  // TODO
-  static Future<void> getLevelStates() async {}
+  static Future<List<String>> getLevelStates(YamlMap level) async {
+    return level['states'] as List<String>;
+  }
 }

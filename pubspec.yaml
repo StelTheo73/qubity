@@ -24,11 +24,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/audio/
-  - assets/images/
-  - assets/images/parallax/
-  - assets/levels/levels.yml
-  - assets/levels/level_gates.yml
-  - assets/levels/level_states.yml
-  - config/
+  assets:
+    - assets/audio/
+    - assets/images/
+    - assets/config/config.yml
+    - assets/levels/levels.yml
+    - assets/levels/level_gates.yml
+    - assets/levels/level_states.yml

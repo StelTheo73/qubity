@@ -175,6 +175,7 @@ levels:
     target: '|00> + |01>'
     steps: 1
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 23
     states: '2bits_phase'
@@ -182,6 +183,7 @@ levels:
     target: '|01> -|11>'
     steps: 1
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 24
     states: '2bits_phase'
@@ -189,6 +191,7 @@ levels:
     target: '|01>'
     steps: 1
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 25
     states: '2bits_phase'
@@ -196,6 +199,7 @@ levels:
     target: '|11>'
     steps: 1
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 26
     states: '2bits_phase'
@@ -203,6 +207,7 @@ levels:
     target: '|00> + |01> + |10> + |11>'
     steps: 1
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 27
     states: '2bits_phase'
@@ -210,6 +215,7 @@ levels:
     target: '|00> + |01> + |10> + |11>'
     steps: 2
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 28
     states: '2bits_phase'
@@ -217,6 +223,7 @@ levels:
     target: '-|00> + |01>'
     steps: 2
     gates: 'hx'
+    description: 'H and X Gate 2 bit'
 
   - id: 29
     states: '2bits_phase'
@@ -224,6 +231,7 @@ levels:
     target: '|00> -|10>'
     steps: 2
     gates: 'hxz'
+    description: 'H, X and Z Gate 2 bit'
 
   - id: 30
     states: '2bits_phase'
@@ -231,3 +239,4 @@ levels:
     target: '-|00> + |01>'
     steps: 2
     gates: 'hxz'
+    description: 'H, X and Z Gate 2 bit'
