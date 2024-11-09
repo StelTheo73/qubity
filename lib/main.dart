@@ -6,14 +6,21 @@ import 'screens/game.dart';
 import 'screens/home.dart';
 import 'screens/levels.dart';
 import 'screens/settings.dart';
+import 'screens/spaceships.dart';
 import 'utils/config.dart';
+import 'utils/device_store.dart';
 import 'utils/level.dart';
+import 'utils/spaceship.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  final SpaceshipLoader spaceshipLoader = SpaceshipLoader();
+
+  await DeviceStore.init();
   await Configuration.init();
   await LevelLoader.init();
+  // await spaceshipLoader.init();
 
   runApp(const MyApp());
 }
@@ -21,7 +28,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,6 +41,7 @@ class MyApp extends StatelessWidget {
           return GameScreen(level: level);
         },
         AppRoute.levels.route: (BuildContext context) => const LevelsScreen(),
+        AppRoute.spaceships.route: (BuildContext context) => SpaceshipsScreen(),
         AppRoute.settings.route: (BuildContext context) => SettingsScreen()
       },
     );

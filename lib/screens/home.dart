@@ -32,6 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   buttonText: 'Levels', navigateTo: AppRoute.levels.route),
               const SizedBox(height: 20),
               PageButton(
+                  buttonText: 'Spaceships',
+                  navigateTo: AppRoute.spaceships.route),
+              const SizedBox(height: 20),
+              PageButton(
                   buttonText: 'Settings', navigateTo: AppRoute.settings.route),
               const SizedBox(height: 20),
               PageButton(buttonText: 'About', navigateTo: AppRoute.about.route),

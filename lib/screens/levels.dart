@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/card/gesture_detector_card.dart';
 import '../components/navbar/navbar.dart';
 import '../constants/routes.dart';
 import '../utils/level.dart';
@@ -28,61 +29,76 @@ class LevelsScreenState extends State<LevelsScreen> {
 
   // @override
   // Widget build(BuildContext context) {
-  //   return FutureBuilder<List<dynamic>>(
-  //     future: levelsFuture,
-  //     builder: (
-  //       BuildContext context,
-  //       AsyncSnapshot<List<dynamic>> snapshot,
-  //     ) {
-  //       if (snapshot.hasData) {
-  //         return Column(
-  //           children: <Widget>[
-  //             Expanded(
-  //               child: GridView.builder(
-  //                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-  //                   crossAxisCount: 2,
-  //                   crossAxisSpacing: 5.0,
-  //                 ),
-  //                 itemCount: snapshot.data!.length,
-  //                 itemBuilder: (BuildContext context, int index) {
-  //                   return Card(
-  //                     // margin: const EdgeInsets.all(40),
-  //                     margin: const EdgeInsets.only(
-  //                       left: 20,
-  //                       right: 20,
-  //                       top: 40,
-  //                       bottom: 40,
-  //                     ),
-  //                     color: Colors.orange,
-  //                     child: Padding(
-  //                       padding: const EdgeInsets.all(8.0),
-  //                       child: Column(
-  //                         children: [
-  //                           Text(
-  //                             'Level ${index + 1}',
-  //                             style: const TextStyle(
-  //                               fontSize: 20,
-  //                               fontWeight: FontWeight.bold,
-  //                             ),
+  //   return Scaffold(
+  //     appBar: const CustomAppBar(title: 'Levels'),
+  //     body: FutureBuilder<List<dynamic>>(
+  //       future: levelsFuture,
+  //       builder: (
+  //         BuildContext context,
+  //         AsyncSnapshot<List<dynamic>> snapshot,
+  //       ) {
+  //         if (snapshot.hasData) {
+  //           return Column(
+  //             children: <Widget>[
+  //               Expanded(
+  //                 child: GridView.builder(
+  //                   gridDelegate:
+  //                       const SliverGridDelegateWithFixedCrossAxisCount(
+  //                     crossAxisCount: 2,
+  //                     crossAxisSpacing: 10.0,
+  //                     mainAxisSpacing: 10.0,
+  //                   ),
+  //                   itemCount: snapshot.data!.length,
+  //                   itemBuilder: (BuildContext context, int index) {
+  //                     return Card(
+  //                       margin: const EdgeInsets.all(40),
+  //                       color: Colors.orange,
+  //                       shadowColor: Colors.black,
+  //                       elevation: 5.0,
+  //                       child: InkWell(
+  //                         borderRadius: BorderRadius.circular(10),
+  //                         onTap: () {
+  //                           Navigator.pushNamed(
+  //                             context,
+  //                             AppRoute.game.route,
+  //                             arguments: snapshot.data![index],
+  //                           );
+  //                         },
+  //                         child: Padding(
+  //                           padding: const EdgeInsets.all(8.0),
+  //                           child: Column(
+  //                             mainAxisAlignment: MainAxisAlignment.center,
+  //                             children: [
+  //                               Align(
+  //                                 child: Text(
+  //                                   'Level ${index + 1}',
+  //                                   style: const TextStyle(
+  //                                     fontSize: 20,
+  //                                     fontWeight: FontWeight.bold,
+  //                                   ),
+  //                                 ),
+  //                               ),
+  //                               const SizedBox(height: 8.0),
+  //                               Text(
+  //                                 snapshot.data![index]['description']
+  //                                     as String,
+  //                               ),
+  //                             ],
   //                           ),
-  //                           const SizedBox(height: 10.0),
-  //                           Text(
-  //                             snapshot.data![index]['description'] as String,
-  //                           ),
-  //                         ],
+  //                         ),
   //                       ),
-  //                     ),
-  //                   );
-  //                 },
+  //                     );
+  //                   },
+  //                 ),
   //               ),
-  //             ),
-  //           ],
+  //             ],
+  //           );
+  //         }
+  //         return const Center(
+  //           child: CircularProgressIndicator(),
   //         );
-  //       }
-  //       return const Center(
-  //         child: CircularProgressIndicator(),
-  //       );
-  //     },
+  //       },
+  //     ),
   //   );
   // }
 
@@ -109,41 +125,27 @@ class LevelsScreenState extends State<LevelsScreen> {
                     ),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        margin: const EdgeInsets.all(40),
-                        color: Colors.orange,
-                        shadowColor: Colors.black,
-                        elevation: 5.0,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              AppRoute.game.route,
-                              arguments: snapshot.data![index],
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Align(
-                                  child: Text(
-                                    'Level ${index + 1}',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                      return GestureDetectorCard(
+                        onTap: () async {
+                          print('Level ${index + 1} selected');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                'Level ${index + 1}',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  snapshot.data![index]['description']
-                                      as String,
-                                ),
-                              ],
-                            ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(snapshot.data![index]['description']
+                                    as String),
+                              ),
+                            ],
                           ),
                         ),
                       );

@@ -13,7 +13,7 @@ dependencies:
   flame_noise: ^0.3.2+1
   flutter:
     sdk: flutter
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.3
   yaml: ^3.1.2
 
 dev_dependencies:
@@ -27,6 +27,8 @@ flutter:
   assets:
     - assets/audio/
     - assets/images/
+    - assets/images/spaceships/
+    - assets/images/parallax/
     - assets/config/config.yml
     - assets/levels/levels.yml
     - assets/levels/level_gates.yml
