@@ -6,17 +6,30 @@ import '../constants/spaceships.dart';
 import '../utils/level.dart';
 import '../utils/spaceship.dart';
 
+class SpaceshipNotifier extends ChangeNotifier {
+  String _selectedSpaceshipId = defaultSpaceshipId;
+
+  String get selectedSpaceshipId => _selectedSpaceshipId;
+
+  void setSelectedSpaceshipId(String spaceshipId) {
+    _selectedSpaceshipId = spaceshipId;
+    notifyListeners();
+  }
+}
+
 class UnlockedSpaceShip extends StatelessWidget {
-  UnlockedSpaceShip({
+  const UnlockedSpaceShip({
     super.key,
     required this.spaceshipName,
+    required this.spaceShipId,
     required this.imagePath,
-    this.isSelected = false,
+    required this.spaceshipNotifier,
   });
 
   final String spaceshipName;
+  final String spaceShipId;
   final String imagePath;
-  bool isSelected = false;
+  final SpaceshipNotifier spaceshipNotifier;
 
   @override
   Widget build(BuildContext context) {
@@ -24,35 +37,42 @@ class UnlockedSpaceShip extends StatelessWidget {
       children: <Widget>[
         SpaceshipNameText(name: spaceshipName),
         Expanded(
-          child: GestureDetectorCard(
-            onTap: () async {
-              print('Spaceship $spaceshipName selected');
-            },
-            cardMargin: const EdgeInsets.only(
-              left: 40.0,
-              right: 40.0,
-              bottom: 40.0,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: Image.asset(imagePath),
+          child: ListenableBuilder(
+              listenable: spaceshipNotifier,
+              builder: (BuildContext context, Widget? child) {
+                return GestureDetectorCard(
+                  onTap: () async {
+                    spaceshipNotifier.setSelectedSpaceshipId(spaceShipId);
+                    await SpaceshipLoader.setSelectedSpaceship(spaceShipId);
+                  },
+                  cardMargin: const EdgeInsets.only(
+                    left: 40.0,
+                    right: 40.0,
+                    bottom: 40.0,
                   ),
-                  if (isSelected)
-                    Icon(
-                      Icons.check_circle,
-                      size: 40.0,
-                      color: Colors.green.withOpacity(0.9),
+                  opacity: spaceShipId != spaceshipNotifier.selectedSpaceshipId,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 60,
+                          width: double.infinity,
+                          child: Image.asset(imagePath),
+                        ),
+                        if (spaceShipId ==
+                            spaceshipNotifier.selectedSpaceshipId)
+                          Icon(
+                            Icons.check_circle,
+                            size: 40.0,
+                            color: Colors.purple.withOpacity(0.9),
+                          ),
+                      ],
                     ),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                );
+              }),
         ),
       ],
     );
@@ -76,7 +96,7 @@ class LockedSpaceship extends StatelessWidget {
         SpaceshipNameText(name: spaceshipName),
         Expanded(
           child: GestureDetectorCard(
-            disabled: true,
+            opacity: true,
             cardMargin: const EdgeInsets.only(
               left: 40.0,
               right: 40.0,
@@ -115,18 +135,16 @@ class SpaceshipsScreen extends StatefulWidget {
 }
 
 class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
-  late Future<int> lastUnlockedLevelFuture;
-  late Future<String> selectedSpaceshipIdFuture;
+  late Future<List<dynamic>> futures;
+  final SpaceshipNotifier spaceshipNotifier = SpaceshipNotifier();
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      lastUnlockedLevelFuture = LevelLoader.getLastUnlockedLevel();
-    });
-    setState(() {
-      selectedSpaceshipIdFuture = SpaceshipLoader.getSelectedSpaceshipId();
-    });
+    futures = Future.wait(<Future<dynamic>>[
+      LevelLoader.getLastUnlockedLevel(),
+      SpaceshipLoader.getSelectedSpaceshipId(),
+    ]);
   }
 
   @override
@@ -135,13 +153,16 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
       appBar: const CustomAppBar(
         title: 'Select a Spaceship',
       ),
-      body: FutureBuilder<int>(
-        future: lastUnlockedLevelFuture,
-        builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+      body: FutureBuilder<List<dynamic>>(
+        future: futures,
+        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
-            final int currentLevel = snapshot.data!;
+            final int currentLevel = snapshot.data![0] as int;
+            final String selectedSpaceshipId = snapshot.data![1] as String;
+            spaceshipNotifier.setSelectedSpaceshipId(selectedSpaceshipId);
+
             return Column(
-              children: [
+              children: <Widget>[
                 const SizedBox(
                   height: 40,
                 ),
@@ -170,7 +191,9 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
                       }
                       return UnlockedSpaceShip(
                         spaceshipName: spaceshipName,
+                        spaceShipId: spaceshipKey,
                         imagePath: imagePath,
+                        spaceshipNotifier: spaceshipNotifier,
                       );
                     },
                   ),

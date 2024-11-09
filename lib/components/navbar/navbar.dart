@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -20,7 +21,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
             )
           : null,
-      title: Text(title),
+      title: Text(
+        title,
+        style: GoogleFonts.roboto(fontSize: 24),
+      ),
       backgroundColor: Colors.orange,
       shadowColor: Colors.black,
       elevation: 5.0,

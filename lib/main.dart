@@ -10,7 +10,6 @@ import 'screens/spaceships.dart';
 import 'utils/config.dart';
 import 'utils/device_store.dart';
 import 'utils/level.dart';
-import 'utils/spaceship.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

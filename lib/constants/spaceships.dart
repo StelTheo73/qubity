@@ -43,12 +43,12 @@ const Map<String, Map<String, dynamic>> spaceships = {
   },
   '009': {
     'level': 15,
-    'name': 'Premium White Spaceship',
+    'name': 'Heavy White Spaceship',
     'image': 'assets/images/spaceships/009_locked.png',
   },
   '010': {
     'level': 20,
-    'name': 'Alien Gray Spaceship',
+    'name': 'Heavy Gray Spaceship',
     'image': 'assets/images/spaceships/010_locked.png',
   },
   '011': {
