@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/spaceships.dart';
 
 enum DeviceStoreKeys {
-  level('level'),
-  spaceship('spaceship');
+  unlockedLevel('unlockedLevel'),
+  spaceshipId('spaceship');
 
   const DeviceStoreKeys(this.key);
 
@@ -12,24 +12,24 @@ enum DeviceStoreKeys {
 }
 
 class DeviceStore {
-  static late final SharedPreferences prefs;
+  static final SharedPreferencesAsync prefs = SharedPreferencesAsync();
 
   static Future<void> init() async {
-    prefs = await SharedPreferences.getInstance();
     await _setupDeviceStore();
   }
 
   static Future<void> _setupDeviceStore() async {
-    final int level = prefs.getInt(DeviceStoreKeys.level.key) ?? -1;
+    final int level =
+        await prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ?? -1;
     if (level == -1) {
-      await prefs.setInt(DeviceStoreKeys.level.key, 1);
+      await prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1);
     }
 
     final String spaceship =
-        prefs.getString(DeviceStoreKeys.spaceship.key) ?? '';
+        await prefs.getString(DeviceStoreKeys.spaceshipId.key) ?? '';
     if (spaceship.isEmpty) {
       await prefs.setString(
-          DeviceStoreKeys.spaceship.key, spaceships['001']!['image'] as String);
+          DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId);
     }
   }
 }

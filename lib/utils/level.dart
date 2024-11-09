@@ -3,6 +3,7 @@ import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart'
     show levelGatesPath, levelStatesPath, levelsPath;
+import 'device_store.dart';
 
 class LevelLoader {
   static late final YamlMap levelGates;
@@ -34,5 +35,10 @@ class LevelLoader {
 
   static Future<List<String>> getLevelStates(YamlMap level) async {
     return level['states'] as List<String>;
+  }
+
+  static Future<int> getLastUnlockedLevel() async {
+    return await DeviceStore.prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ??
+        1;
   }
 }

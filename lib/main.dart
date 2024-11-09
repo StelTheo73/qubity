@@ -15,12 +15,9 @@ import 'utils/spaceship.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final SpaceshipLoader spaceshipLoader = SpaceshipLoader();
-
   await DeviceStore.init();
   await Configuration.init();
   await LevelLoader.init();
-  // await spaceshipLoader.init();
 
   runApp(const MyApp());
 }

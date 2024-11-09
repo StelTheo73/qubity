@@ -1,3 +1,5 @@
+const defaultSpaceshipId = '001';
+
 const Map<String, Map<String, dynamic>> spaceships = {
   '001': {
     'level': 1,

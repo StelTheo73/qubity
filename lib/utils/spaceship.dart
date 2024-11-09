@@ -1,17 +1,19 @@
-import 'package:flutter/material.dart';
-
 import '../constants/spaceships.dart';
+import 'device_store.dart';
 
 class SpaceshipLoader {
-  Future<void> init(BuildContext context) async {
-    await _cacheSpaceshipImages(context);
+  static Future<Map<String, dynamic>> getSelectedSpaceship() async {
+    final String spaceshipId = await getSelectedSpaceshipId();
+    return spaceships[spaceshipId]!;
   }
 
-  Future<void> _cacheSpaceshipImages(BuildContext context) async {
-    for (final dynamic spaceship in spaceships.values) {
-      final String imagePath = spaceship['image'] as String;
-      final Image image = Image.asset(imagePath);
-      await precacheImage(image.image, context);
-    }
+  static Future<String> getSelectedSpaceshipId() async {
+    return await DeviceStore.prefs.getString(DeviceStoreKeys.spaceshipId.key) ??
+        defaultSpaceshipId;
+  }
+
+  static Future<void> setSelectedSpaceship(String spaceshipId) async {
+    await DeviceStore.prefs
+        .setString(DeviceStoreKeys.spaceshipId.key, spaceshipId);
   }
 }
