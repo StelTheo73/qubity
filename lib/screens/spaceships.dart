@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/card/gesture_detector_card.dart';
 import '../components/navbar/navbar.dart';
+import '../components/text/spaceship_name.dart';
 import '../constants/spaceships.dart';
 
 class SpaceshipsScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class SpaceshipsScreen extends StatelessWidget {
 
                 return Column(
                   children: <Widget>[
-                    Text(spaceshipName),
+                    SpaceshipNameText(name: spaceshipName),
                     Expanded(
                       child: GestureDetectorCard(
                         onTap: () async {
@@ -40,7 +41,7 @@ class SpaceshipsScreen extends StatelessWidget {
                         cardMargin: const EdgeInsets.only(
                           left: 40.0,
                           right: 40.0,
-                          bottom: 80.0,
+                          bottom: 40.0,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
