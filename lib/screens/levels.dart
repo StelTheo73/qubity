@@ -27,81 +27,6 @@ class LevelsScreenState extends State<LevelsScreen> {
     });
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: const CustomAppBar(title: 'Levels'),
-  //     body: FutureBuilder<List<dynamic>>(
-  //       future: levelsFuture,
-  //       builder: (
-  //         BuildContext context,
-  //         AsyncSnapshot<List<dynamic>> snapshot,
-  //       ) {
-  //         if (snapshot.hasData) {
-  //           return Column(
-  //             children: <Widget>[
-  //               Expanded(
-  //                 child: GridView.builder(
-  //                   gridDelegate:
-  //                       const SliverGridDelegateWithFixedCrossAxisCount(
-  //                     crossAxisCount: 2,
-  //                     crossAxisSpacing: 10.0,
-  //                     mainAxisSpacing: 10.0,
-  //                   ),
-  //                   itemCount: snapshot.data!.length,
-  //                   itemBuilder: (BuildContext context, int index) {
-  //                     return Card(
-  //                       margin: const EdgeInsets.all(40),
-  //                       color: Colors.orange,
-  //                       shadowColor: Colors.black,
-  //                       elevation: 5.0,
-  //                       child: InkWell(
-  //                         borderRadius: BorderRadius.circular(10),
-  //                         onTap: () {
-  //                           Navigator.pushNamed(
-  //                             context,
-  //                             AppRoute.game.route,
-  //                             arguments: snapshot.data![index],
-  //                           );
-  //                         },
-  //                         child: Padding(
-  //                           padding: const EdgeInsets.all(8.0),
-  //                           child: Column(
-  //                             mainAxisAlignment: MainAxisAlignment.center,
-  //                             children: [
-  //                               Align(
-  //                                 child: Text(
-  //                                   'Level ${index + 1}',
-  //                                   style: const TextStyle(
-  //                                     fontSize: 20,
-  //                                     fontWeight: FontWeight.bold,
-  //                                   ),
-  //                                 ),
-  //                               ),
-  //                               const SizedBox(height: 8.0),
-  //                               Text(
-  //                                 snapshot.data![index]['description']
-  //                                     as String,
-  //                               ),
-  //                             ],
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     );
-  //                   },
-  //                 ),
-  //               ),
-  //             ],
-  //           );
-  //         }
-  //         return const Center(
-  //           child: CircularProgressIndicator(),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +52,11 @@ class LevelsScreenState extends State<LevelsScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetectorCard(
                         onTap: () async {
-                          print('Level ${index + 1} selected');
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.game.route,
+                            arguments: snapshot.data![index],
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(3.0),

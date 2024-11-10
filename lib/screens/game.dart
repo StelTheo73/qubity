@@ -1,7 +1,9 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/navbar/navbar.dart';
+import '../game/game.dart';
+import '../utils/config.dart';
 
 class GameScreen extends StatefulWidget {
   GameScreen({super.key, required this.level});
@@ -13,13 +15,20 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  late final QubityGame _game;
+
+  @override
+  void initState() {
+    _game = QubityGame(level: widget.level);
+    _game.debugMode = Configuration.debugMode;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: 'Game'),
-      body: Center(
-        child: Text('Game Page ${widget.level['id']}'),
-      ),
+    return GameWidget(
+      game: _game,
     );
   }
 }
