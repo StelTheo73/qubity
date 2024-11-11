@@ -360,6 +360,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  qartvm:
+    dependency: "direct main"
+    description:
+      name: qartvm
+      sha256: "5f2531c5c292b4c571dd83bb3a3b04c089559643de02656a22640a0ab17cbbeb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   shared_preferences:
     dependency: "direct main"
     description:

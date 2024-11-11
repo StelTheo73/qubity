@@ -19,6 +19,11 @@ class LevelLoader {
     return loadYaml(levels)['levels'] as YamlList;
   }
 
+  static Future<YamlMap> getLevelById(int id) async {
+    final YamlList levels = await loadLevels();
+    return levels[id - 1] as YamlMap;
+  }
+
   static Future<YamlMap> _loadGates() async {
     final String levelGates = await rootBundle.loadString(levelGatesPath);
     return loadYaml(levelGates)['gates'] as YamlMap;
@@ -29,12 +34,12 @@ class LevelLoader {
     return loadYaml(levelStates)['states'] as YamlMap;
   }
 
-  static Future<List<String>> getLevelGates(YamlMap level) async {
-    return level['gates'] as List<String>;
+  static YamlList getLevelGates(YamlMap level) {
+    return levelGates[level['gates'] as String] as YamlList;
   }
 
-  static Future<List<String>> getLevelStates(YamlMap level) async {
-    return level['states'] as List<String>;
+  static YamlList getLevelStates(YamlMap level) {
+    return levelStates[level['states'] as String] as YamlList;
   }
 
   static Future<int> getLastUnlockedLevel() async {
