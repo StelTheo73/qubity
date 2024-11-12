@@ -96,41 +96,9 @@ class BaseGame extends FlameGame<World>
   Future<void> _setupStates() async {
     final YamlList _levelStates = LevelLoader.getLevelStates(level);
     final LevelStates _levelStatesObject = LevelStates(_levelStates);
-    final List<Offset> validPositions =
-        _levelStatesObject.getValidPositions(size);
-
-    for (final validPosition in validPositions) {
-      final Vector2 rectangleSize = Vector2(25, 25);
-      final Vector2 textBoxSize = Vector2(25, 25);
-      const double textSize = 10.0;
-
-      final stateComponent = RectangleComponent(
-        position: Vector2(validPosition.dx, validPosition.dy),
-        anchor: Anchor.center,
-        size: rectangleSize,
-        scale: Vector2(1.0, 1.0),
-        paint: Paint()..color = Colors.purple,
-        children: [
-          TextBoxComponent(
-            text: '|XY>',
-            boxConfig: const TextBoxConfig(
-              margins: EdgeInsets.zero,
-            ),
-            textRenderer: TextPaint(
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: textSize,
-              ),
-            ),
-            size: textBoxSize,
-            position: (rectangleSize - Vector2(textSize, textSize)) / 2,
-            anchor: Anchor.topLeft,
-          ),
-        ],
-      );
-      levelStates.add(stateComponent);
-      await add(stateComponent);
-    }
+    final List<RectangleComponent> stateComponents =
+        _levelStatesObject.getStatesComponents(size);
+    await addAll(stateComponents);
   }
 
   Future<void> _setupSpaceships() async {

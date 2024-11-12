@@ -19,18 +19,26 @@ dependencies:
   yaml: ^3.1.2
 
 dev_dependencies:
+  flutter_app_name: ^0.1.1
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+
+flutter_app_name:
+  name: "Qubity"
 
 flutter:
   uses-material-design: true
 
   assets:
+    # directories
     - assets/audio/
     - assets/images/
-    - assets/images/spaceships/
+    - assets/images/background/
+    - assets/images/icons/
     - assets/images/parallax/
+    - assets/images/spaceships/
+    # files
     - assets/config/config.yml
     - assets/levels/levels.yml
     - assets/levels/level_gates.yml

@@ -3,7 +3,8 @@ app:
 debugMode: false
 music: false
 attributions:
-  icons:
+  app_icon: '<a href="https://www.freepik.com/search">Icon by Freepik</a>'
+  spaceships:
     - '<a href="https://www.freepik.com/search">Icon by photo3idea_studio</a>'
     - <a href="https://www.freepik.com/search">Icon by Futuer</a>
     - <a href="https://www.freepik.com/search">Icon by rsetiawan</a>
