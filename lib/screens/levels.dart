@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../components/card/gesture_detector_card.dart';
-import '../components/navbar/navbar.dart';
 import '../constants/routes.dart';
 import '../utils/level.dart';
+import 'base.dart';
 
 class LevelsScreen extends StatefulWidget {
   const LevelsScreen({super.key});
@@ -29,8 +29,8 @@ class LevelsScreenState extends State<LevelsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(title: 'Levels'),
+    return BaseScreen(
+      title: 'Levels',
       body: FutureBuilder<List<dynamic>>(
         future: levelsFuture,
         builder: (

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../components/card/spaceship_card.dart';
-import '../components/navbar/navbar.dart';
 
+import '../components/card/spaceship_card.dart';
 import '../constants/spaceships.dart';
 import '../state/spaceship_notifier.dart';
 import '../utils/level.dart';
 import '../utils/spaceship.dart';
+import 'base.dart';
 
 class SpaceshipsScreen extends StatefulWidget {
   const SpaceshipsScreen({super.key});
@@ -29,10 +29,8 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Select a Spaceship',
-      ),
+    return BaseScreen(
+      title: 'Select a Spaceship',
       body: FutureBuilder<List<dynamic>>(
         future: futures,
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
