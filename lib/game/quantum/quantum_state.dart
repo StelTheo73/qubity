@@ -1,6 +1,5 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:yaml/yaml.dart';
 
 const double _defaultOffsetX = 0.1;
 final Map<int, double> _offsetXMap = <int, double>{
@@ -10,13 +9,13 @@ final Map<int, double> _offsetXMap = <int, double>{
 };
 
 class LevelStates {
-  LevelStates(YamlList states) {
+  LevelStates(Iterable<dynamic> states) {
     _providedStates = states;
   }
 
-  late final YamlList _providedStates;
+  late final Iterable<dynamic> _providedStates;
 
-  YamlList get levelStates => _providedStates;
+  Iterable<dynamic> get levelStates => _providedStates;
 
   List<Offset> getValidPositions(Vector2 gameSize) {
     final int points = _providedStates.length;
@@ -33,7 +32,7 @@ class LevelStates {
   List<RectangleComponent> getStatesComponents(Vector2 gameSize) {
     final List<RectangleComponent> components =
         List<RectangleComponent>.empty(growable: true);
-    List<Offset> validPositions = getValidPositions(gameSize);
+    final List<Offset> validPositions = getValidPositions(gameSize);
 
     final Vector2 rectangleSize = Vector2(28, 28);
     final Vector2 textBoxSize = Vector2(28, 28);
@@ -41,6 +40,15 @@ class LevelStates {
 
     for (int counter = 0; counter < _providedStates.length; counter++) {
       final Offset validPosition = validPositions[counter];
+      final int spaces = 2 -
+          levelStates
+              .elementAt(counter)
+              .toString()
+              .split('|')
+              .elementAt(0)
+              .length;
+      final int spacesBefore = spaces > 0 ? spaces : 0;
+      final String spacesString = ' ' * spacesBefore;
 
       components.add(
         RectangleComponent(
@@ -51,11 +59,11 @@ class LevelStates {
           paint: Paint()..color = Colors.purple,
           children: <Component>[
             TextBoxComponent<TextPaint>(
-              text: '|XY>',
+              text: '$spacesString${levelStates.elementAt(counter)}',
               boxConfig: TextBoxConfig(
                 margins: EdgeInsets.symmetric(
                   vertical: (textBoxSize.y - textSize) / 2,
-                  horizontal: textSize / 2,
+                  // horizontal: textSize / 2,
                 ),
               ),
               textRenderer: TextPaint(

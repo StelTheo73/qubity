@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
-import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
@@ -21,7 +20,7 @@ class BaseGame extends FlameGame<World>
 
   final List<Spaceship> levelSpaceships = List<Spaceship>.empty(growable: true);
   // final Map<String, dynamic> levelStates = <String, dynamic>{};
-  final List<RectangleComponent> levelStates =
+  final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);
 
   Future<void> onLoad() async {
@@ -94,10 +93,10 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setupStates() async {
-    final YamlList _levelStates = LevelLoader.getLevelStates(level);
-    final LevelStates _levelStatesObject = LevelStates(_levelStates);
+    final YamlMap levelStates = LevelLoader.getLevelStates(level);
+    final LevelStates levelStatesObject = LevelStates(levelStates.keys);
     final List<RectangleComponent> stateComponents =
-        _levelStatesObject.getStatesComponents(size);
+        levelStatesObject.getStatesComponents(size);
     await addAll(stateComponents);
   }
 

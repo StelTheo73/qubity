@@ -38,8 +38,8 @@ class LevelLoader {
     return levelGates[level['gates'] as String] as YamlList;
   }
 
-  static YamlList getLevelStates(YamlMap level) {
-    return levelStates[level['states'] as String] as YamlList;
+  static YamlMap getLevelStates(YamlMap level) {
+    return levelStates[level['states'] as String] as YamlMap;
   }
 
   static Future<int> getLastUnlockedLevel() async {

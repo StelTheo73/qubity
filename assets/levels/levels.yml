@@ -3,7 +3,7 @@ title: Game Levels
 levels:
   - id: 1
     states: 'x'
-    initial: ['|0>']
+    initial: [['1', '0']]
     target: ['|1>']
     steps: 1
     gates: 'x'
@@ -11,7 +11,7 @@ levels:
 
   - id: 2
     states: 'x'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['|0>']
     steps: 1
     gates: 'x'
@@ -19,7 +19,7 @@ levels:
 
   - id: 3
     states: 'y'
-    initial: ['|0>']
+    initial: [['1', '0']]
     target: ['i|1>']
     steps: 1
     gates: 'y'
@@ -27,7 +27,7 @@ levels:
 
   - id: 4
     states: 'y'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['-i|0>']
     steps: 1
     gates: 'y'
@@ -35,7 +35,7 @@ levels:
 
   - id: 5
     states: 'y'
-    initial: ['i|1>']
+    initial: [['0', 'i']]
     target: ['|0>']
     steps: 1
     gates: 'y'
@@ -43,7 +43,7 @@ levels:
 
   - id: 6
     states: 'y'
-    initial: ['-i|0>']
+    initial: [['-i', '0']]
     target: ['|1>']
     steps: 1
     gates: 'y'
@@ -51,7 +51,7 @@ levels:
 
   - id: 7
     states: 'xy'
-    initial: ['-i|1>']
+    initial: [['0', '-i']]
     target: ['|1>']
     steps: 2
     gates: 'xy'
@@ -59,7 +59,7 @@ levels:
 
   - id: 8
     states: 'xy'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['-i|1>']
     steps: 2
     gates: 'xy'
@@ -67,7 +67,7 @@ levels:
 
   - id: 9
     states: 'h'
-    initial: ['|0>']
+    initial: [['1', '0']]
     target: ['-|0>']
     steps: 3
     gates: 'xz'
@@ -75,7 +75,7 @@ levels:
 
   - id: 10
     states: 'h'
-    initial: ['|0>']
+    initial: [['1', '0']]
     target: ['|0>', '|1>']
     steps: 1
     gates: 'h'
@@ -83,7 +83,7 @@ levels:
 
   - id: 11
     states: 'h'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['|0>', '-|1>']
     steps: 1
     gates: 'h'
@@ -91,7 +91,7 @@ levels:
 
   - id: 12
     states: 'h'
-    initial: ['|0>', '-|1>']
+    initial: [['sqrt(2)/2', '-sqrt(2)/2']]
     target: ['|1>']
     steps: 1
     gates: 'h'
@@ -99,7 +99,7 @@ levels:
 
   - id: 13
     states: 'h'
-    initial: ['|0>', '|1>']
+    initial: [['sqrt(2)/2', 'sqrt(2)/2']]
     target: ['|0>']
     steps: 1
     gates: 'h'
@@ -107,7 +107,7 @@ levels:
 
   - id: 14
     states: 'h'
-    initial: ['|0>']
+    initial: [['1', '0']]
     target: ['|0>', '-|1>']
     steps: 2
     gates: 'hx'
@@ -115,7 +115,7 @@ levels:
 
   - id: 15
     states: 'h'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['|0>', '|1>']
     steps: 2
     gates: 'hx'
@@ -123,7 +123,7 @@ levels:
 
   - id: 16
     states: 'h'
-    initial: ['|1>']
+    initial: [['0', '1']]
     target: ['|1>', '-|0>']
     steps: 2
     gates: 'hx'
@@ -131,7 +131,7 @@ levels:
 
   - id: 17
     states: 'h'
-    initial: ['|0>', '-|1>']
+    initial: [['sqrt(2)/2', '-sqrt(2)/2']]
     target: ['-|1>']
     steps: 2
     gates: 'hx'
@@ -139,7 +139,7 @@ levels:
 
   - id: 18
     states: '2bits'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['|10>']
     steps: 1
     gates: 'x'
@@ -147,7 +147,7 @@ levels:
 
   - id: 19
     states: '2bits'
-    initial: ['|11>']
+    initial: [['0', '1'], ['0', '1']]
     target: ['|01>']
     steps: 1
     gates: 'x'
@@ -155,7 +155,7 @@ levels:
 
   - id: 20
     states: '2bits'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['|11>']
     steps: 1
     gates: 'x'
@@ -163,7 +163,7 @@ levels:
 
   - id: 21
     states: '2bits'
-    initial: ['|11>']
+    initial: [['0', '1'], ['0', '1']]
     target: ['|00>']
     steps: 1
     gates: 'x'
@@ -171,7 +171,7 @@ levels:
 
   - id: 22
     states: '2bits_phase'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['|00>', '|01>']
     steps: 1
     gates: 'hx'
@@ -179,7 +179,7 @@ levels:
 
   - id: 23
     states: '2bits_phase'
-    initial: ['|11>']
+    initial: [['0', '1'], ['0', '1']]
     target: ['|01>', '-|11>']
     steps: 1
     gates: 'hx'
@@ -187,7 +187,7 @@ levels:
 
   - id: 24
     states: '2bits_phase'
-    initial: ['|01>', '|11>']
+    initial: [['sqrt(2)/2', 'sqrt(2)/2'], ['0', '1']]
     target: ['|01>']
     steps: 1
     gates: 'hx'
@@ -195,7 +195,7 @@ levels:
 
   - id: 25
     states: '2bits_phase'
-    initial: ['|01>', '-|11>']
+    initial: [['sqrt(2)/2', '-sqrt(2)/2'], ['0', '1']]
     target: ['|11>']
     steps: 1
     gates: 'hx'
@@ -203,7 +203,7 @@ levels:
 
   - id: 26
     states: '2bits_phase'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['|00>', '|01>', '|10>', '|11>']
     steps: 1
     gates: 'hx'
@@ -211,7 +211,7 @@ levels:
 
   - id: 27
     states: '2bits_phase'
-    initial: ['|00>', '-|01>']
+    initial: [['1', '0'], ['sqrt(2)/2', '-sqrt(2)/2']]
     target: ['|00>', '|01>', '|10>', '|11>']
     steps: 2
     gates: 'hx'
@@ -219,7 +219,7 @@ levels:
 
   - id: 28
     states: '2bits_phase'
-    initial: ['|01>']
+    initial: [['1', '0'], ['0', '1']]
     target: ['-|00>', '|01>']
     steps: 2
     gates: 'hx'
@@ -227,7 +227,7 @@ levels:
 
   - id: 29
     states: '2bits_phase'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['|00>', '-|10>']
     steps: 2
     gates: 'hxz'
@@ -235,7 +235,7 @@ levels:
 
   - id: 30
     states: '2bits_phase'
-    initial: ['|00>']
+    initial: [['1', '0'], ['1', '0']]
     target: ['-|00>', '|01>']
     steps: 2
     gates: 'hxz'
