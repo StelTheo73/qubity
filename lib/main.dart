@@ -36,10 +36,11 @@ class MyApp extends StatelessWidget {
         AppRoute.game.route: (BuildContext context) {
           final YamlMap level =
               ModalRoute.of(context)!.settings.arguments! as YamlMap;
-          return GameScreen(level: level);
+          return GameScreen(initialLevel: level);
         },
         AppRoute.levels.route: (BuildContext context) => const LevelsScreen(),
-        AppRoute.spaceships.route: (BuildContext context) => SpaceshipsScreen(),
+        AppRoute.spaceships.route: (BuildContext context) =>
+            const SpaceshipsScreen(),
         AppRoute.settings.route: (BuildContext context) => SettingsScreen()
       },
     );

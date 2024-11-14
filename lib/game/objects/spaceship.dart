@@ -6,7 +6,7 @@ import '../game.dart';
 import '../game_utils.dart';
 
 class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
-  Spaceship() : super(size: Vector2(50, 50)) {}
+  Spaceship() : super(size: Vector2(50, 50));
 
   late final String spriteImagePath;
 

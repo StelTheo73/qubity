@@ -6,9 +6,9 @@ import '../game/game.dart';
 import '../utils/config.dart';
 
 class GameScreen extends StatefulWidget {
-  GameScreen({super.key, required this.level});
+  const GameScreen({super.key, required this.initialLevel});
 
-  YamlMap level;
+  final YamlMap initialLevel;
 
   @override
   _GameScreenState createState() => _GameScreenState();
@@ -19,7 +19,7 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   void initState() {
-    _game = QubityGame(level: widget.level);
+    _game = QubityGame(level: widget.initialLevel);
     _game.debugMode = Configuration.debugMode;
 
     super.initState();
@@ -27,7 +27,7 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(
+    return GameWidget<QubityGame>(
       game: _game,
     );
   }

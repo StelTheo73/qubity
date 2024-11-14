@@ -23,6 +23,7 @@ class BaseGame extends FlameGame<World>
   final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);
 
+  @override
   Future<void> onLoad() async {
     print('loading game');
     print('level info: $level');
@@ -30,10 +31,12 @@ class BaseGame extends FlameGame<World>
     await super.onLoad();
   }
 
+  @override
   void update(double dt) {
     super.update(dt);
   }
 
+  @override
   void render(Canvas canvas) {
     super.render(canvas);
   }
