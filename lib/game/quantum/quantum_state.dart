@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const double _defaultOffsetX = 0.1;
 final Map<int, double> _offsetXMap = <int, double>{
@@ -39,16 +40,9 @@ class LevelStates {
     const double textSize = 10.0;
 
     for (int counter = 0; counter < _providedStates.length; counter++) {
+      final String stateName = levelStates.elementAt(counter).toString();
+      final String spacesString = _getSpaces(stateName);
       final Offset validPosition = validPositions[counter];
-      final int spaces = 2 -
-          levelStates
-              .elementAt(counter)
-              .toString()
-              .split('|')
-              .elementAt(0)
-              .length;
-      final int spacesBefore = spaces > 0 ? spaces : 0;
-      final String spacesString = ' ' * spacesBefore;
 
       components.add(
         RectangleComponent(
@@ -59,17 +53,20 @@ class LevelStates {
           paint: Paint()..color = Colors.purple,
           children: <Component>[
             TextBoxComponent<TextPaint>(
-              text: '$spacesString${levelStates.elementAt(counter)}',
+              text: '$spacesString$stateName',
               boxConfig: TextBoxConfig(
                 margins: EdgeInsets.symmetric(
                   vertical: (textBoxSize.y - textSize) / 2,
-                  // horizontal: textSize / 2,
+                  horizontal: 1,
                 ),
               ),
               textRenderer: TextPaint(
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: textSize,
+                style: GoogleFonts.roboto(
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: textSize,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               size: textBoxSize,
@@ -81,6 +78,18 @@ class LevelStates {
     }
 
     return components;
+  }
+
+  String _getSpaces(String stateName) {
+    final int stateLength = stateName.split('|').elementAt(1).length + 1;
+    if (stateLength == 4 || stateName.startsWith('-i')) {
+      return ' '; // 1 space
+    }
+
+    if (stateName.startsWith('-') || stateName.startsWith('i')) {
+      return '  '; // 2 spaces
+    }
+    return '   '; // 3 spaces
   }
 
   @override
