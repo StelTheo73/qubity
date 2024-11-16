@@ -3,12 +3,14 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
+import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart';
 import '../utils/level.dart';
 import 'game_utils.dart';
 import 'objects/spaceship.dart';
+import 'quantum/quantum_bits.dart';
 import 'quantum/quantum_state.dart';
 
 class BaseGame extends FlameGame<World>
@@ -104,9 +106,19 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setupSpaceships() async {
+    final YamlList initialQubits = level['initial'] as YamlList;
+    final List<Qbit> initialQubitsList = initialQubits
+        .map(
+          (dynamic qubit) => CreateQBit.createQBit(
+            qubit[0] as String,
+            qubit[1] as String,
+          ),
+        )
+        .toList();
+
     final Spaceship spaceship = Spaceship();
-    add(spaceship);
-    levelSpaceships.add(spaceship);
+    await add(spaceship);
+    // levelSpaceships.add(spaceship);
   }
 
   Future<void> _teardown() async {

@@ -13,6 +13,7 @@ dependencies:
   flame_noise: ^0.3.2+1
   flutter:
     sdk: flutter
+  function_tree: ^0.9.1
   google_fonts: ^6.2.1
   qartvm: ^0.0.5
   shared_preferences: ^2.3.3
