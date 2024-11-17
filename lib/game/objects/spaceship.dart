@@ -6,13 +6,18 @@ import '../game.dart';
 import '../game_utils.dart';
 
 class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
-  Spaceship() : super(size: Vector2(50, 50));
+  Spaceship(this.positionX, this.positionY) : super(size: Vector2(50, 50));
 
   late final String spriteImagePath;
+  double positionX;
+  double positionY;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+    x = positionX;
+    y = positionY;
+    anchor = Anchor.center;
     spriteImagePath = GameUtils.extractImagePath(
         (await SpaceshipLoader.getSelectedSpaceship())['image'] as String);
     await gameRef.cacheImage(spriteImagePath);
@@ -22,9 +27,6 @@ class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
   @override
   void update(double dt) {
     super.update(dt);
-    final Vector2 position = gameRef.size / 2;
-    x = position.x - size.x / 2;
-    y = position.y - size.y / 2;
   }
 
   Future<void> shake() async {

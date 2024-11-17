@@ -9,17 +9,36 @@ final Map<int, double> _offsetXMap = <int, double>{
   8: 0.075,
 };
 
+// Valid states for the game
+final Map<String, bool> stateAmplitudes = <String, bool>{
+  '|0>': false,
+  '-|0>': false,
+  'i|0>': false,
+  '-i|0>': false,
+  '|1>': false,
+  '-|1>': false,
+  'i|1>': false,
+  '-i|1>': false,
+  '|00>': false,
+  '-|00>': false,
+  '|01>': false,
+  '-|01>': false,
+  '|10>': false,
+  '-|10>': false,
+  '|11>': false,
+  '-|11>': false,
+};
+
 class LevelStates {
-  LevelStates(Iterable<dynamic> states) {
-    _providedStates = states;
-  }
+  static final List<RectangleComponent> levelStateComponents =
+      List<RectangleComponent>.empty(growable: true);
+  static final Map<String, bool> validLevelStates = <String, bool>{};
+  static final Map<String, Offset> levelStatePositions = <String, Offset>{};
 
-  late final Iterable<dynamic> _providedStates;
+  static double stateComponentDimension = 28.0;
 
-  Iterable<dynamic> get levelStates => _providedStates;
-
-  List<Offset> getValidPositions(Vector2 gameSize) {
-    final int points = _providedStates.length;
+  static List<Offset> getValidPositions(Vector2 gameSize, int statesLength) {
+    final int points = statesLength;
     final double offset = gameSize.x * (_offsetXMap[points] ?? _defaultOffsetX);
     final double availableWidth = gameSize.x - 2 * offset;
     final double positionY = gameSize.y * 0.7;
@@ -30,21 +49,31 @@ class LevelStates {
     );
   }
 
-  List<RectangleComponent> getStatesComponents(Vector2 gameSize) {
-    final List<RectangleComponent> components =
-        List<RectangleComponent>.empty(growable: true);
-    final List<Offset> validPositions = getValidPositions(gameSize);
+  static void setupLevelStates(
+      Vector2 gameSize, Iterable<dynamic> levelStates) {
+    final List<Offset> validPositions =
+        getValidPositions(gameSize, levelStates.length);
 
-    final Vector2 rectangleSize = Vector2(28, 28);
-    final Vector2 textBoxSize = Vector2(28, 28);
+    final Vector2 rectangleSize = Vector2(
+      stateComponentDimension,
+      stateComponentDimension,
+    );
+    final Vector2 textBoxSize = Vector2(
+      stateComponentDimension,
+      stateComponentDimension,
+    );
     const double textSize = 10.0;
 
-    for (int counter = 0; counter < _providedStates.length; counter++) {
+    for (int counter = 0; counter < levelStates.length; counter++) {
       final String stateName = levelStates.elementAt(counter).toString();
       final String spacesString = _getSpaces(stateName);
       final Offset validPosition = validPositions[counter];
 
-      components.add(
+      // false indicates that the spaceship is not yet placed
+      validLevelStates[stateName] = false;
+      levelStatePositions[stateName] = validPosition;
+
+      levelStateComponents.add(
         RectangleComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
           anchor: Anchor.center,
@@ -76,11 +105,9 @@ class LevelStates {
         ),
       );
     }
-
-    return components;
   }
 
-  String _getSpaces(String stateName) {
+  static String _getSpaces(String stateName) {
     final int stateLength = stateName.split('|').elementAt(1).length + 1;
     if (stateLength == 4 || stateName.startsWith('-i')) {
       return ' '; // 1 space
@@ -90,10 +117,5 @@ class LevelStates {
       return '  '; // 2 spaces
     }
     return '   '; // 3 spaces
-  }
-
-  @override
-  String toString() {
-    return _providedStates.join(' ');
   }
 }

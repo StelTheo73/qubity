@@ -19,11 +19,9 @@ class BaseGame extends FlameGame<World>
 
   bool running = true;
   YamlMap level;
+  late QRegister gameRegister;
 
   final List<Spaceship> levelSpaceships = List<Spaceship>.empty(growable: true);
-  // final Map<String, dynamic> levelStates = <String, dynamic>{};
-  final List<RectangleComponent> levelStateComponents =
-      List<RectangleComponent>.empty(growable: true);
 
   @override
   Future<void> onLoad() async {
@@ -99,10 +97,11 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupStates() async {
     final YamlMap levelStates = LevelLoader.getLevelStates(level);
-    final LevelStates levelStatesObject = LevelStates(levelStates.keys);
-    final List<RectangleComponent> stateComponents =
-        levelStatesObject.getStatesComponents(size);
-    await addAll(stateComponents);
+    LevelStates.validLevelStates.clear();
+    LevelStates.levelStatePositions.clear();
+    LevelStates.levelStateComponents.clear();
+    LevelStates.setupLevelStates(size, levelStates.keys);
+    await addAll(LevelStates.levelStateComponents);
   }
 
   Future<void> _setupSpaceships() async {
@@ -116,18 +115,63 @@ class BaseGame extends FlameGame<World>
         )
         .toList();
 
-    print('Initial Qubits: $initialQubitsList');
+    gameRegister = QRegister(initialQubitsList);
+    for (final String state in gameRegister.amplitudes.keys) {
+      final Complex amp = gameRegister.amplitudes[state]!;
+      final double real = amp.re;
+      final double imaginary = amp.im;
 
-    final QRegister qRegister = QRegister(initialQubitsList);
-    print('probabilities: ${qRegister.probabilities}');
-    print('amplitudes: ${qRegister.amplitudes}');
+      String stateString = '';
 
-    final Spaceship spaceship = Spaceship();
-    await add(spaceship);
-    // levelSpaceships.add(spaceship);
+      if (real > 0) {
+        stateString = '|$state>';
+      } else if (real < 0) {
+        stateString = '-|$state>';
+      } else if (imaginary < 0) {
+        stateString = '-i|$state>';
+      } else if (imaginary > 0) {
+        stateString = 'i|$state>';
+      }
+
+      if (stateString.isNotEmpty) {
+        LevelStates.validLevelStates[stateString] = true;
+      }
+    }
+
+    for (final String state in LevelStates.validLevelStates.keys) {
+      if (!LevelStates.validLevelStates[state]!) {
+        continue;
+      }
+
+      final Offset position = LevelStates.levelStatePositions[state] as Offset;
+
+      final Spaceship spaceship = Spaceship(
+        position.dx,
+        position.dy - LevelStates.stateComponentDimension * 1.5,
+      );
+      levelSpaceships.add(spaceship);
+    }
+
+    await addAll(levelSpaceships);
   }
 
   Future<void> _teardown() async {
+    LevelStates.validLevelStates.clear();
+    LevelStates.levelStatePositions.clear();
+
+    // ignore: prefer_foreach
+    for (final Spaceship spaceship in levelSpaceships) {
+      remove(spaceship);
+    }
+    levelSpaceships.clear();
+
+    // ignore: prefer_foreach
+    for (final RectangleComponent component
+        in LevelStates.levelStateComponents) {
+      remove(component);
+    }
+    LevelStates.levelStateComponents.clear();
+
     // Future.wait
     // _teardownStates
     // _teardownEnemies
