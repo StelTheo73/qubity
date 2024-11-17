@@ -116,6 +116,12 @@ class BaseGame extends FlameGame<World>
         )
         .toList();
 
+    print('Initial Qubits: $initialQubitsList');
+
+    final QRegister qRegister = QRegister(initialQubitsList);
+    print('probabilities: ${qRegister.probabilities}');
+    print('amplitudes: ${qRegister.amplitudes}');
+
     final Spaceship spaceship = Spaceship();
     await add(spaceship);
     // levelSpaceships.add(spaceship);

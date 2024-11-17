@@ -79,6 +79,9 @@ class CreateQBit {
     if (imaginaryPart.isEmpty) {
       return '1';
     }
+    if (imaginaryPart == '-') {
+      return '-1';
+    }
     return imaginaryPart;
   }
 }
