@@ -1,6 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:qartvm/qartvm.dart';
+
+import '../objects/spaceship.dart';
 
 const double _defaultOffsetX = 0.1;
 final Map<int, double> _offsetXMap = <int, double>{
@@ -32,8 +35,12 @@ final Map<String, bool> stateAmplitudes = <String, bool>{
 class LevelStates {
   static final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);
-  static final Map<String, bool> validLevelStates = <String, bool>{};
   static final Map<String, Offset> levelStatePositions = <String, Offset>{};
+  static final List<Spaceship> levelSpaceships =
+      List<Spaceship>.empty(growable: true);
+  static final List<RectangleComponent> levelTargets =
+      List<RectangleComponent>.empty(growable: true);
+  static final Map<String, bool> validLevelStates = <String, bool>{};
 
   static double stateComponentDimension = 28.0;
 
@@ -107,6 +114,47 @@ class LevelStates {
     }
   }
 
+  static void createSpaceshipPositions(QRegister register) {
+    for (final String state in register.amplitudes.keys) {
+      final double real = register.amplitudes[state]!.re;
+      final double imaginary = register.amplitudes[state]!.im;
+
+      String stateString = '';
+
+      if (real > 0) {
+        stateString = '|$state>';
+      } else if (real < 0) {
+        stateString = '-|$state>';
+      } else if (imaginary < 0) {
+        stateString = '-i|$state>';
+      } else if (imaginary > 0) {
+        stateString = 'i|$state>';
+      }
+
+      if (stateString.isNotEmpty) {
+        LevelStates.validLevelStates[stateString] = true;
+      }
+    }
+  }
+
+  static void createLevelSpaceships() {
+    for (final String state in LevelStates.validLevelStates.keys) {
+      if (!LevelStates.validLevelStates[state]!) {
+        continue;
+      }
+
+      final Offset position = LevelStates.levelStatePositions[state] as Offset;
+
+      final Spaceship spaceship = Spaceship(
+        position.dx,
+        position.dy - LevelStates.stateComponentDimension * 1.5,
+      );
+      LevelStates.levelSpaceships.add(spaceship);
+    }
+  }
+
+  static void createLevelTargets() {}
+
   static String _getSpaces(String stateName) {
     final int stateLength = stateName.split('|').elementAt(1).length + 1;
     if (stateLength == 4 || stateName.startsWith('-i')) {
@@ -117,5 +165,21 @@ class LevelStates {
       return '  '; // 2 spaces
     }
     return '   '; // 3 spaces
+  }
+
+  static void teardown(void Function(Component component) removeGameComponent) {
+    // ignore: prefer_foreach
+    for (final Component component in LevelStates.levelStateComponents) {
+      removeGameComponent(component);
+    }
+    // ignore: prefer_foreach
+    for (final Spaceship spaceship in LevelStates.levelSpaceships) {
+      removeGameComponent(spaceship);
+    }
+
+    LevelStates.levelStateComponents.clear();
+    LevelStates.validLevelStates.clear();
+    LevelStates.levelStatePositions.clear();
+    LevelStates.levelSpaceships.clear();
   }
 }

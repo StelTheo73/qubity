@@ -21,8 +21,6 @@ class BaseGame extends FlameGame<World>
   YamlMap level;
   late QRegister gameRegister;
 
-  final List<Spaceship> levelSpaceships = List<Spaceship>.empty(growable: true);
-
   @override
   Future<void> onLoad() async {
     print('loading game');
@@ -116,61 +114,14 @@ class BaseGame extends FlameGame<World>
         .toList();
 
     gameRegister = QRegister(initialQubitsList);
-    for (final String state in gameRegister.amplitudes.keys) {
-      final Complex amp = gameRegister.amplitudes[state]!;
-      final double real = amp.re;
-      final double imaginary = amp.im;
+    LevelStates.createSpaceshipPositions(gameRegister);
+    LevelStates.createLevelSpaceships();
 
-      String stateString = '';
-
-      if (real > 0) {
-        stateString = '|$state>';
-      } else if (real < 0) {
-        stateString = '-|$state>';
-      } else if (imaginary < 0) {
-        stateString = '-i|$state>';
-      } else if (imaginary > 0) {
-        stateString = 'i|$state>';
-      }
-
-      if (stateString.isNotEmpty) {
-        LevelStates.validLevelStates[stateString] = true;
-      }
-    }
-
-    for (final String state in LevelStates.validLevelStates.keys) {
-      if (!LevelStates.validLevelStates[state]!) {
-        continue;
-      }
-
-      final Offset position = LevelStates.levelStatePositions[state] as Offset;
-
-      final Spaceship spaceship = Spaceship(
-        position.dx,
-        position.dy - LevelStates.stateComponentDimension * 1.5,
-      );
-      levelSpaceships.add(spaceship);
-    }
-
-    await addAll(levelSpaceships);
+    await addAll(LevelStates.levelSpaceships);
   }
 
   Future<void> _teardown() async {
-    LevelStates.validLevelStates.clear();
-    LevelStates.levelStatePositions.clear();
-
-    // ignore: prefer_foreach
-    for (final Spaceship spaceship in levelSpaceships) {
-      remove(spaceship);
-    }
-    levelSpaceships.clear();
-
-    // ignore: prefer_foreach
-    for (final RectangleComponent component
-        in LevelStates.levelStateComponents) {
-      remove(component);
-    }
-    LevelStates.levelStateComponents.clear();
+    LevelStates.teardown(remove);
 
     // Future.wait
     // _teardownStates
