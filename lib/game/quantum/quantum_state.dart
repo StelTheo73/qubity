@@ -12,26 +12,6 @@ final Map<int, double> _offsetXMap = <int, double>{
   8: 0.075,
 };
 
-// Valid states for the game
-final Map<String, bool> stateAmplitudes = <String, bool>{
-  '|0>': false,
-  '-|0>': false,
-  'i|0>': false,
-  '-i|0>': false,
-  '|1>': false,
-  '-|1>': false,
-  'i|1>': false,
-  '-i|1>': false,
-  '|00>': false,
-  '-|00>': false,
-  '|01>': false,
-  '-|01>': false,
-  '|10>': false,
-  '-|10>': false,
-  '|11>': false,
-  '-|11>': false,
-};
-
 class LevelStates {
   static final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);

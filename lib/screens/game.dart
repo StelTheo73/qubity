@@ -2,7 +2,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/alert/game_exit.dart';
+import '../components/alert/level_exit.dart';
 import '../game/game.dart';
 import '../game/quantum/quantum_state.dart';
 import '../utils/config.dart';
@@ -36,7 +36,7 @@ class _GameScreenState extends State<GameScreen> {
     final bool shouldPop = await showDialog(
           context: context,
           builder: (BuildContext context) {
-            return const GameExitAlert();
+            return const LevelExitAlert();
           },
         ) ??
         false;
