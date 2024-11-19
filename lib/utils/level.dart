@@ -42,6 +42,10 @@ class LevelLoader {
     return levelStates[level['states'] as String] as YamlMap;
   }
 
+  static YamlList getLevelTargets(YamlMap level) {
+    return level['targets'] as YamlList;
+  }
+
   static Future<int> getLastUnlockedLevel() async {
     return await DeviceStore.prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ??
         1;

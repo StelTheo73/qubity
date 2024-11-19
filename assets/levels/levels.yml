@@ -4,7 +4,7 @@ levels:
   - id: 1
     states: 'x'
     initial: [['1', '0']]
-    target: ['|1>']
+    targets: ['|1>']
     steps: 1
     gates: 'x'
     description: 'X Gate'
@@ -12,7 +12,7 @@ levels:
   - id: 2
     states: 'x'
     initial: [['0', '1']]
-    target: ['|0>']
+    targets: ['|0>']
     steps: 1
     gates: 'x'
     description: 'X Gate reverse'
@@ -20,7 +20,7 @@ levels:
   - id: 3
     states: 'y'
     initial: [['1', '0']]
-    target: ['i|1>']
+    targets: ['i|1>']
     steps: 1
     gates: 'y'
     description: 'Y Gate'
@@ -28,7 +28,7 @@ levels:
   - id: 4
     states: 'y'
     initial: [['0', '1']]
-    target: ['-i|0>']
+    targets: ['-i|0>']
     steps: 1
     gates: 'y'
     description: 'Y Gate'
@@ -36,7 +36,7 @@ levels:
   - id: 5
     states: 'y'
     initial: [['0', 'i']]
-    target: ['|0>']
+    targets: ['|0>']
     steps: 1
     gates: 'y'
     description: 'Y Gate reverse'
@@ -44,7 +44,7 @@ levels:
   - id: 6
     states: 'y'
     initial: [['-i', '0']]
-    target: ['|1>']
+    targets: ['|1>']
     steps: 1
     gates: 'y'
     description: 'Y Gate reverse'
@@ -52,7 +52,7 @@ levels:
   - id: 7
     states: 'xy'
     initial: [['0', '-i']]
-    target: ['|1>']
+    targets: ['|1>']
     steps: 2
     gates: 'xy'
     description: 'X and Y Gate'
@@ -60,7 +60,7 @@ levels:
   - id: 8
     states: 'xy'
     initial: [['0', '1']]
-    target: ['-i|1>']
+    targets: ['-i|1>']
     steps: 2
     gates: 'xy'
     description: 'X and Y Gate'
@@ -68,7 +68,7 @@ levels:
   - id: 9
     states: 'h'
     initial: [['1', '0']]
-    target: ['-|0>']
+    targets: ['-|0>']
     steps: 3
     gates: 'xz'
     description: 'X and Z Gate'
@@ -76,7 +76,7 @@ levels:
   - id: 10
     states: 'h'
     initial: [['1', '0']]
-    target: ['|0>', '|1>']
+    targets: ['|0>', '|1>']
     steps: 1
     gates: 'h'
     description: 'H Gate'
@@ -84,7 +84,7 @@ levels:
   - id: 11
     states: 'h'
     initial: [['0', '1']]
-    target: ['|0>', '-|1>']
+    targets: ['|0>', '-|1>']
     steps: 1
     gates: 'h'
     description: 'H gate'
@@ -92,7 +92,7 @@ levels:
   - id: 12
     states: 'h'
     initial: [['sqrt(2)/2', '-sqrt(2)/2']]
-    target: ['|1>']
+    targets: ['|1>']
     steps: 1
     gates: 'h'
     description: 'H Gate reverse'
@@ -100,7 +100,7 @@ levels:
   - id: 13
     states: 'h'
     initial: [['sqrt(2)/2', 'sqrt(2)/2']]
-    target: ['|0>']
+    targets: ['|0>']
     steps: 1
     gates: 'h'
     description: 'H Gate reverse'
@@ -108,7 +108,7 @@ levels:
   - id: 14
     states: 'h'
     initial: [['1', '0']]
-    target: ['|0>', '-|1>']
+    targets: ['|0>', '-|1>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate'
@@ -116,7 +116,7 @@ levels:
   - id: 15
     states: 'h'
     initial: [['0', '1']]
-    target: ['|0>', '|1>']
+    targets: ['|0>', '|1>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate'
@@ -124,7 +124,7 @@ levels:
   - id: 16
     states: 'h'
     initial: [['0', '1']]
-    target: ['|1>', '-|0>']
+    targets: ['|1>', '-|0>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate reverse'
@@ -132,7 +132,7 @@ levels:
   - id: 17
     states: 'h'
     initial: [['sqrt(2)/2', '-sqrt(2)/2']]
-    target: ['-|1>']
+    targets: ['-|1>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate reverse'
@@ -140,7 +140,7 @@ levels:
   - id: 18
     states: '2bits'
     initial: [['1', '0'], ['1', '0']]
-    target: ['|10>']
+    targets: ['|10>']
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -148,7 +148,7 @@ levels:
   - id: 19
     states: '2bits'
     initial: [['0', '1'], ['0', '1']]
-    target: ['|01>']
+    targets: ['|01>']
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -156,7 +156,7 @@ levels:
   - id: 20
     states: '2bits'
     initial: [['1', '0'], ['1', '0']]
-    target: ['|11>']
+    targets: ['|11>']
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -164,7 +164,7 @@ levels:
   - id: 21
     states: '2bits'
     initial: [['0', '1'], ['0', '1']]
-    target: ['|00>']
+    targets: ['|00>']
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -172,7 +172,7 @@ levels:
   - id: 22
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
-    target: ['|00>', '|01>']
+    targets: ['|00>', '|01>']
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -180,7 +180,7 @@ levels:
   - id: 23
     states: '2bits_phase'
     initial: [['0', '1'], ['0', '1']]
-    target: ['|01>', '-|11>']
+    targets: ['|01>', '-|11>']
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -188,7 +188,7 @@ levels:
   - id: 24
     states: '2bits_phase'
     initial: [['sqrt(2)/2', 'sqrt(2)/2'], ['0', '1']]
-    target: ['|01>']
+    targets: ['|01>']
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -196,7 +196,7 @@ levels:
   - id: 25
     states: '2bits_phase'
     initial: [['sqrt(2)/2', '-sqrt(2)/2'], ['0', '1']]
-    target: ['|11>']
+    targets: ['|11>']
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -204,7 +204,7 @@ levels:
   - id: 26
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
-    target: ['|00>', '|01>', '|10>', '|11>']
+    targets: ['|00>', '|01>', '|10>', '|11>']
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -212,7 +212,7 @@ levels:
   - id: 27
     states: '2bits_phase'
     initial: [['1', '0'], ['sqrt(2)/2', '-sqrt(2)/2']]
-    target: ['|00>', '|01>', '|10>', '|11>']
+    targets: ['|00>', '|01>', '|10>', '|11>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -220,7 +220,7 @@ levels:
   - id: 28
     states: '2bits_phase'
     initial: [['1', '0'], ['0', '1']]
-    target: ['-|00>', '|01>']
+    targets: ['-|00>', '|01>']
     steps: 2
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -228,7 +228,7 @@ levels:
   - id: 29
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
-    target: ['|00>', '-|10>']
+    targets: ['|00>', '-|10>']
     steps: 2
     gates: 'hxz'
     description: 'H, X and Z Gate 2 bit'
@@ -236,7 +236,7 @@ levels:
   - id: 30
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
-    target: ['-|00>', '|01>']
+    targets: ['-|00>', '|01>']
     steps: 2
     gates: 'hxz'
     description: 'H, X and Z Gate 2 bit'

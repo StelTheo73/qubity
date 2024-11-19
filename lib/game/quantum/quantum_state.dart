@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../objects/spaceship.dart';
+import '../objects/state_component.dart';
 
 const double _defaultOffsetX = 0.1;
 final Map<int, double> _offsetXMap = <int, double>{
@@ -61,34 +62,14 @@ class LevelStates {
       levelStatePositions[stateName] = validPosition;
 
       levelStateComponents.add(
-        RectangleComponent(
+        StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
           anchor: Anchor.center,
           size: rectangleSize,
-          scale: Vector2(1.0, 1.0),
           paint: Paint()..color = Colors.purple,
-          children: <Component>[
-            TextBoxComponent<TextPaint>(
-              text: '$spacesString$stateName',
-              boxConfig: TextBoxConfig(
-                margins: EdgeInsets.symmetric(
-                  vertical: (textBoxSize.y - textSize) / 2,
-                  horizontal: 1,
-                ),
-              ),
-              textRenderer: TextPaint(
-                style: GoogleFonts.roboto(
-                  textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: textSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              size: textBoxSize,
-              anchor: Anchor.topLeft,
-            ),
-          ],
+          text: '$spacesString$stateName',
+          textBoxSize: textBoxSize,
+          textSize: textSize,
         ),
       );
     }
@@ -133,7 +114,25 @@ class LevelStates {
     }
   }
 
-  static void createLevelTargets() {}
+  static void createLevelTargets(Iterable<dynamic> levelTargets) {
+    for (final dynamic target in levelTargets) {
+      final String targetState = target.toString();
+      final String spacesString = _getSpaces(targetState);
+      final Offset position = LevelStates.levelStatePositions[targetState]!;
+
+      final StateComponent targetComponent = StateComponent(
+        position: Vector2(position.dx, 50),
+        anchor: Anchor.center,
+        size: Vector2(stateComponentDimension, stateComponentDimension),
+        paint: Paint()..color = Colors.green,
+        text: '$spacesString$targetState',
+        textBoxSize: Vector2(stateComponentDimension, stateComponentDimension),
+        textSize: 10.0,
+      );
+
+      LevelStates.levelTargets.add(targetComponent);
+    }
+  }
 
   static String _getSpaces(String stateName) {
     final int stateLength = stateName.split('|').elementAt(1).length + 1;
@@ -156,10 +155,15 @@ class LevelStates {
     for (final Spaceship spaceship in LevelStates.levelSpaceships) {
       removeGameComponent(spaceship);
     }
+    // ignore: prefer_foreach
+    for (final Component target in LevelStates.levelTargets) {
+      removeGameComponent(target);
+    }
 
     LevelStates.levelStateComponents.clear();
     LevelStates.validLevelStates.clear();
     LevelStates.levelStatePositions.clear();
     LevelStates.levelSpaceships.clear();
+    LevelStates.levelTargets.clear();
   }
 }

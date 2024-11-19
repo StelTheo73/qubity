@@ -57,13 +57,11 @@ class BaseGame extends FlameGame<World>
 
     await Future.wait(<Future<void>>[
       _setupStates(),
-      _setupEnemies(),
+      _setupTargets(),
       _setupGates(),
       _setupSpaceships(),
     ]);
   }
-
-  Future<void> _setupEnemies() async {}
 
   Future<void> _setupGates() async {}
 
@@ -118,6 +116,13 @@ class BaseGame extends FlameGame<World>
     LevelStates.createLevelSpaceships();
 
     await addAll(LevelStates.levelSpaceships);
+  }
+
+  Future<void> _setupTargets() async {
+    final YamlList levelTargets = LevelLoader.getLevelTargets(level);
+    LevelStates.levelTargets.clear();
+    LevelStates.createLevelTargets(levelTargets);
+    await addAll(LevelStates.levelTargets);
   }
 
   Future<void> _teardown() async {
