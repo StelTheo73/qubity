@@ -1,6 +1,9 @@
 // Configuration
 //
 const String configPath = 'assets/config/config.yml';
+
+// Levels
+//
 const String levelsPath = 'assets/levels/levels.yml';
 const String levelGatesPath = 'assets/levels/level_gates.yml';
 const String levelStatesPath = 'assets/levels/level_states.yml';
@@ -16,3 +19,6 @@ const String backgroundLargeScreenPath =
 // Parallax
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
 const String parallaxSmallStarsPath = 'assets/images/parallax/small_stars.png';
+//
+// Targets
+const String levelTargetsPath = 'assets/images/spaceships/';

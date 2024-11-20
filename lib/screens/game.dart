@@ -4,7 +4,6 @@ import 'package:yaml/yaml.dart';
 
 import '../components/alert/level_exit.dart';
 import '../game/game.dart';
-import '../game/quantum/quantum_state.dart';
 import '../utils/config.dart';
 
 class GameScreen extends StatefulWidget {
@@ -42,7 +41,7 @@ class _GameScreenState extends State<GameScreen> {
         false;
 
     if (shouldPop) {
-      LevelStates.teardown(_game.remove);
+      await _game.teardown();
       if (context.mounted) {
         Navigator.of(context).pop();
       }

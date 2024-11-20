@@ -5,6 +5,7 @@ levels:
     states: 'x'
     initial: [['1', '0']]
     targets: ['|1>']
+    target_image: enemy_001
     steps: 1
     gates: 'x'
     description: 'X Gate'
@@ -13,6 +14,7 @@ levels:
     states: 'x'
     initial: [['0', '1']]
     targets: ['|0>']
+    target_image: enemy_001
     steps: 1
     gates: 'x'
     description: 'X Gate reverse'
@@ -21,6 +23,7 @@ levels:
     states: 'y'
     initial: [['1', '0']]
     targets: ['i|1>']
+    target_image: enemy_001
     steps: 1
     gates: 'y'
     description: 'Y Gate'
@@ -29,6 +32,7 @@ levels:
     states: 'y'
     initial: [['0', '1']]
     targets: ['-i|0>']
+    target_image: enemy_001
     steps: 1
     gates: 'y'
     description: 'Y Gate'
@@ -37,6 +41,7 @@ levels:
     states: 'y'
     initial: [['0', 'i']]
     targets: ['|0>']
+    target_image: enemy_001
     steps: 1
     gates: 'y'
     description: 'Y Gate reverse'
@@ -45,6 +50,7 @@ levels:
     states: 'y'
     initial: [['-i', '0']]
     targets: ['|1>']
+    target_image: enemy_001
     steps: 1
     gates: 'y'
     description: 'Y Gate reverse'
@@ -53,6 +59,7 @@ levels:
     states: 'xy'
     initial: [['0', '-i']]
     targets: ['|1>']
+    target_image: enemy_001
     steps: 2
     gates: 'xy'
     description: 'X and Y Gate'
@@ -61,6 +68,7 @@ levels:
     states: 'xy'
     initial: [['0', '1']]
     targets: ['-i|1>']
+    target_image: enemy_001
     steps: 2
     gates: 'xy'
     description: 'X and Y Gate'
@@ -69,6 +77,7 @@ levels:
     states: 'h'
     initial: [['1', '0']]
     targets: ['-|0>']
+    target_image: enemy_001
     steps: 3
     gates: 'xz'
     description: 'X and Z Gate'
@@ -77,6 +86,7 @@ levels:
     states: 'h'
     initial: [['1', '0']]
     targets: ['|0>', '|1>']
+    target_image: enemy_002
     steps: 1
     gates: 'h'
     description: 'H Gate'
@@ -85,6 +95,7 @@ levels:
     states: 'h'
     initial: [['0', '1']]
     targets: ['|0>', '-|1>']
+    target_image: enemy_002
     steps: 1
     gates: 'h'
     description: 'H gate'
@@ -93,6 +104,7 @@ levels:
     states: 'h'
     initial: [['sqrt(2)/2', '-sqrt(2)/2']]
     targets: ['|1>']
+    target_image: enemy_002
     steps: 1
     gates: 'h'
     description: 'H Gate reverse'
@@ -101,6 +113,7 @@ levels:
     states: 'h'
     initial: [['sqrt(2)/2', 'sqrt(2)/2']]
     targets: ['|0>']
+    target_image: enemy_002
     steps: 1
     gates: 'h'
     description: 'H Gate reverse'
@@ -109,6 +122,7 @@ levels:
     states: 'h'
     initial: [['1', '0']]
     targets: ['|0>', '-|1>']
+    target_image: enemy_002
     steps: 2
     gates: 'hx'
     description: 'H and X Gate'
@@ -117,6 +131,7 @@ levels:
     states: 'h'
     initial: [['0', '1']]
     targets: ['|0>', '|1>']
+    target_image: enemy_002
     steps: 2
     gates: 'hx'
     description: 'H and X Gate'
@@ -125,6 +140,7 @@ levels:
     states: 'h'
     initial: [['0', '1']]
     targets: ['|1>', '-|0>']
+    target_image: enemy_002
     steps: 2
     gates: 'hx'
     description: 'H and X Gate reverse'
@@ -133,6 +149,7 @@ levels:
     states: 'h'
     initial: [['sqrt(2)/2', '-sqrt(2)/2']]
     targets: ['-|1>']
+    target_image: enemy_002
     steps: 2
     gates: 'hx'
     description: 'H and X Gate reverse'
@@ -141,6 +158,7 @@ levels:
     states: '2bits'
     initial: [['1', '0'], ['1', '0']]
     targets: ['|10>']
+    target_image: enemy_002
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -149,6 +167,7 @@ levels:
     states: '2bits'
     initial: [['0', '1'], ['0', '1']]
     targets: ['|01>']
+    target_image: enemy_002
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -157,6 +176,7 @@ levels:
     states: '2bits'
     initial: [['1', '0'], ['1', '0']]
     targets: ['|11>']
+    target_image: enemy_002
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -165,6 +185,7 @@ levels:
     states: '2bits'
     initial: [['0', '1'], ['0', '1']]
     targets: ['|00>']
+    target_image: enemy_002
     steps: 1
     gates: 'x'
     description: 'X Gate 2 bit'
@@ -173,6 +194,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
     targets: ['|00>', '|01>']
+    target_image: enemy_002
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -181,6 +203,7 @@ levels:
     states: '2bits_phase'
     initial: [['0', '1'], ['0', '1']]
     targets: ['|01>', '-|11>']
+    target_image: enemy_002
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -189,6 +212,7 @@ levels:
     states: '2bits_phase'
     initial: [['sqrt(2)/2', 'sqrt(2)/2'], ['0', '1']]
     targets: ['|01>']
+    target_image: enemy_002
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -197,6 +221,7 @@ levels:
     states: '2bits_phase'
     initial: [['sqrt(2)/2', '-sqrt(2)/2'], ['0', '1']]
     targets: ['|11>']
+    target_image: enemy_003
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -205,6 +230,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
     targets: ['|00>', '|01>', '|10>', '|11>']
+    target_image: enemy_003
     steps: 1
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -213,6 +239,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['sqrt(2)/2', '-sqrt(2)/2']]
     targets: ['|00>', '|01>', '|10>', '|11>']
+    target_image: enemy_003
     steps: 2
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -221,6 +248,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['0', '1']]
     targets: ['-|00>', '|01>']
+    target_image: enemy_003
     steps: 2
     gates: 'hx'
     description: 'H and X Gate 2 bit'
@@ -229,6 +257,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
     targets: ['|00>', '-|10>']
+    target_image: enemy_003
     steps: 2
     gates: 'hxz'
     description: 'H, X and Z Gate 2 bit'
@@ -237,6 +266,7 @@ levels:
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
     targets: ['-|00>', '|01>']
+    target_image: enemy_003
     steps: 2
     gates: 'hxz'
     description: 'H, X and Z Gate 2 bit'

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
+import '../objects/enemy.dart';
 import '../objects/spaceship.dart';
 import '../objects/state_component.dart';
 
@@ -14,12 +15,13 @@ final Map<int, double> _offsetXMap = <int, double>{
 };
 
 class LevelStates {
+  static final List<Enemy> levelEnemies = List<Enemy>.empty(growable: true);
   static final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);
   static final Map<String, Offset> levelStatePositions = <String, Offset>{};
   static final List<Spaceship> levelSpaceships =
       List<Spaceship>.empty(growable: true);
-  static final List<RectangleComponent> levelTargets =
+  static final List<RectangleComponent> levelTargetComponents =
       List<RectangleComponent>.empty(growable: true);
   static final Map<String, bool> validLevelStates = <String, bool>{};
 
@@ -114,7 +116,8 @@ class LevelStates {
     }
   }
 
-  static void createLevelTargets(Iterable<dynamic> levelTargets) {
+  static void createLevelTargets(
+      Iterable<dynamic> levelTargets, String targetImagePath) {
     for (final dynamic target in levelTargets) {
       final String targetState = target.toString();
       final String spacesString = _getSpaces(targetState);
@@ -130,7 +133,14 @@ class LevelStates {
         textSize: 10.0,
       );
 
-      LevelStates.levelTargets.add(targetComponent);
+      final Enemy enemy = Enemy(
+        position.dx,
+        50 + stateComponentDimension * 1.5,
+        targetImagePath,
+      );
+
+      LevelStates.levelTargetComponents.add(targetComponent);
+      LevelStates.levelEnemies.add(enemy);
     }
   }
 
@@ -156,14 +166,19 @@ class LevelStates {
       removeGameComponent(spaceship);
     }
     // ignore: prefer_foreach
-    for (final Component target in LevelStates.levelTargets) {
+    for (final Component target in LevelStates.levelTargetComponents) {
       removeGameComponent(target);
     }
+    // ignore: prefer_foreach
+    for (final Enemy enemy in LevelStates.levelEnemies) {
+      removeGameComponent(enemy);
+    }
 
-    LevelStates.levelStateComponents.clear();
+    LevelStates.levelEnemies.clear();
     LevelStates.validLevelStates.clear();
+    LevelStates.levelStateComponents.clear();
     LevelStates.levelStatePositions.clear();
     LevelStates.levelSpaceships.clear();
-    LevelStates.levelTargets.clear();
+    LevelStates.levelTargetComponents.clear();
   }
 }

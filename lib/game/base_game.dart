@@ -10,8 +10,8 @@ import '../constants/assets.dart';
 import '../utils/level.dart';
 import 'game_utils.dart';
 import 'objects/spaceship.dart';
-import 'quantum/quantum_bits.dart';
-import 'quantum/quantum_state.dart';
+import 'state/bits_state.dart';
+import 'state/level_state.dart';
 
 class BaseGame extends FlameGame<World>
     with TapCallbacks, HasCollisionDetection {
@@ -120,12 +120,15 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupTargets() async {
     final YamlList levelTargets = LevelLoader.getLevelTargets(level);
-    LevelStates.levelTargets.clear();
-    LevelStates.createLevelTargets(levelTargets);
-    await addAll(LevelStates.levelTargets);
+    final String targetImagePath = LevelLoader.getLevelTargetImage(level);
+    LevelStates.levelTargetComponents.clear();
+    LevelStates.createLevelTargets(levelTargets, targetImagePath);
+    await addAll(LevelStates.levelTargetComponents);
+    print('enemy components: ${LevelStates.levelEnemies}');
+    await addAll(LevelStates.levelEnemies);
   }
 
-  Future<void> _teardown() async {
+  Future<void> teardown() async {
     LevelStates.teardown(remove);
 
     // Future.wait
