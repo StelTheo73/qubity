@@ -2,19 +2,21 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+double _stateComponentDimension = 28.0;
+Vector2 _size = Vector2(_stateComponentDimension, _stateComponentDimension);
+Vector2 _textBoxSize =
+    Vector2(_stateComponentDimension, _stateComponentDimension);
+double _textSize = 10.0;
+
 class StateComponent extends RectangleComponent {
   StateComponent({
     required Vector2 position,
-    required Anchor anchor,
-    required Vector2 size,
     required Paint paint,
     required String text,
-    required Vector2 textBoxSize,
-    required double textSize,
   }) : super(
           position: position,
-          anchor: anchor,
-          size: size,
+          anchor: Anchor.center,
+          size: _size,
           paint: paint,
           scale: Vector2(1.0, 1.0),
           children: <Component>[
@@ -22,7 +24,7 @@ class StateComponent extends RectangleComponent {
               text: text,
               boxConfig: TextBoxConfig(
                 margins: EdgeInsets.symmetric(
-                  vertical: (textBoxSize.y - textSize) / 2,
+                  vertical: (_textBoxSize.y - _textSize) / 2,
                   horizontal: 1,
                 ),
               ),
@@ -30,12 +32,12 @@ class StateComponent extends RectangleComponent {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: textSize,
+                    fontSize: _textSize,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              size: textBoxSize,
+              size: _textBoxSize,
               anchor: Anchor.topLeft,
             ),
           ],

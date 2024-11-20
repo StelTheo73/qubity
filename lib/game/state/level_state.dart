@@ -1,6 +1,5 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../objects/enemy.dart';
@@ -44,16 +43,6 @@ class LevelStates {
     final List<Offset> validPositions =
         getValidPositions(gameSize, levelStates.length);
 
-    final Vector2 rectangleSize = Vector2(
-      stateComponentDimension,
-      stateComponentDimension,
-    );
-    final Vector2 textBoxSize = Vector2(
-      stateComponentDimension,
-      stateComponentDimension,
-    );
-    const double textSize = 10.0;
-
     for (int counter = 0; counter < levelStates.length; counter++) {
       final String stateName = levelStates.elementAt(counter).toString();
       final String spacesString = _getSpaces(stateName);
@@ -66,12 +55,8 @@ class LevelStates {
       levelStateComponents.add(
         StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
-          anchor: Anchor.center,
-          size: rectangleSize,
           paint: Paint()..color = Colors.purple,
           text: '$spacesString$stateName',
-          textBoxSize: textBoxSize,
-          textSize: textSize,
         ),
       );
     }
@@ -125,12 +110,8 @@ class LevelStates {
 
       final StateComponent targetComponent = StateComponent(
         position: Vector2(position.dx, 50),
-        anchor: Anchor.center,
-        size: Vector2(stateComponentDimension, stateComponentDimension),
         paint: Paint()..color = Colors.green,
         text: '$spacesString$targetState',
-        textBoxSize: Vector2(stateComponentDimension, stateComponentDimension),
-        textSize: 10.0,
       );
 
       final Enemy enemy = Enemy(
