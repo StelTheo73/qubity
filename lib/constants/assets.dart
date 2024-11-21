@@ -16,6 +16,9 @@ const String backgroundSmallScreenPath =
 const String backgroundLargeScreenPath =
     'assets/images/background/large_screen.png';
 //
+// Gates
+const String gatePath = 'assets/images/gates/';
+//
 // Parallax
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
 const String parallaxSmallStarsPath = 'assets/images/parallax/small_stars.png';

@@ -36,6 +36,7 @@ flutter:
     - assets/audio/
     - assets/images/
     - assets/images/background/
+    - assets/images/gates/
     - assets/images/icons/
     - assets/images/parallax/
     - assets/images/spaceships/
