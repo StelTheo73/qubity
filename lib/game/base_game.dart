@@ -61,15 +61,30 @@ class BaseGame extends FlameGame<World>
       _cacheGateImages(),
     ]);
 
+    await _setupStates();
+
     await Future.wait(<Future<void>>[
-      _setupStates(),
       _setupTargets(),
-      _setupGates(),
       _setupSpaceships(),
+      _setupGates(),
     ]);
   }
 
-  Future<void> _setupGates() async {}
+  Future<void> _setupGates() async {
+    final YamlList levelGates = LevelLoader.getLevelGates(level);
+    print(levelGates);
+
+    final Vector2 initialPosition = Vector2(0, size.y - 15);
+    final double boxSize = 30.0;
+    double offsetX = 10;
+    double offsetY = 0;
+
+    for (int i = 0; i < gameRegister.size; i++) {
+      final RectangleComponent gateSelector = RectangleComponent(
+        position: initialPosition + Vector2(offsetX, offsetY),
+      );
+    }
+  }
 
   Future<void> _setupParallax() async {
     late final ParallaxComponent<FlameGame<World>> parallax;
@@ -134,7 +149,7 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> teardown() async {
-    LevelStates.teardown(remove);
+    LevelStates.teardown(removeAll);
 
     // Future.wait
     // _teardownStates

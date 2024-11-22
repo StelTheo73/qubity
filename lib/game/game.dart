@@ -2,14 +2,23 @@ import 'package:qartvm/qartvm.dart';
 
 import '../constants/gates.dart';
 import './base_game.dart';
+import 'state/level_state.dart';
 
 class QubityGame extends BaseGame {
   QubityGame({required super.level});
 
-  Future<void> quantumCalculation({
+  Future<void> updateSpaceships() async {
+    LevelStates.resetSpaceshipPositions();
+    LevelStates.createSpaceshipPositions(gameRegister);
+    LevelStates.removeLevelSpaceships(removeAll);
+
+    LevelStates.createLevelSpaceships();
+  }
+
+  void quantumCalculation({
     required String gate0,
     String gate1 = 'I',
-  }) async {
+  }) {
     final QCircuit circuit = QCircuit(size: gameRegister.size);
 
     if (gameRegister.size == 1) {
@@ -23,8 +32,6 @@ class QubityGame extends BaseGame {
     }
 
     circuit.execute(gameRegister);
-
-    // draw spaceships to new positions
   }
 
   @override

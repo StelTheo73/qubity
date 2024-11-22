@@ -22,6 +22,8 @@ class LevelStates {
       List<Spaceship>.empty(growable: true);
   static final List<RectangleComponent> levelTargetComponents =
       List<RectangleComponent>.empty(growable: true);
+  // A Map containing all valid level states i.e..
+  // The boolean value indicates current spaceship location
   static final Map<String, bool> validLevelStates = <String, bool>{};
 
   static double stateComponentDimension = 28.0;
@@ -38,6 +40,8 @@ class LevelStates {
     );
   }
 
+  // Public Methods
+  //
   static void setupLevelStates(
       Vector2 gameSize, Iterable<dynamic> levelStates) {
     final List<Offset> validPositions =
@@ -62,6 +66,7 @@ class LevelStates {
     }
   }
 
+  //
   static void createSpaceshipPositions(QRegister register) {
     for (final String state in register.amplitudes.keys) {
       final double real = register.amplitudes[state]!.re;
@@ -85,13 +90,14 @@ class LevelStates {
     }
   }
 
+  //
   static void createLevelSpaceships() {
     for (final String state in LevelStates.validLevelStates.keys) {
       if (!LevelStates.validLevelStates[state]!) {
         continue;
       }
 
-      final Offset position = LevelStates.levelStatePositions[state] as Offset;
+      final Offset position = LevelStates.levelStatePositions[state]!;
 
       final Spaceship spaceship = Spaceship(
         position.dx,
@@ -101,6 +107,7 @@ class LevelStates {
     }
   }
 
+  //
   static void createLevelTargets(
       Iterable<dynamic> levelTargets, String targetImagePath) {
     for (final dynamic target in levelTargets) {
@@ -125,6 +132,22 @@ class LevelStates {
     }
   }
 
+  //
+  static void removeLevelSpaceships(
+      void Function(Iterable<Component> components) removeAll) {
+    removeAll(LevelStates.levelSpaceships);
+    LevelStates.levelSpaceships.clear();
+  }
+
+  //
+  static void resetSpaceshipPositions() {
+    for (final String state in LevelStates.validLevelStates.keys) {
+      LevelStates.validLevelStates[state] = false;
+    }
+  }
+
+  // Private Methods
+  //
   static String _getSpaces(String stateName) {
     final int stateLength = stateName.split('|').elementAt(1).length + 1;
     if (stateLength == 4 || stateName.startsWith('-i')) {
@@ -137,23 +160,14 @@ class LevelStates {
     return '   '; // 3 spaces
   }
 
-  static void teardown(void Function(Component component) removeGameComponent) {
-    // ignore: prefer_foreach
-    for (final Component component in LevelStates.levelStateComponents) {
-      removeGameComponent(component);
-    }
-    // ignore: prefer_foreach
-    for (final Spaceship spaceship in LevelStates.levelSpaceships) {
-      removeGameComponent(spaceship);
-    }
-    // ignore: prefer_foreach
-    for (final Component target in LevelStates.levelTargetComponents) {
-      removeGameComponent(target);
-    }
-    // ignore: prefer_foreach
-    for (final Enemy enemy in LevelStates.levelEnemies) {
-      removeGameComponent(enemy);
-    }
+  // Teardown
+  //
+  static void teardown(
+      void Function(Iterable<Component> components) removeAll) {
+    removeAll(LevelStates.levelStateComponents);
+    removeAll(LevelStates.levelSpaceships);
+    removeAll(LevelStates.levelTargetComponents);
+    removeAll(LevelStates.levelEnemies);
 
     LevelStates.levelEnemies.clear();
     LevelStates.validLevelStates.clear();
