@@ -1,4 +1,3 @@
-import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -16,8 +15,6 @@ import 'state/level_state.dart';
 class BaseGame extends FlameGame<World>
     with TapCallbacks, HasCollisionDetection {
   BaseGame({required this.level});
-
-  final Images imageLoader = Images();
 
   bool running = true;
   YamlMap level;
