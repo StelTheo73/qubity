@@ -1,3 +1,4 @@
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -7,16 +8,16 @@ import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart';
-import '../constants/gates.dart';
 import '../utils/level.dart';
 import 'game_utils.dart';
-import 'objects/spaceship.dart';
 import 'state/bits_state.dart';
 import 'state/level_state.dart';
 
 class BaseGame extends FlameGame<World>
     with TapCallbacks, HasCollisionDetection {
   BaseGame({required this.level});
+
+  final Images imageLoader = Images();
 
   bool running = true;
   YamlMap level;
@@ -42,12 +43,6 @@ class BaseGame extends FlameGame<World>
     await images.load(imagePath);
   }
 
-  Future<void> _cacheGateImages() async {
-    for (final Map<String, dynamic> gate in gatesMap.values) {
-      await cacheImage(GameUtils.extractImagePath(gate['image']! as String));
-    }
-  }
-
   Future<void> _cacheParallaxImages() async {
     await cacheImage(GameUtils.extractImagePath(parallaxBigStarsPath));
     await cacheImage(GameUtils.extractImagePath(parallaxSmallStarsPath));
@@ -56,11 +51,7 @@ class BaseGame extends FlameGame<World>
   Future<void> _setup() async {
     await _cacheParallaxImages();
 
-    await Future.wait(<Future<void>>[
-      _setupParallax(),
-      _cacheGateImages(),
-    ]);
-
+    await _setupParallax();
     await _setupStates();
 
     await Future.wait(<Future<void>>[
@@ -72,18 +63,8 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupGates() async {
     final YamlList levelGates = LevelLoader.getLevelGates(level);
-    print(levelGates);
-
-    final Vector2 initialPosition = Vector2(0, size.y - 15);
-    final double boxSize = 30.0;
-    double offsetX = 10;
-    double offsetY = 0;
-
-    for (int i = 0; i < gameRegister.size; i++) {
-      final RectangleComponent gateSelector = RectangleComponent(
-        position: initialPosition + Vector2(offsetX, offsetY),
-      );
-    }
+    LevelStates.createLevelGates(size, levelGates);
+    await addAll(LevelStates.levelGateComponents);
   }
 
   Future<void> _setupParallax() async {

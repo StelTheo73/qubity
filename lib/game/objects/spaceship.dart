@@ -19,7 +19,7 @@ class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
     y = positionY;
     anchor = Anchor.center;
     spriteImagePath = GameUtils.extractImagePath(
-        (await SpaceshipLoader.getSelectedSpaceship())['player'] as String);
+        (await SpaceshipLoader.getSelectedSpaceship())['image'] as String);
     await gameRef.cacheImage(spriteImagePath);
     sprite = await gameRef.loadSprite(spriteImagePath);
   }

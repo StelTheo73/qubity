@@ -23,12 +23,12 @@ class QubityGame extends BaseGame {
 
     if (gameRegister.size == 1) {
       // ignore: avoid_dynamic_calls
-      gatesMap[gate0]!['action'](circuit, 0);
+      gatesMap[gate0 as Gate]!['action'](circuit, 0);
     } else {
       // ignore: avoid_dynamic_calls
-      gatesMap[gate0]!['action'](circuit, 1);
+      gatesMap[gate0 as Gate]!['action'](circuit, 1);
       // ignore: avoid_dynamic_calls
-      gatesMap[gate1]!['action'](circuit, 0);
+      gatesMap[gate1 as Gate]!['action'](circuit, 0);
     }
 
     circuit.execute(gameRegister);

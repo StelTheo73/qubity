@@ -1,8 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
+import 'package:yaml/yaml.dart';
 
+import '../../constants/gates.dart';
 import '../objects/enemy.dart';
+import '../objects/gate.dart';
 import '../objects/spaceship.dart';
 import '../objects/state_component.dart';
 
@@ -15,6 +18,8 @@ final Map<int, double> _offsetXMap = <int, double>{
 
 class LevelStates {
   static final List<Enemy> levelEnemies = List<Enemy>.empty(growable: true);
+  static final List<GateComponent> levelGateComponents =
+      List<GateComponent>.empty(growable: true);
   static final List<RectangleComponent> levelStateComponents =
       List<RectangleComponent>.empty(growable: true);
   static final Map<String, Offset> levelStatePositions = <String, Offset>{};
@@ -32,7 +37,7 @@ class LevelStates {
     final int points = statesLength;
     final double offset = gameSize.x * (_offsetXMap[points] ?? _defaultOffsetX);
     final double availableWidth = gameSize.x - 2 * offset;
-    final double positionY = gameSize.y * 0.7;
+    final double positionY = gameSize.y * 0.6;
 
     return List<Offset>.generate(
       points,
@@ -87,6 +92,24 @@ class LevelStates {
       if (stateString.isNotEmpty) {
         LevelStates.validLevelStates[stateString] = true;
       }
+    }
+  }
+
+  //
+  static void createLevelGates(Vector2 gameSize, YamlList levelGates) {
+    const double boxSize = 50.0;
+    final double initialOffsetX = gameSize.x * 0.1;
+    final double initialOffsetY = gameSize.y * 0.95;
+    double offsetX = initialOffsetX;
+
+    for (int i = 0; i < levelGates.length; i++) {
+      final GateComponent gateComponent = GateComponent(
+        Gate.getGateFromString(levelGates[i] as String),
+        offsetX,
+        initialOffsetY,
+      );
+      offsetX += 1.5 * boxSize;
+      LevelStates.levelGateComponents.add(gateComponent);
     }
   }
 
@@ -164,11 +187,13 @@ class LevelStates {
   //
   static void teardown(
       void Function(Iterable<Component> components) removeAll) {
+    removeAll(LevelStates.levelGateComponents);
     removeAll(LevelStates.levelStateComponents);
     removeAll(LevelStates.levelSpaceships);
     removeAll(LevelStates.levelTargetComponents);
     removeAll(LevelStates.levelEnemies);
 
+    LevelStates.levelGateComponents.clear();
     LevelStates.levelEnemies.clear();
     LevelStates.validLevelStates.clear();
     LevelStates.levelStateComponents.clear();
