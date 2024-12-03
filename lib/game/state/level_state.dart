@@ -72,30 +72,6 @@ class LevelStates {
   }
 
   //
-  static void createSpaceshipPositions(QRegister register) {
-    for (final String state in register.amplitudes.keys) {
-      final double real = register.amplitudes[state]!.re;
-      final double imaginary = register.amplitudes[state]!.im;
-
-      String stateString = '';
-
-      if (real > 0) {
-        stateString = '|$state>';
-      } else if (real < 0) {
-        stateString = '-|$state>';
-      } else if (imaginary < 0) {
-        stateString = '-i|$state>';
-      } else if (imaginary > 0) {
-        stateString = 'i|$state>';
-      }
-
-      if (stateString.isNotEmpty) {
-        LevelStates.validLevelStates[stateString] = true;
-      }
-    }
-  }
-
-  //
   static void createLevelGates(Vector2 gameSize, YamlList levelGates) {
     const double boxSize = 50.0;
     final double initialOffsetX = gameSize.x * 0.1;
@@ -153,6 +129,71 @@ class LevelStates {
       LevelStates.levelTargetComponents.add(targetComponent);
       LevelStates.levelEnemies.add(enemy);
     }
+  }
+
+  //
+  static void createSpaceshipPositions(QRegister register) {
+    for (final String state in register.amplitudes.keys) {
+      final double real = register.amplitudes[state]!.re;
+      final double imaginary = register.amplitudes[state]!.im;
+
+      String stateString = '';
+
+      if (real > 0) {
+        stateString = '|$state>';
+      } else if (real < 0) {
+        stateString = '-|$state>';
+      } else if (imaginary < 0) {
+        stateString = '-i|$state>';
+      } else if (imaginary > 0) {
+        stateString = 'i|$state>';
+      }
+
+      if (stateString.isNotEmpty) {
+        LevelStates.validLevelStates[stateString] = true;
+      }
+    }
+  }
+
+  //
+  static String getRegisterText(QRegister register, {bool wrapText = false}) {
+    String text = '';
+    int counter = 1;
+
+    for (final String state in register.amplitudes.keys) {
+      final double real = register.amplitudes[state]!.re;
+      final double imaginary = register.amplitudes[state]!.im;
+
+      String stateString = '';
+
+      if (real > 0) {
+        stateString = ' + |$state>';
+      } else if (real < 0) {
+        stateString = ' - |$state>';
+      } else if (imaginary < 0) {
+        stateString = ' - i|$state>';
+      } else if (imaginary > 0) {
+        stateString = ' + i|$state>';
+      }
+
+      counter++;
+      if (wrapText && counter % 4 == 0) {
+        stateString += '\n';
+      }
+
+      text += stateString;
+    }
+
+    // remove leading space
+    text = text.replaceFirst(' ', '');
+    // remove leading spaces after newline
+    text = text.replaceAll('\n ', '\n');
+    // remove leading '+', if any
+    if (text.startsWith('+')) {
+      text = text.replaceFirst('+', ' ');
+    }
+
+    return text;
   }
 
   //

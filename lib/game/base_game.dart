@@ -9,6 +9,7 @@ import 'package:yaml/yaml.dart';
 import '../constants/assets.dart';
 import '../utils/level.dart';
 import 'game_utils.dart';
+import 'objects/register.dart';
 import 'state/bits_state.dart';
 import 'state/level_state.dart';
 
@@ -18,7 +19,9 @@ class BaseGame extends FlameGame<World>
 
   bool running = true;
   YamlMap level;
+
   late QRegister gameRegister;
+  late RegisterComponent registerComponent;
 
   @override
   Future<void> onLoad() async {
@@ -50,6 +53,7 @@ class BaseGame extends FlameGame<World>
 
     await _setupParallax();
     await _setupStates();
+    await _setupRegister();
 
     await Future.wait(<Future<void>>[
       _setupTargets(),
@@ -60,6 +64,7 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupGates() async {
     final YamlList levelGates = LevelLoader.getLevelGates(level);
+    // levelGates..insert(, element) TODO insert I gate
     LevelStates.createLevelGates(size, levelGates);
     await addAll(LevelStates.levelGateComponents);
   }
@@ -90,7 +95,7 @@ class BaseGame extends FlameGame<World>
     await add(parallax);
   }
 
-  Future<void> _setupSpaceships() async {
+  Future<void> _setupRegister() async {
     final YamlList initialQubits = level['initial'] as YamlList;
     final List<Qbit> initialQubitsList = initialQubits
         .map(
@@ -102,7 +107,13 @@ class BaseGame extends FlameGame<World>
         .toList();
 
     gameRegister = QRegister(initialQubitsList);
-    LevelStates.createSpaceshipPositions(gameRegister);
+    registerComponent = RegisterComponent(size, gameRegister);
+
+    await add(registerComponent);
+  }
+
+  Future<void> _setupSpaceships() async {
+    LevelStates.createSpaceshipPositions(gameRegister!);
     LevelStates.createLevelSpaceships();
 
     await addAll(LevelStates.levelSpaceships);
@@ -129,10 +140,6 @@ class BaseGame extends FlameGame<World>
   Future<void> teardown() async {
     LevelStates.teardown(removeAll);
 
-    // Future.wait
-    // _teardownStates
-    // _teardownEnemies
-    // _teardownGates
-    // _teardownSpaceships
+    remove(registerComponent);
   }
 }
