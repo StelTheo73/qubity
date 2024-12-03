@@ -113,7 +113,7 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setupSpaceships() async {
-    LevelStates.createSpaceshipPositions(gameRegister!);
+    LevelStates.createSpaceshipPositions(gameRegister);
     LevelStates.createLevelSpaceships();
 
     await addAll(LevelStates.levelSpaceships);

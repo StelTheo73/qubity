@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../../constants/gates.dart';
 import '../game.dart';
 import '../game_utils.dart';
@@ -25,7 +26,7 @@ class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
     x = positionX;
     y = positionY;
     anchor = Anchor.center;
-    paint = Paint()..color = Colors.purple.withOpacity(0.4);
+    paint = Paint()..color = (AppColors.primary).withOpacity(0.4);
 
     spriteImagePath =
         GameUtils.extractImagePath(gatesMap[gate]!['image']! as String);
@@ -33,7 +34,7 @@ class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
 
     final RectangleComponent spriteBackground = RectangleComponent(
       size: Vector2(size.x * 0.8, size.y * 0.8),
-      paint: Paint()..color = Colors.purple,
+      paint: Paint()..color = AppColors.primary,
       anchor: Anchor.center,
       position: Vector2(size.x / 2, size.y / 2),
     );

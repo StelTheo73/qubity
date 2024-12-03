@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../../state/spaceship_notifier.dart';
 import '../../utils/spaceship.dart';
 import '../text/spaceship_name.dart';
@@ -54,7 +55,7 @@ class UnlockedSpaceShip extends StatelessWidget {
                           Icon(
                             Icons.check_circle,
                             size: 40.0,
-                            color: Colors.purple.withOpacity(0.9),
+                            color: (AppColors.primary).withOpacity(0.9),
                           ),
                       ],
                     ),

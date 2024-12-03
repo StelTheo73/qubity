@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class GestureDetectorCard extends StatelessWidget {
   const GestureDetectorCard({
     super.key,
@@ -16,12 +18,15 @@ class GestureDetectorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Color color = AppColors.secondary;
+    final Color colorOpacity = opacity ? color.withOpacity(0.6) : color;
+
     return GestureDetector(
       onTap: onTap,
       child: Card(
         margin: cardMargin,
-        color: opacity ? Colors.orange.withOpacity(0.6) : Colors.orange,
-        shadowColor: Colors.black,
+        color: colorOpacity,
+        shadowColor: AppColors.black,
         elevation: 5.0,
         child: child,
       ),

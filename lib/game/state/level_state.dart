@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
+import '../../constants/colors.dart';
 import '../../constants/gates.dart';
 import '../objects/enemy.dart';
 import '../objects/gate.dart';
@@ -64,7 +65,7 @@ class LevelStates {
       levelStateComponents.add(
         StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
-          paint: Paint()..color = Colors.purple,
+          paint: Paint()..color = AppColors.primary,
           text: '$spacesString$stateName',
         ),
       );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class PageButton extends StatelessWidget {
   const PageButton({
     super.key,
@@ -16,8 +18,8 @@ class PageButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.75,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.orange,
-          foregroundColor: Colors.black,
+          backgroundColor: AppColors.secondary,
+          foregroundColor: AppColors.black,
         ),
         onPressed: () {
           Navigator.pushNamed(context, navigateTo);

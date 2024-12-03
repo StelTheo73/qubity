@@ -2,6 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants/colors.dart';
+
 const double _stateComponentDimension = 28.0;
 Vector2 _size = Vector2(_stateComponentDimension, _stateComponentDimension);
 const double _textSize = 10.0;
@@ -32,7 +34,7 @@ class StateComponent extends RectangleComponent {
               textRenderer: TextPaint(
                 style: GoogleFonts.roboto(
                   textStyle: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.white,
                     fontSize: _textSize,
                     fontWeight: FontWeight.bold,
                   ),

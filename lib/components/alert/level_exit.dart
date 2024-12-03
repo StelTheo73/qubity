@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../text/roboto.dart';
 
 class LevelExitAlert extends AlertDialog {
@@ -17,16 +18,18 @@ class LevelExitAlert extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
+    const Color color = AppColors.black;
+
     return AlertDialog(
       title: const TextRoboto(
         text: 'Exit Level',
         fontSize: 22,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color: color,
       ),
       content: const TextRoboto(
         text: 'Are you sure you want to return to level selection?',
-        color: Colors.black,
+        color: color,
         fontSize: 14,
       ),
       actions: <Widget>[
@@ -35,7 +38,7 @@ class LevelExitAlert extends AlertDialog {
           child: const TextRoboto(
             text: 'Exit Level',
             fontSize: 14,
-            color: Colors.black,
+            color: color,
           ),
         ),
         TextButton(
