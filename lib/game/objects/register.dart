@@ -10,6 +10,55 @@ import '../state/level_state.dart';
 import 'gate.dart';
 import 'sprites.dart';
 
+class CircuitGateComponent extends RectangleComponent
+    with HasGameRef<QubityGame>, TapCallbacks {
+  CircuitGateComponent(
+    this.qubitId,
+    this.cableComponentSize,
+    this.gateComponentSize,
+    this.gatePaint,
+  ) : super(
+          size: gateComponentSize,
+          anchor: Anchor.center,
+          position: Vector2(
+            cableComponentSize.x / 2,
+            cableComponentSize.y / 2,
+          ),
+          paint: gatePaint,
+          children: <Component>[
+            RectangleComponent(
+              size: gateComponentSize,
+              paint: gatePaint,
+              anchor: Anchor.topLeft,
+            ),
+            SpriteComponent(
+              sprite: SpriteIcons.add,
+              size: gateComponentSize,
+              anchor: Anchor.topLeft,
+            ),
+          ],
+        );
+  final int qubitId;
+
+  final Vector2 cableComponentSize;
+  final Vector2 gateComponentSize;
+  final Paint gatePaint;
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    final GateComponent? selectedGate = gameRef.selectedGate;
+    if (selectedGate == null) {
+      return;
+    }
+
+    gameRef.deselectGate();
+    print('Qubit: $qubitId');
+    print('Gate: ' + selectedGate.gate.name);
+
+    super.onTapUp(event);
+  }
+}
+
 class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
   RegisterComponent(this.gameSize, this.register)
       : super(
@@ -18,8 +67,8 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
           position: Vector2(gameSize.x * 0.05, gameSize.y * 0.7),
           paint: Paint()..color = AppColors.primary,
         );
-
   final Vector2 gameSize;
+
   final QRegister register;
   late TextBoxComponent<TextPaint> textComponent;
   final List<RectangleComponent> cableComponents =
@@ -30,9 +79,17 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       List<CircuitGateComponent>.empty(growable: true);
   final List<TextBoxComponent<TextPaint>> circuitLabels =
       List<TextBoxComponent<TextPaint>>.empty(growable: true);
-
   final Paint gatePaintDefault = Paint()..color = AppColors.primary;
+
   final Paint gatePaintHighlight = Paint()..color = AppColors.secondary;
+
+  void highlightCircuitGates() {
+    for (int i = 0; i < cableComponents.length; i++) {
+      final RectangleComponent cableComponent = cableComponents[i];
+      final CircuitGateComponent gateHighlight = gatesHighlight[i];
+      cableComponent.add(gateHighlight);
+    }
+  }
 
   @override
   Future<void> onLoad() async {
@@ -48,19 +105,6 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     super.onLoad();
   }
 
-  void updateRegister() {
-    final String text = LevelStates.getRegisterText(register);
-    textComponent.text = text;
-  }
-
-  void highlightCircuitGates() {
-    for (int i = 0; i < cableComponents.length; i++) {
-      final RectangleComponent cableComponent = cableComponents[i];
-      final CircuitGateComponent gateHighlight = gatesHighlight[i];
-      cableComponent.add(gateHighlight);
-    }
-  }
-
   void resetCircuitGates() {
     for (int i = 0; i < cableComponents.length; i++) {
       final RectangleComponent cableComponent = cableComponents[i];
@@ -71,18 +115,51 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     }
   }
 
-  TextBoxComponent<TextPaint> _getTextComponent(String text) {
+  void updateRegister() {
+    final String text = LevelStates.getRegisterText(register);
+    textComponent.text = text;
+  }
+
+  RectangleComponent _getCableComponent(
+      int qubitId, double positionX, String label) {
+    final Vector2 componentSize = Vector2(10, size.y * 1.5);
+
+    final RectangleComponent rectangleComponent = RectangleComponent(
+      size: componentSize,
+      anchor: Anchor.topCenter,
+      position: Vector2(positionX, size.y),
+      paint: Paint()..color = (AppColors.primary).withOpacity(0.8),
+    );
+
+    circuitLabels.add(_getCableComponentLabel(componentSize, label));
+    gatesDefault
+        .add(_getGateComponent(qubitId, componentSize, gatePaintDefault));
+    gatesHighlight
+        .add(_getGateComponent(qubitId, componentSize, gatePaintHighlight));
+
+    rectangleComponent.add(circuitLabels.last);
+    rectangleComponent.add(gatesDefault.last);
+
+    return rectangleComponent;
+  }
+
+  TextBoxComponent<TextPaint> _getCableComponentLabel(
+      Vector2 cableComponentSize, String label) {
     return TextBoxComponent<TextPaint>(
-      text: text,
+      text: label,
+      anchor: Anchor.topCenter,
       align: Anchor.center,
-      anchor: Anchor.center,
-      position: Vector2(size.x / 2, size.y / 2),
-      size: size,
+      position: Vector2(cableComponentSize.x / 2, cableComponentSize.y),
+      boxConfig: const TextBoxConfig(
+        margins: EdgeInsets.zero,
+      ),
+      size: Vector2(50, 10),
       textRenderer: TextPaint(
         style: GoogleFonts.roboto(
           textStyle: const TextStyle(
+            overflow: TextOverflow.visible,
             color: AppColors.white,
-            fontSize: 14.0,
+            fontSize: 10.0,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -118,29 +195,6 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     return cableComponents;
   }
 
-  RectangleComponent _getCableComponent(
-      int qubitId, double positionX, String label) {
-    final Vector2 componentSize = Vector2(10, size.y * 1.5);
-
-    final RectangleComponent rectangleComponent = RectangleComponent(
-      size: componentSize,
-      anchor: Anchor.topCenter,
-      position: Vector2(positionX, size.y),
-      paint: Paint()..color = (AppColors.primary).withOpacity(0.8),
-    );
-
-    circuitLabels.add(_getCableComponentLabel(componentSize, label));
-    gatesDefault
-        .add(_getGateComponent(qubitId, componentSize, gatePaintDefault));
-    gatesHighlight
-        .add(_getGateComponent(qubitId, componentSize, gatePaintHighlight));
-
-    rectangleComponent.add(circuitLabels.last);
-    rectangleComponent.add(gatesDefault.last);
-
-    return rectangleComponent;
-  }
-
   CircuitGateComponent _getGateComponent(
     int qubitId,
     Vector2 cableComponentSize,
@@ -156,76 +210,22 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     );
   }
 
-  TextBoxComponent<TextPaint> _getCableComponentLabel(
-      Vector2 cableComponentSize, String label) {
+  TextBoxComponent<TextPaint> _getTextComponent(String text) {
     return TextBoxComponent<TextPaint>(
-      text: label,
-      anchor: Anchor.topCenter,
+      text: text,
       align: Anchor.center,
-      position: Vector2(cableComponentSize.x / 2, cableComponentSize.y),
-      boxConfig: const TextBoxConfig(
-        margins: EdgeInsets.zero,
-      ),
-      size: Vector2(50, 10),
+      anchor: Anchor.center,
+      position: Vector2(size.x / 2, size.y / 2),
+      size: size,
       textRenderer: TextPaint(
         style: GoogleFonts.roboto(
           textStyle: const TextStyle(
-            overflow: TextOverflow.visible,
             color: AppColors.white,
-            fontSize: 10.0,
+            fontSize: 14.0,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
     );
-  }
-}
-
-class CircuitGateComponent extends RectangleComponent
-    with HasGameRef<QubityGame>, TapCallbacks {
-  CircuitGateComponent(
-    this.qubitId,
-    this.cableComponentSize,
-    this.gateComponentSize,
-    this.gatePaint,
-  ) : super(
-          size: gateComponentSize,
-          anchor: Anchor.center,
-          position: Vector2(
-            cableComponentSize.x / 2,
-            cableComponentSize.y / 2,
-          ),
-          paint: gatePaint,
-          children: <Component>[
-            RectangleComponent(
-              size: gateComponentSize,
-              paint: gatePaint,
-              anchor: Anchor.topLeft,
-            ),
-            SpriteComponent(
-              sprite: SpriteIcons.add,
-              size: gateComponentSize,
-              anchor: Anchor.topLeft,
-            ),
-          ],
-        );
-
-  final int qubitId;
-  final Vector2 cableComponentSize;
-  final Vector2 gateComponentSize;
-  final Paint gatePaint;
-
-  @override
-  void onTapUp(TapUpEvent event) {
-    final GateComponent? selectedGate = gameRef.selectedGate;
-    if (selectedGate == null) {
-      return;
-    }
-
-    gameRef.deselectGate();
-    print('Qubit: $qubitId');
-    print('Gate: ' + selectedGate.gate.name);
-
-    super.onTapUp(event);
   }
 }
