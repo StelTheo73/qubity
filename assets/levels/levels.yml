@@ -237,7 +237,7 @@ levels:
 
   - id: 27
     states: '2bits_phase'
-    initial: [['1', '0'], ['sqrt(2)/2', '-sqrt(2)/2']]
+    initial: [['1', '0'], ['sqrt(2)/2', 'sqrt(2)/2']]
     targets: ['|00>', '|01>', '|10>', '|11>']
     target_image: enemy_003
     steps: 2
@@ -265,7 +265,7 @@ levels:
   - id: 30
     states: '2bits_phase'
     initial: [['1', '0'], ['1', '0']]
-    targets: ['-|00>', '|01>']
+    targets: ['-|00>', '|10>']
     target_image: enemy_003
     steps: 2
     gates: 'hxz'
