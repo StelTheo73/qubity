@@ -157,26 +157,26 @@ packages:
     dependency: "direct main"
     description:
       name: flame
-      sha256: baafe5c38075b60577db05e0421c12941695b246547d9aca95166def3f29e57f
+      sha256: c02390443e40a2a9034ac867d0789ab32f215eba4779bff4655a7143eb3d75d0
       url: "https://pub.dev"
     source: hosted
-    version: "1.21.0"
+    version: "1.22.0"
   flame_audio:
     dependency: "direct main"
     description:
       name: flame_audio
-      sha256: c0271a26ff953d0f28706acb0a1547b1a1d658628d7c64741285b8e66367a802
+      sha256: "656433a6a448dd74c1a10ae56fc7fb389d5df89cb6a5038870c2793e1f0ddc99"
       url: "https://pub.dev"
     source: hosted
-    version: "2.10.5"
+    version: "2.10.6"
   flame_noise:
     dependency: "direct main"
     description:
       name: flame_noise
-      sha256: d6a40cf883acdd11c604549c2ab0cafd8966c616ac2087510320b47c4d797079
+      sha256: c922ac8a1a2eb2cd33d39994202533dc8da8babf09e59903e5d41899ccbb627f
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.2+1"
+    version: "0.3.2+3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -324,10 +324,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: c464428172cb986b758c6d1724c603097febb8fb855aa265aeecc9280c294d4a
+      sha256: "8c4967f8b7cb46dc914e178daa29813d83ae502e0529d7b0478330616a691ef7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.12"
+    version: "2.2.14"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -404,10 +404,10 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_android
-      sha256: "3b9febd815c9ca29c9e3520d50ec32f49157711e143b7a4ca039eb87e8ade5ab"
+      sha256: "7f172d1b06de5da47b6264c2692ee2ead20bbbc246690427cdb4fc301cd0c549"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.3"
+    version: "2.3.4"
   shared_preferences_foundation:
     dependency: transitive
     description:

@@ -16,6 +16,9 @@ const String backgroundSmallScreenPath =
 const String backgroundLargeScreenPath =
     'assets/images/background/large_screen.png';
 //
+// Icons
+const String addIconPath = 'assets/images/icons/add.png';
+//
 // Gates
 const String gatePath = 'assets/images/gates/';
 //

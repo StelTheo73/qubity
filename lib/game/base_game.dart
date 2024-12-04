@@ -9,7 +9,9 @@ import 'package:yaml/yaml.dart';
 import '../constants/assets.dart';
 import '../utils/level.dart';
 import 'game_utils.dart';
+import 'objects/gate.dart';
 import 'objects/register.dart';
+import 'objects/sprites.dart';
 import 'state/bits_state.dart';
 import 'state/level_state.dart';
 
@@ -22,6 +24,10 @@ class BaseGame extends FlameGame<World>
 
   late QRegister gameRegister;
   late RegisterComponent registerComponent;
+
+  GateComponent? selectedGate;
+
+  final Map<String, Sprite> iconSpritesMap = <String, Sprite>{};
 
   @override
   Future<void> onLoad() async {
@@ -49,7 +55,10 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setup() async {
-    await _cacheParallaxImages();
+    await Future.wait(<Future<void>>[
+      SpriteIcons.init(loadSprite),
+      _cacheParallaxImages(),
+    ]);
 
     await _setupParallax();
     await _setupStates();
@@ -139,7 +148,7 @@ class BaseGame extends FlameGame<World>
 
   Future<void> teardown() async {
     LevelStates.teardown(removeAll);
-
+    selectedGate = null;
     remove(registerComponent);
   }
 }

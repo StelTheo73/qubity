@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -6,7 +7,8 @@ import '../../constants/gates.dart';
 import '../game.dart';
 import '../game_utils.dart';
 
-class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
+class GateComponent extends RectangleComponent
+    with HasGameRef<QubityGame>, TapCallbacks {
   GateComponent(this.gate, this.positionX, this.positionY)
       : super(size: GateComponent.componentSize);
 
@@ -19,6 +21,10 @@ class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
   double positionX;
   double positionY;
 
+  final Paint defaultPaint = Paint()
+    ..color = AppColors.primary.withOpacity(0.4);
+  final Paint selectedPaint = Paint()..color = AppColors.secondary;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -26,7 +32,7 @@ class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
     x = positionX;
     y = positionY;
     anchor = Anchor.center;
-    paint = Paint()..color = (AppColors.primary).withOpacity(0.4);
+    paint = defaultPaint;
 
     spriteImagePath =
         GameUtils.extractImagePath(gatesMap[gate]!['image']! as String);
@@ -46,6 +52,20 @@ class GateComponent extends RectangleComponent with HasGameRef<QubityGame> {
 
     add(spriteBackground);
     add(gateSprite);
+  }
+
+  void select() {
+    paint = selectedPaint;
+  }
+
+  void deselect() {
+    paint = defaultPaint;
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    gameRef.selectGate(this);
+    super.onTapUp(event);
   }
 
   @override

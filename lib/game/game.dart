@@ -2,6 +2,7 @@ import 'package:qartvm/qartvm.dart';
 
 import '../constants/gates.dart';
 import './base_game.dart';
+import 'objects/gate.dart';
 import 'state/level_state.dart';
 
 class QubityGame extends BaseGame {
@@ -34,12 +35,21 @@ class QubityGame extends BaseGame {
     circuit.execute(gameRegister);
   }
 
+  void selectGate(GateComponent gateComponent) {
+    deselectGate();
+    selectedGate = gateComponent;
+    gateComponent.select();
+    registerComponent.highlightCircuitGates();
+  }
+
+  void deselectGate() {
+    selectedGate?.deselect();
+    selectedGate = null;
+    registerComponent.resetCircuitGates();
+  }
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-
-    // await quantumCalculation(
-    // gate0: 'X',
-    // );
   }
 }

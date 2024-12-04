@@ -55,7 +55,6 @@ class LevelStates {
 
     for (int counter = 0; counter < levelStates.length; counter++) {
       final String stateName = levelStates.elementAt(counter).toString();
-      final String spacesString = _getSpaces(stateName);
       final Offset validPosition = validPositions[counter];
 
       // false indicates that the spaceship is not yet placed
@@ -66,7 +65,7 @@ class LevelStates {
         StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
           paint: Paint()..color = AppColors.primary,
-          text: '$spacesString$stateName',
+          text: stateName,
         ),
       );
     }
@@ -112,13 +111,12 @@ class LevelStates {
       Iterable<dynamic> levelTargets, String targetImagePath) {
     for (final dynamic target in levelTargets) {
       final String targetState = target.toString();
-      final String spacesString = _getSpaces(targetState);
       final Offset position = LevelStates.levelStatePositions[targetState]!;
 
       final StateComponent targetComponent = StateComponent(
         position: Vector2(position.dx, 50),
         paint: Paint()..color = Colors.green,
-        text: '$spacesString$targetState',
+        text: targetState,
       );
 
       final Enemy enemy = Enemy(
@@ -209,20 +207,6 @@ class LevelStates {
     for (final String state in LevelStates.validLevelStates.keys) {
       LevelStates.validLevelStates[state] = false;
     }
-  }
-
-  // Private Methods
-  //
-  static String _getSpaces(String stateName) {
-    final int stateLength = stateName.split('|').elementAt(1).length + 1;
-    if (stateLength == 4 || stateName.startsWith('-i')) {
-      return ' '; // 1 space
-    }
-
-    if (stateName.startsWith('-') || stateName.startsWith('i')) {
-      return '  '; // 2 spaces
-    }
-    return '   '; // 3 spaces
   }
 
   // Teardown

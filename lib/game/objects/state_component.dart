@@ -14,7 +14,6 @@ class StateComponent extends RectangleComponent {
     required Paint paint,
     required String text,
     Vector2? size,
-    double? textSize,
   }) : super(
           position: position,
           anchor: Anchor.center,
@@ -24,13 +23,7 @@ class StateComponent extends RectangleComponent {
           children: <Component>[
             TextBoxComponent<TextPaint>(
               text: text,
-              boxConfig: TextBoxConfig(
-                margins: EdgeInsets.symmetric(
-                  vertical:
-                      ((size?.y ?? _size.y) - (textSize ?? _textSize)) / 2,
-                  horizontal: 1,
-                ),
-              ),
+              align: Anchor.center,
               textRenderer: TextPaint(
                 style: GoogleFonts.roboto(
                   textStyle: const TextStyle(
