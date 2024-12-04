@@ -47,31 +47,7 @@ class CircuitGateComponent extends RectangleComponent
 
   @override
   void onTapUp(TapUpEvent event) {
-    final GateComponent? selectedGate = gameRef.selectedGate;
-    if (selectedGate == null) {
-      return;
-    }
-    late final String gate0;
-    late final String gate1;
-
-    gameRef.deselectGate();
-    print('Qubit: $qubitId');
-    print('Gate: ' + selectedGate.gate.name);
-
-    if (qubitId == 0) {
-      gate0 = selectedGate.gate.name;
-      gate1 = 'I';
-    } else {
-      gate0 = 'I';
-      gate1 = selectedGate.gate.name;
-    }
-
-    gameRef.quantumCalculation(
-      gate0: gate0,
-      gate1: gate1,
-    );
-    gameRef.updateSpaceships();
-
+    gameRef.applyGate(qubitId);
     super.onTapUp(event);
   }
 }

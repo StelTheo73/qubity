@@ -50,7 +50,31 @@ class QubityGame extends BaseGame {
     registerComponent.resetCircuitGates();
   }
 
-  void applyGate() {}
+  Future<void> applyGate(int qubitId) async {
+    final Gate? gateToApply = selectedGate?.gate;
+    if (gateToApply == null) {
+      return;
+    }
+    late final String gate0;
+    late final String gate1;
+
+    deselectGate();
+
+    if (qubitId == 0) {
+      gate0 = gateToApply.name;
+      gate1 = 'I';
+    } else {
+      gate0 = 'I';
+      gate1 = gateToApply.name;
+    }
+
+    quantumCalculation(
+      gate0: gate0,
+      gate1: gate1,
+    );
+    registerComponent.updateRegister();
+    await updateSpaceships();
+  }
 
   @override
   Future<void> onLoad() async {

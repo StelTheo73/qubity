@@ -213,12 +213,6 @@ class LevelStates {
   //
   static void teardown(
       void Function(Iterable<Component> components) removeAll) {
-    removeAll(LevelStates.levelGateComponents);
-    removeAll(LevelStates.levelStateComponents);
-    removeAll(LevelStates.levelSpaceships);
-    removeAll(LevelStates.levelTargetComponents);
-    removeAll(LevelStates.levelEnemies);
-
     LevelStates.levelGateComponents.clear();
     LevelStates.levelEnemies.clear();
     LevelStates.validLevelStates.clear();
