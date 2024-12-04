@@ -12,8 +12,8 @@ class QubityGame extends BaseGame {
     LevelStates.resetSpaceshipPositions();
     LevelStates.createSpaceshipPositions(gameRegister);
     LevelStates.removeLevelSpaceships(removeAll);
-
     LevelStates.createLevelSpaceships();
+    await addAll(LevelStates.levelSpaceships);
   }
 
   void quantumCalculation({
@@ -21,15 +21,17 @@ class QubityGame extends BaseGame {
     String gate1 = 'I',
   }) {
     final QCircuit circuit = QCircuit(size: gameRegister.size);
+    final Gate gate0Gate = Gate.getGateFromString(gate0);
+    final Gate gate1Gate = Gate.getGateFromString(gate1);
 
     if (gameRegister.size == 1) {
       // ignore: avoid_dynamic_calls
-      gatesMap[gate0 as Gate]!['action'](circuit, 0);
+      gatesMap[gate0Gate]!['action'](circuit, 0);
     } else {
       // ignore: avoid_dynamic_calls
-      gatesMap[gate0 as Gate]!['action'](circuit, 1);
+      gatesMap[gate0Gate]!['action'](circuit, 1);
       // ignore: avoid_dynamic_calls
-      gatesMap[gate1 as Gate]!['action'](circuit, 0);
+      gatesMap[gate1Gate]!['action'](circuit, 0);
     }
 
     circuit.execute(gameRegister);
@@ -47,6 +49,8 @@ class QubityGame extends BaseGame {
     selectedGate = null;
     registerComponent.resetCircuitGates();
   }
+
+  void applyGate() {}
 
   @override
   Future<void> onLoad() async {

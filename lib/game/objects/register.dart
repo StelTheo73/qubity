@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/gates.dart';
 import '../game.dart';
 import '../state/level_state.dart';
 import 'gate.dart';
@@ -50,10 +51,26 @@ class CircuitGateComponent extends RectangleComponent
     if (selectedGate == null) {
       return;
     }
+    late final String gate0;
+    late final String gate1;
 
     gameRef.deselectGate();
     print('Qubit: $qubitId');
     print('Gate: ' + selectedGate.gate.name);
+
+    if (qubitId == 0) {
+      gate0 = selectedGate.gate.name;
+      gate1 = 'I';
+    } else {
+      gate0 = 'I';
+      gate1 = selectedGate.gate.name;
+    }
+
+    gameRef.quantumCalculation(
+      gate0: gate0,
+      gate1: gate1,
+    );
+    gameRef.updateSpaceships();
 
     super.onTapUp(event);
   }
