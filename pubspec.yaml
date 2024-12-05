@@ -36,6 +36,7 @@ flutter:
     - assets/audio/
     - assets/google_fonts/
     - assets/images/
+    - assets/images/asteroids/
     - assets/images/background/
     - assets/images/gates/
     - assets/images/icons/

@@ -10,6 +10,15 @@ const String levelStatesPath = 'assets/levels/level_states.yml';
 
 // Images
 //
+// Asteroids
+const List<String> asteroidPaths = <String>[
+  'assets/images/asteroids/asteroid_001.png',
+  'assets/images/asteroids/asteroid_002.png',
+  'assets/images/asteroids/asteroid_003.png',
+  'assets/images/asteroids/asteroid_004.png',
+  'assets/images/asteroids/asteroid_005.png',
+];
+//
 // Background
 const String backgroundSmallScreenPath =
     'assets/images/background/mobile_screen.png';

@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/gates.dart';
-import '../objects/enemy.dart';
+import '../objects/asteroid.dart';
 import '../objects/gate.dart';
 import '../objects/spaceship.dart';
 import '../objects/state_component.dart';
@@ -18,7 +18,8 @@ final Map<int, double> _offsetXMap = <int, double>{
 };
 
 class LevelStates {
-  static final List<Enemy> levelEnemies = List<Enemy>.empty(growable: true);
+  static final List<Asteroid> levelEnemies =
+      List<Asteroid>.empty(growable: true);
   static final List<GateComponent> levelGateComponents =
       List<GateComponent>.empty(growable: true);
   static final List<RectangleComponent> levelStateComponents =
@@ -107,7 +108,7 @@ class LevelStates {
         text: targetState,
       );
 
-      final Enemy enemy = Enemy(
+      final Asteroid enemy = Asteroid(
         position.dx,
         50 + stateComponentDimension * 1.5,
         targetImagePath,
