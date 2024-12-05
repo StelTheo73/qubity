@@ -4,6 +4,7 @@ import 'package:flame/effects.dart';
 import '../../utils/spaceship.dart';
 import '../game.dart';
 import '../game_utils.dart';
+import 'missile.dart';
 
 class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
   Spaceship(this.positionX, this.positionY) : super(size: Vector2(50, 50));
@@ -20,23 +21,23 @@ class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
     anchor = Anchor.center;
     spriteImagePath = GameUtils.extractImagePath(
         (await SpaceshipLoader.getSelectedSpaceship())['image'] as String);
-    await gameRef.cacheImage(spriteImagePath);
     sprite = await gameRef.loadSprite(spriteImagePath);
+    shake();
   }
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-  }
-
-  Future<void> shake() async {
+  void shake() {
     // shake effect has to be re-declared every time we want to use it,
     // because it's a one-time effect.
     // Otherwise, it will apply the effect only once.
     final MoveEffect shakeEffect = MoveEffect.by(
-      Vector2(0, 5),
+      Vector2(5, 2),
       ZigzagEffectController(period: 0.2),
     );
-    await add(shakeEffect);
+    add(shakeEffect);
+  }
+
+  void shoot() {
+    final Missile bullet = Missile(position: position);
+    gameRef.add(bullet);
   }
 }

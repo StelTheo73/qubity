@@ -11,6 +11,7 @@ import '../utils/level.dart';
 import 'game_utils.dart';
 import 'objects/gate.dart';
 import 'objects/register.dart';
+import 'objects/shoot_button.dart';
 import 'objects/sprites.dart';
 import 'state/bits_state.dart';
 import 'state/level_state.dart';
@@ -24,6 +25,7 @@ class BaseGame extends FlameGame<World>
 
   late QRegister gameRegister;
   late RegisterComponent registerComponent;
+  late ShootButton shootButton;
 
   GateComponent? selectedGate;
 
@@ -33,16 +35,6 @@ class BaseGame extends FlameGame<World>
   Future<void> onLoad() async {
     await _setup();
     await super.onLoad();
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
   }
 
   Future<void> cacheImage(String imagePath) async {
@@ -65,9 +57,10 @@ class BaseGame extends FlameGame<World>
     await _setupRegister();
 
     await Future.wait(<Future<void>>[
-      _setupTargets(),
-      _setupSpaceships(),
       _setupGates(),
+      _setupSpaceships(),
+      _setupTargets(),
+      _setupUI(),
     ]);
   }
 
@@ -144,6 +137,11 @@ class BaseGame extends FlameGame<World>
     LevelStates.createLevelTargets(levelTargets, targetImagePath);
     await addAll(LevelStates.levelTargetComponents);
     await addAll(LevelStates.levelEnemies);
+  }
+
+  Future<void> _setupUI() async {
+    shootButton = ShootButton();
+    await add(shootButton);
   }
 
   Future<void> teardown() async {

@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../constants/gates.dart';
@@ -14,6 +15,48 @@ class QubityGame extends BaseGame {
     LevelStates.removeLevelSpaceships(removeAll);
     LevelStates.createLevelSpaceships();
     await addAll(LevelStates.levelSpaceships);
+  }
+
+  Future<void> applyGate(int qubitId) async {
+    final Gate? gateToApply = selectedGate?.gate;
+    if (gateToApply == null) {
+      return;
+    }
+    late final String gate0;
+    late final String gate1;
+
+    deselectGate();
+
+    if (qubitId == 0) {
+      gate0 = gateToApply.name;
+      gate1 = 'I';
+    } else {
+      gate0 = 'I';
+      gate1 = gateToApply.name;
+    }
+
+    quantumCalculation(
+      gate0: gate0,
+      gate1: gate1,
+    );
+    registerComponent.updateRegister();
+    await updateSpaceships();
+  }
+
+  void deselectGate() {
+    selectedGate?.deselect();
+    selectedGate = null;
+    registerComponent.resetCircuitGates();
+  }
+
+  bool isPositionOutOfBounds(Vector2 position) {
+    if (position.x >= size.x ||
+        position.x <= 0 ||
+        position.y >= size.y ||
+        position.y <= 0) {
+      return true;
+    }
+    return false;
   }
 
   void quantumCalculation({
@@ -42,38 +85,6 @@ class QubityGame extends BaseGame {
     selectedGate = gateComponent;
     gateComponent.select();
     registerComponent.highlightCircuitGates();
-  }
-
-  void deselectGate() {
-    selectedGate?.deselect();
-    selectedGate = null;
-    registerComponent.resetCircuitGates();
-  }
-
-  Future<void> applyGate(int qubitId) async {
-    final Gate? gateToApply = selectedGate?.gate;
-    if (gateToApply == null) {
-      return;
-    }
-    late final String gate0;
-    late final String gate1;
-
-    deselectGate();
-
-    if (qubitId == 0) {
-      gate0 = gateToApply.name;
-      gate1 = 'I';
-    } else {
-      gate0 = 'I';
-      gate1 = gateToApply.name;
-    }
-
-    quantumCalculation(
-      gate0: gate0,
-      gate1: gate1,
-    );
-    registerComponent.updateRegister();
-    await updateSpaceships();
   }
 
   @override

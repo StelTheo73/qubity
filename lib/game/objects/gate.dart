@@ -21,9 +21,8 @@ class GateComponent extends RectangleComponent
   double positionX;
   double positionY;
 
-  final Paint defaultPaint = Paint()
-    ..color = AppColors.primary.withOpacity(0.4);
-  final Paint selectedPaint = Paint()..color = AppColors.secondary;
+  final Paint defaultPaint = Paint()..color = Palette.primary.withOpacity(0.4);
+  final Paint selectedPaint = Paint()..color = Palette.secondary;
 
   @override
   Future<void> onLoad() async {
@@ -40,7 +39,7 @@ class GateComponent extends RectangleComponent
 
     final RectangleComponent spriteBackground = RectangleComponent(
       size: Vector2(size.x * 0.8, size.y * 0.8),
-      paint: Paint()..color = AppColors.primary,
+      paint: Paint()..color = Palette.primary,
       anchor: Anchor.center,
       position: Vector2(size.x / 2, size.y / 2),
     );
@@ -66,10 +65,5 @@ class GateComponent extends RectangleComponent
   void onTapUp(TapUpEvent event) {
     gameRef.selectGate(this);
     super.onTapUp(event);
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
   }
 }

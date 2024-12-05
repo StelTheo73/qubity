@@ -20,11 +20,11 @@ Future<void> main() async {
   await Configuration.init();
   await LevelLoader.init();
 
-  runApp(const MyApp());
+  runApp(const QubityApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class QubityApp extends StatelessWidget {
+  const QubityApp({super.key});
 
   @override
   Widget build(BuildContext context) {

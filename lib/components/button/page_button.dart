@@ -18,8 +18,8 @@ class PageButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.75,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.secondary,
-          foregroundColor: AppColors.black,
+          backgroundColor: Palette.secondary,
+          foregroundColor: Palette.black,
         ),
         onPressed: () {
           Navigator.pushNamed(context, navigateTo);

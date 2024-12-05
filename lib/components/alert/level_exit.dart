@@ -18,7 +18,7 @@ class LevelExitAlert extends AlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    const Color color = AppColors.black;
+    const Color color = Palette.black;
 
     return AlertDialog(
       title: const TextRoboto(

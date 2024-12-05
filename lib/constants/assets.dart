@@ -18,6 +18,8 @@ const String backgroundLargeScreenPath =
 //
 // Icons
 const String addIconPath = 'assets/images/icons/add.png';
+const String missileIconPath = 'assets/images/icons/missile.png';
+const String shootButtonPath = 'assets/images/icons/shoot_button.png';
 //
 // Gates
 const String gatePath = 'assets/images/gates/';

@@ -27,7 +27,7 @@ class StateComponent extends RectangleComponent {
               textRenderer: TextPaint(
                 style: GoogleFonts.roboto(
                   textStyle: const TextStyle(
-                    color: AppColors.white,
+                    color: Palette.white,
                     fontSize: _textSize,
                     fontWeight: FontWeight.bold,
                   ),

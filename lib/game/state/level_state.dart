@@ -34,18 +34,6 @@ class LevelStates {
 
   static double stateComponentDimension = 28.0;
 
-  static List<Offset> getValidPositions(Vector2 gameSize, int statesLength) {
-    final int points = statesLength;
-    final double offset = gameSize.x * (_offsetXMap[points] ?? _defaultOffsetX);
-    final double availableWidth = gameSize.x - 2 * offset;
-    final double positionY = gameSize.y * 0.6;
-
-    return List<Offset>.generate(
-      points,
-      (int i) => Offset(offset + i * availableWidth / (points - 1), positionY),
-    );
-  }
-
   // Public Methods
   //
   static void setupLevelStates(
@@ -64,7 +52,7 @@ class LevelStates {
       levelStateComponents.add(
         StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
-          paint: Paint()..color = AppColors.primary,
+          paint: Paint()..color = Palette.primary,
           text: stateName,
         ),
       );
@@ -193,6 +181,19 @@ class LevelStates {
     }
 
     return text;
+  }
+
+  //
+  static List<Offset> getValidPositions(Vector2 gameSize, int statesLength) {
+    final int points = statesLength;
+    final double offset = gameSize.x * (_offsetXMap[points] ?? _defaultOffsetX);
+    final double availableWidth = gameSize.x - 2 * offset;
+    final double positionY = gameSize.y * 0.6;
+
+    return List<Offset>.generate(
+      points,
+      (int i) => Offset(offset + i * availableWidth / (points - 1), positionY),
+    );
   }
 
   //

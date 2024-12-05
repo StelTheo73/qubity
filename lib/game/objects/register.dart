@@ -5,10 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../../constants/colors.dart';
-import '../../constants/gates.dart';
 import '../game.dart';
 import '../state/level_state.dart';
-import 'gate.dart';
 import 'sprites.dart';
 
 class CircuitGateComponent extends RectangleComponent
@@ -58,11 +56,14 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
           size: Vector2(gameSize.x * 0.4, 50),
           anchor: Anchor.centerLeft,
           position: Vector2(gameSize.x * 0.05, gameSize.y * 0.7),
-          paint: Paint()..color = AppColors.primary,
+          paint: Paint()..color = Palette.primary,
         );
-  final Vector2 gameSize;
 
+  final Vector2 gameSize;
   final QRegister register;
+  final Paint gatePaintDefault = Paint()..color = Palette.primary;
+  final Paint gatePaintHighlight = Paint()..color = Palette.secondary;
+
   late TextBoxComponent<TextPaint> textComponent;
   final List<RectangleComponent> cableComponents =
       List<RectangleComponent>.empty(growable: true);
@@ -72,9 +73,6 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       List<CircuitGateComponent>.empty(growable: true);
   final List<TextBoxComponent<TextPaint>> circuitLabels =
       List<TextBoxComponent<TextPaint>>.empty(growable: true);
-  final Paint gatePaintDefault = Paint()..color = AppColors.primary;
-
-  final Paint gatePaintHighlight = Paint()..color = AppColors.secondary;
 
   void highlightCircuitGates() {
     for (int i = 0; i < cableComponents.length; i++) {
@@ -121,7 +119,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       size: componentSize,
       anchor: Anchor.topCenter,
       position: Vector2(positionX, size.y),
-      paint: Paint()..color = (AppColors.primary).withOpacity(0.8),
+      paint: Paint()..color = (Palette.primary).withOpacity(0.8),
     );
 
     circuitLabels.add(_getCableComponentLabel(componentSize, label));
@@ -151,7 +149,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
         style: GoogleFonts.roboto(
           textStyle: const TextStyle(
             overflow: TextOverflow.visible,
-            color: AppColors.white,
+            color: Palette.white,
             fontSize: 10.0,
             fontWeight: FontWeight.bold,
           ),
@@ -213,7 +211,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       textRenderer: TextPaint(
         style: GoogleFonts.roboto(
           textStyle: const TextStyle(
-            color: AppColors.white,
+            color: Palette.white,
             fontSize: 14.0,
             fontWeight: FontWeight.bold,
           ),
