@@ -1,6 +1,7 @@
 import 'package:flame/flame.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart' show configPath;
@@ -11,7 +12,7 @@ class Configuration {
   static late final bool music;
 
   static Future<void> init() async {
-    WidgetsFlutterBinding.ensureInitialized();
+    _loadGoogleFonts();
     Flame.device.fullScreen();
     Flame.device.setPortrait();
     await _loadConfig();
@@ -23,5 +24,15 @@ class Configuration {
     appName = configMap['app']['name'] as String;
     debugMode = configMap['debugMode'] as bool;
     music = configMap['music'] as bool;
+  }
+
+  static void _loadGoogleFonts() {
+    GoogleFonts.config.allowRuntimeFetching = false;
+
+    LicenseRegistry.addLicense(() async* {
+      final String license =
+          await rootBundle.loadString('google_fonts/LICENSE.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
   }
 }
