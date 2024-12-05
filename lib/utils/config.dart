@@ -32,7 +32,7 @@ class Configuration {
     LicenseRegistry.addLicense(() async* {
       final String license =
           await rootBundle.loadString('google_fonts/LICENSE.txt');
-      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+      yield LicenseEntryWithLineBreaks(<String>['google_fonts'], license);
     });
   }
 }

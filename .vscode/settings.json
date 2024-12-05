@@ -26,5 +26,9 @@
     "qubit",
     "Qubity",
     "roboto"
+  ],
+  "cSpell.ignorePaths": [
+    "analysis_options.yaml",
+    "assets/google_fonts/"
   ]
 }

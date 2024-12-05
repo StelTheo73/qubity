@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart'
-    show levelGatesPath, levelStatesPath, levelTargetsPath, levelsPath;
+    show levelGatesPath, levelStatesPath, levelsPath;
 import 'device_store.dart';
 
 class LevelLoader {
@@ -44,10 +44,6 @@ class LevelLoader {
 
   static YamlList getLevelTargets(YamlMap level) {
     return level['targets'] as YamlList;
-  }
-
-  static String getLevelTargetImage(YamlMap level) {
-    return '$levelTargetsPath${level['target_image'] as String}.png';
   }
 
   static Future<int> getLastUnlockedLevel() async {

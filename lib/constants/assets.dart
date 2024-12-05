@@ -25,11 +25,6 @@ const String backgroundSmallScreenPath =
 const String backgroundLargeScreenPath =
     'assets/images/background/large_screen.png';
 //
-// Icons
-const String addIconPath = 'assets/images/icons/add.png';
-const String missileIconPath = 'assets/images/icons/missile.png';
-const String shootButtonPath = 'assets/images/icons/shoot_button.png';
-//
 // Gates
 const String gatePath = 'assets/images/gates/';
 //
@@ -37,5 +32,8 @@ const String gatePath = 'assets/images/gates/';
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
 const String parallaxSmallStarsPath = 'assets/images/parallax/small_stars.png';
 //
-// Targets
-const String levelTargetsPath = 'assets/images/spaceships/';
+// Rest
+const String addButtonPath = 'assets/images/rest/add.png';
+const String explosionPath = 'assets/images/rest/explosion.png';
+const String missilePath = 'assets/images/rest/missile.png';
+const String shootButtonPath = 'assets/images/rest/shoot_button.png';

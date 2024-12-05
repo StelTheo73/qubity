@@ -41,15 +41,18 @@ class BaseGame extends FlameGame<World>
     await images.load(imagePath);
   }
 
-  Future<void> _cacheParallaxImages() async {
-    await cacheImage(GameUtils.extractImagePath(parallaxBigStarsPath));
-    await cacheImage(GameUtils.extractImagePath(parallaxSmallStarsPath));
+  Future<void> _cacheImages() async {
+    await Future.wait(<Future<void>>[
+      cacheImage(GameUtils.extractImagePath(explosionPath)),
+      cacheImage(GameUtils.extractImagePath(parallaxBigStarsPath)),
+      cacheImage(GameUtils.extractImagePath(parallaxSmallStarsPath)),
+    ]);
   }
 
   Future<void> _setup() async {
     await Future.wait(<Future<void>>[
       SpriteIcons.init(loadSprite),
-      _cacheParallaxImages(),
+      _cacheImages(),
     ]);
 
     await _setupParallax();

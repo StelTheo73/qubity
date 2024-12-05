@@ -25,7 +25,7 @@ class Missile extends PositionComponent
     await add(RectangleHitbox());
     _velocity.scaleTo(_speed);
 
-    final String spriteImagePath = GameUtils.extractImagePath(missileIconPath);
+    final String spriteImagePath = GameUtils.extractImagePath(missilePath);
     final Sprite sprite = await gameRef.loadSprite(spriteImagePath);
     spriteComponent = SpriteComponent(
       anchor: Anchor.center,

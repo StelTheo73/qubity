@@ -41,6 +41,7 @@ flutter:
     - assets/images/gates/
     - assets/images/icons/
     - assets/images/parallax/
+    - assets/images/rest/
     - assets/images/spaceships/
     # files
     - assets/config/config.yml

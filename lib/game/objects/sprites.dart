@@ -9,7 +9,7 @@ class SpriteIcons {
   static Future<void> init(
     Future<Sprite> Function(String path) loadSprite,
   ) async {
-    final String addSpritePath = GameUtils.extractImagePath(addIconPath);
+    final String addSpritePath = GameUtils.extractImagePath(addButtonPath);
     add = await loadSprite(addSpritePath);
   }
 }
