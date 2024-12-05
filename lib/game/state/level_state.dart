@@ -54,7 +54,7 @@ class LevelStates {
         StateComponent(
           position: Vector2(validPosition.dx, validPosition.dy),
           paint: Paint()..color = Palette.primary,
-          text: stateName,
+          text: stateName.replaceFirst('|', '').replaceAll('>', ''),
         ),
       );
     }
@@ -96,8 +96,7 @@ class LevelStates {
   }
 
   //
-  static void createLevelTargets(
-      Iterable<dynamic> levelTargets, String targetImagePath) {
+  static void createLevelTargets(Iterable<dynamic> levelTargets) {
     for (final dynamic target in levelTargets) {
       final String targetState = target.toString();
       final Offset position = LevelStates.levelStatePositions[targetState]!;
@@ -105,13 +104,12 @@ class LevelStates {
       final StateComponent targetComponent = StateComponent(
         position: Vector2(position.dx, 50),
         paint: Paint()..color = Colors.green,
-        text: targetState,
+        text: targetState.replaceFirst('|', '').replaceAll('>', ''),
       );
 
       final Asteroid enemy = Asteroid(
         position.dx,
         50 + stateComponentDimension * 1.5,
-        targetImagePath,
       );
 
       LevelStates.levelTargetComponents.add(targetComponent);

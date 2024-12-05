@@ -6,10 +6,8 @@ import '../game.dart';
 import '../game_utils.dart';
 
 class Asteroid extends SpriteComponent with HasGameRef<QubityGame> {
-  Asteroid(this.positionX, this.positionY, this.spriteImagePath)
-      : super(size: Vector2(40, 40));
+  Asteroid(this.positionX, this.positionY) : super(size: Vector2(40, 40));
 
-  String spriteImagePath;
   double positionX;
   double positionY;
 
@@ -20,7 +18,7 @@ class Asteroid extends SpriteComponent with HasGameRef<QubityGame> {
     y = positionY;
     angle = pi;
     anchor = Anchor.center;
-    spriteImagePath = GameUtils.getAsteroidImagePath();
+    final String spriteImagePath = GameUtils.getAsteroidImagePath();
     await gameRef.cacheImage(spriteImagePath);
     sprite = await gameRef.loadSprite(spriteImagePath);
   }

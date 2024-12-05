@@ -74,14 +74,6 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
   final List<TextBoxComponent<TextPaint>> circuitLabels =
       List<TextBoxComponent<TextPaint>>.empty(growable: true);
 
-  void highlightCircuitGates() {
-    for (int i = 0; i < cableComponents.length; i++) {
-      final RectangleComponent cableComponent = cableComponents[i];
-      final CircuitGateComponent gateHighlight = gatesHighlight[i];
-      cableComponent.add(gateHighlight);
-    }
-  }
-
   @override
   Future<void> onLoad() async {
     final String text = LevelStates.getRegisterText(register);
@@ -94,6 +86,14 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     ]);
 
     super.onLoad();
+  }
+
+  void highlightCircuitGates() {
+    for (int i = 0; i < cableComponents.length; i++) {
+      final RectangleComponent cableComponent = cableComponents[i];
+      final CircuitGateComponent gateHighlight = gatesHighlight[i];
+      cableComponent.add(gateHighlight);
+    }
   }
 
   void resetCircuitGates() {

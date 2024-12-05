@@ -6,7 +6,7 @@ import '../../constants/colors.dart';
 
 const double _stateComponentDimension = 28.0;
 Vector2 _size = Vector2(_stateComponentDimension, _stateComponentDimension);
-const double _textSize = 10.0;
+const double _textSize = 14.0;
 
 class StateComponent extends RectangleComponent {
   StateComponent({

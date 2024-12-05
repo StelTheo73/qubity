@@ -132,9 +132,8 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupTargets() async {
     final YamlList levelTargets = LevelLoader.getLevelTargets(level);
-    final String targetImagePath = LevelLoader.getLevelTargetImage(level);
     LevelStates.levelTargetComponents.clear();
-    LevelStates.createLevelTargets(levelTargets, targetImagePath);
+    LevelStates.createLevelTargets(levelTargets);
     await addAll(LevelStates.levelTargetComponents);
     await addAll(LevelStates.levelEnemies);
   }
