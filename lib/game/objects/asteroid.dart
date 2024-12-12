@@ -16,6 +16,8 @@ class Asteroid extends SpriteComponent
   double positionX;
   double positionY;
 
+  final double animationDuration = 0.5;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -30,20 +32,26 @@ class Asteroid extends SpriteComponent
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  Future<void> onCollision(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) async {
     super.onCollision(intersectionPoints, other);
     if (other is Missile) {
       _explosionAnimation();
       removeFromParent();
       other.removeFromParent();
     }
+    await gameRef
+        .sleep((animationDuration * 1000).toInt())
+        .then((_) => gameRef.asteroidHits++);
   }
 
   void _explosionAnimation() {
     parent!.add(
       ParticleSystemComponent(
         particle: AcceleratedParticle(
-          lifespan: 0.5,
+          lifespan: animationDuration,
           position: position,
           child: SpriteAnimationParticle(
             size: Vector2(100, 100),

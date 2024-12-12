@@ -63,6 +63,10 @@ class GateComponent extends RectangleComponent
 
   @override
   void onTapUp(TapUpEvent event) {
+    if (!gameRef.running) {
+      return;
+    }
+
     gameRef.selectGate(this);
     super.onTapUp(event);
   }

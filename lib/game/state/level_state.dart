@@ -5,10 +5,12 @@ import 'package:yaml/yaml.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/gates.dart';
+import '../components/menu_button.dart';
+import '../components/state.dart';
 import '../objects/asteroid.dart';
 import '../objects/gate.dart';
+import '../objects/missile.dart';
 import '../objects/spaceship.dart';
-import '../objects/state_component.dart';
 
 const double _defaultOffsetX = 0.1;
 final Map<int, double> _offsetXMap = <int, double>{
@@ -29,7 +31,7 @@ class LevelStates {
       List<Spaceship>.empty(growable: true);
   static final List<RectangleComponent> levelTargetComponents =
       List<RectangleComponent>.empty(growable: true);
-  // A Map containing all valid level states i.e..
+  // A Map containing all valid level states i.e. { '|00>': false }
   // The boolean value indicates current spaceship location
   static final Map<String, bool> validLevelStates = <String, bool>{};
 
@@ -102,14 +104,16 @@ class LevelStates {
       final Offset position = LevelStates.levelStatePositions[targetState]!;
 
       final StateComponent targetComponent = StateComponent(
-        position: Vector2(position.dx, 50),
+        position: Vector2(position.dx, 30 + MenuButton.menuButtonSize.y),
         paint: Paint()..color = Colors.green,
         text: targetState.replaceFirst('|', '').replaceAll('>', ''),
       );
 
       final Asteroid enemy = Asteroid(
         position.dx,
-        50 + stateComponentDimension * 1.5,
+        30 +
+            LevelStates.stateComponentDimension * 1.5 +
+            MenuButton.menuButtonSize.y,
       );
 
       LevelStates.levelTargetComponents.add(targetComponent);
@@ -212,7 +216,21 @@ class LevelStates {
   // Teardown
   //
   static void teardown(
-      void Function(Iterable<Component> components) removeAll) {
+    void Function(Iterable<Component> components) removeAll,
+    ComponentSet children,
+  ) {
+    removeAll(LevelStates.levelGateComponents);
+    removeAll(LevelStates.levelStateComponents);
+    removeAll(LevelStates.levelSpaceships);
+    removeAll(LevelStates.levelTargetComponents);
+
+    children
+        .query<Asteroid>()
+        .forEach((Asteroid asteroid) => asteroid.removeFromParent());
+    children
+        .query<Missile>()
+        .forEach((Missile missile) => missile.removeFromParent());
+
     LevelStates.levelGateComponents.clear();
     LevelStates.levelEnemies.clear();
     LevelStates.validLevelStates.clear();

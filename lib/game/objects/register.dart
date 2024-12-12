@@ -45,6 +45,10 @@ class CircuitGateComponent extends RectangleComponent
 
   @override
   void onTapUp(TapUpEvent event) {
+    if (!gameRef.running) {
+      return;
+    }
+
     gameRef.applyGate(qubitId);
     super.onTapUp(event);
   }

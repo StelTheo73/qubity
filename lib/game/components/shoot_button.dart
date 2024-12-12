@@ -4,8 +4,8 @@ import 'package:flame/events.dart';
 import '../../constants/assets.dart';
 import '../game.dart';
 import '../game_utils.dart';
+import '../objects/spaceship.dart';
 import '../state/level_state.dart';
-import 'spaceship.dart';
 
 class ShootButton extends SpriteComponent
     with HasGameRef<QubityGame>, TapCallbacks {
@@ -24,6 +24,10 @@ class ShootButton extends SpriteComponent
 
   @override
   void onTapUp(TapUpEvent event) {
+    if (!gameRef.running) {
+      return;
+    }
+
     for (final Spaceship spaceship in LevelStates.levelSpaceships) {
       spaceship.shoot();
     }

@@ -87,8 +87,21 @@ class QubityGame extends BaseGame {
     registerComponent.highlightCircuitGates();
   }
 
+  Future<void> _triggerLevelEnd() async {
+    if (asteroidHits < LevelStates.levelEnemies.length) {
+      return;
+    }
+    await loadNextLevel();
+  }
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    _triggerLevelEnd();
   }
 }

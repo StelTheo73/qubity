@@ -28,6 +28,10 @@ const String backgroundLargeScreenPath =
 // Gates
 const String gatePath = 'assets/images/gates/';
 //
+// Icons
+const String pauseButtonPath = 'assets/images/icons/pause.png';
+const String restartButtonPath = 'assets/images/icons/restart.png';
+//
 // Parallax
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
 const String parallaxSmallStarsPath = 'assets/images/parallax/small_stars.png';

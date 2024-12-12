@@ -8,10 +8,11 @@ import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart';
 import '../utils/level.dart';
+import 'components/menu_button.dart';
+import 'components/shoot_button.dart';
 import 'game_utils.dart';
 import 'objects/gate.dart';
 import 'objects/register.dart';
-import 'objects/shoot_button.dart';
 import 'objects/sprites.dart';
 import 'state/bits_state.dart';
 import 'state/level_state.dart';
@@ -20,20 +21,34 @@ class BaseGame extends FlameGame<World>
     with TapCallbacks, HasCollisionDetection {
   BaseGame({required this.level});
 
+  // State
+  // -----
+  int asteroidHits = 0;
   bool running = true;
   YamlMap level;
 
+  // Components
+  // ----------
   late QRegister gameRegister;
+  late PauseButton pauseButton;
   late RegisterComponent registerComponent;
+  late RestartButton restartButton;
   late ShootButton shootButton;
 
   GateComponent? selectedGate;
 
-  final Map<String, Sprite> iconSpritesMap = <String, Sprite>{};
+  // Public Methods
+  // --------------
 
   @override
   Future<void> onLoad() async {
-    await _setup();
+    await _cacheImages();
+    await _setupParallax();
+
+    await Future.wait(<Future<void>>[
+      _setupUI(),
+      _setup(),
+    ]);
     await super.onLoad();
   }
 
@@ -41,8 +56,34 @@ class BaseGame extends FlameGame<World>
     await images.load(imagePath);
   }
 
+  Future<void> loadNextLevel() async {
+    final int nextLevelId = (level['id'] as int) + 1;
+    final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
+    level = nextLevel;
+    await reloadLevel();
+  }
+
+  Future<void> reloadLevel() async {
+    await teardown();
+    await _setup();
+  }
+
+  Future<void> sleep(int milliseconds) async {
+    await Future<void>.delayed(Duration(milliseconds: milliseconds));
+  }
+
+  Future<void> teardown() async {
+    LevelStates.teardown(removeAll, children);
+    selectedGate = null;
+    remove(registerComponent);
+  }
+
+  // Private Methods
+  // ---------------
+
   Future<void> _cacheImages() async {
     await Future.wait(<Future<void>>[
+      SpriteIcons.init(loadSprite),
       cacheImage(GameUtils.extractImagePath(explosionPath)),
       cacheImage(GameUtils.extractImagePath(parallaxBigStarsPath)),
       cacheImage(GameUtils.extractImagePath(parallaxSmallStarsPath)),
@@ -50,12 +91,12 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setup() async {
-    await Future.wait(<Future<void>>[
-      SpriteIcons.init(loadSprite),
-      _cacheImages(),
-    ]);
+    if (!running) {
+      resumeEngine();
+      running = true;
+    }
+    asteroidHits = 0;
 
-    await _setupParallax();
     await _setupStates();
     await _setupRegister();
 
@@ -63,7 +104,6 @@ class BaseGame extends FlameGame<World>
       _setupGates(),
       _setupSpaceships(),
       _setupTargets(),
-      _setupUI(),
     ]);
   }
 
@@ -143,12 +183,12 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupUI() async {
     shootButton = ShootButton();
-    await add(shootButton);
-  }
-
-  Future<void> teardown() async {
-    LevelStates.teardown(removeAll);
-    selectedGate = null;
-    remove(registerComponent);
+    pauseButton = PauseButton();
+    restartButton = RestartButton();
+    await addAll(<Component>[
+      shootButton,
+      pauseButton,
+      restartButton,
+    ]);
   }
 }

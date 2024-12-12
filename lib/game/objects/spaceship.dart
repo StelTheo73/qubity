@@ -37,7 +37,7 @@ class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {
   }
 
   void shoot() {
-    final Missile bullet = Missile(position: position);
-    gameRef.add(bullet);
+    final Missile missile = Missile(position: position);
+    gameRef.add(missile);
   }
 }
