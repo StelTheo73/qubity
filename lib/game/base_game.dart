@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
+import '../components/overlays/completion_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
 import '../utils/level.dart';
@@ -65,16 +66,29 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadNextLevel() async {
+    pauseLevel(addOverlay: false);
     final int nextLevelId = (level['id'] as int) + 1;
-    final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
-    level = nextLevel;
+    try {
+      final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
+      level = nextLevel;
+    } catch (error) {
+      overlays.add(
+        CompletionOverlay.overlayKey,
+        priority: CompletionOverlay.priority,
+      );
+      return;
+    }
     await reloadLevel();
   }
 
-  void pauseLevel() {
+  void pauseLevel({bool addOverlay = true}) {
     pauseEngine();
     running = false;
-    overlays.add(PauseOverlay.overlayKey);
+    addOverlay &&
+        overlays.add(
+          PauseOverlay.overlayKey,
+          priority: PauseOverlay.priority,
+        );
   }
 
   void resumeLevel() {

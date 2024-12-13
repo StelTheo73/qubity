@@ -21,6 +21,9 @@ class LevelLoader {
 
   static Future<YamlMap> getLevelById(int id) async {
     final YamlList levels = await loadLevels();
+    if (id > levels.length) {
+      throw ArgumentError('Level $id does not exist');
+    }
     return levels[id - 1] as YamlMap;
   }
 

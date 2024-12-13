@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TextRoboto extends StatelessWidget {
   const TextRoboto({
+    super.key,
     required this.text,
     this.color = Colors.orange,
     this.fontSize = 10,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.overflow = TextOverflow.clip,
-    super.key,
   });
 
   final String text;
@@ -28,6 +28,8 @@ class TextRoboto extends StatelessWidget {
       style: GoogleFonts.roboto(
         textStyle: TextStyle(
           color: color,
+          decoration: TextDecoration.none,
+          fontStyle: FontStyle.normal,
           fontSize: fontSize,
           fontWeight: fontWeight,
         ),

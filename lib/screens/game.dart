@@ -2,16 +2,23 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
+import '../components/overlays/completion_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../game/game.dart';
 import '../utils/config.dart';
 
 final Map<String, Widget Function(BuildContext context, QubityGame game)>
-    _overlayBuilderMap = {
+    _overlayBuilderMap =
+    <String, Widget Function(BuildContext context, QubityGame game)>{
   PauseOverlay.overlayKey: (BuildContext context, QubityGame game) =>
       PauseOverlay(
         onResume: game.resumeLevel,
         onRestart: game.reloadLevel,
+        onExit: () => game.exitLevel(context),
+        gameSize: game.size,
+      ),
+  CompletionOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      CompletionOverlay(
         onExit: () => game.exitLevel(context),
         gameSize: game.size,
       ),

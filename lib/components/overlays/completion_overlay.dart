@@ -3,23 +3,20 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../button/base_button.dart';
+import '../text/roboto.dart';
 
-class PauseOverlay extends StatelessWidget {
-  const PauseOverlay({
+class CompletionOverlay extends StatelessWidget {
+  const CompletionOverlay({
     super.key,
-    required this.onResume,
-    required this.onRestart,
     required this.onExit,
     required this.gameSize,
   });
 
-  final VoidCallback onResume;
-  final VoidCallback onRestart;
   final VoidCallback onExit;
   final Vector2 gameSize;
 
-  static const String overlayKey = 'pause_overlay';
-  static const int priority = 1;
+  static const String overlayKey = 'completion_overlay';
+  static const int priority = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +38,22 @@ class PauseOverlay extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                BaseButton(
-                  onPressed: onResume,
-                  text: 'Resume',
-                  width: 200,
+                const TextRoboto(
+                  text: 'Congratulations!',
+                  color: Palette.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 10),
-                BaseButton(
-                  onPressed: onRestart,
-                  text: 'Restart',
-                  width: 200,
+                const TextRoboto(
+                  text: 'You have completed the game!',
+                  color: Palette.black,
+                  fontSize: 16,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 BaseButton(
                   onPressed: onExit,
-                  text: 'Exit',
+                  text: 'Level Selection',
                   width: 200,
                 ),
               ],
