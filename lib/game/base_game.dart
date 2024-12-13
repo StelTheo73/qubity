@@ -3,12 +3,14 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/overlays/completion_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
+import '../constants/colors.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
@@ -26,6 +28,9 @@ class BaseGame extends FlameGame<World>
   // State
   // -----
   int asteroidHits = 0;
+  int gatesUsed = 0;
+  int shotsFired = 0;
+
   bool running = true;
   YamlMap level;
 
@@ -52,6 +57,65 @@ class BaseGame extends FlameGame<World>
       _setup(),
     ]);
     await super.onLoad();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    final TextPaint levelText = TextPaint(
+      style: GoogleFonts.roboto(
+        textStyle: const TextStyle(
+          color: Palette.secondary,
+          decoration: TextDecoration.none,
+          fontStyle: FontStyle.normal,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+    final TextPaint shotsFiredText = TextPaint(
+      style: GoogleFonts.roboto(
+        textStyle: const TextStyle(
+          color: Palette.white,
+          decoration: TextDecoration.none,
+          fontStyle: FontStyle.normal,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+    final TextPaint gatesUsedText = TextPaint(
+      style: GoogleFonts.roboto(
+        textStyle: const TextStyle(
+          color: Palette.white,
+          decoration: TextDecoration.none,
+          fontStyle: FontStyle.normal,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+    levelText.render(
+      canvas,
+      'Level ${level['id']}',
+      Vector2(15, 20),
+      anchor: Anchor.centerLeft,
+    );
+
+    shotsFiredText.render(
+      canvas,
+      'Shots Fired: $shotsFired',
+      Vector2(100, 0),
+    );
+
+    gatesUsedText.render(
+      canvas,
+      'Gates Used: $gatesUsed',
+      Vector2(100, 20),
+    );
   }
 
   Future<void> cacheImage(String imagePath) async {
@@ -129,6 +193,8 @@ class BaseGame extends FlameGame<World>
       resumeLevel();
     }
     asteroidHits = 0;
+    gatesUsed = 0;
+    shotsFired = 0;
 
     await _setupStates();
     await _setupRegister();

@@ -49,6 +49,14 @@ class QubityGame extends BaseGame {
     registerComponent.resetCircuitGates();
   }
 
+  void increaseGatesUsed() {
+    gatesUsed++;
+  }
+
+  void increaseShotsFired() {
+    shotsFired++;
+  }
+
   bool isPositionOutOfBounds(Vector2 position) {
     if (position.x >= size.x ||
         position.x <= 0 ||

@@ -267,6 +267,6 @@ levels:
     initial: [['1', '0'], ['1', '0']]
     targets: ['-|00>', '|10>']
     target_image: enemy_003
-    steps: 2
+    steps: 3
     gates: 'hxz'
     description: 'H, X and Z Gate 2 bit'

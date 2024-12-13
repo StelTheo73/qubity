@@ -30,6 +30,7 @@ class ShootButton extends SpriteComponent
 
     for (final Spaceship spaceship in LevelStates.levelSpaceships) {
       spaceship.shoot();
+      gameRef.increaseShotsFired();
     }
   }
 }
