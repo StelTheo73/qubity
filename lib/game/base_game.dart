@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
+import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
@@ -56,11 +57,30 @@ class BaseGame extends FlameGame<World>
     await images.load(imagePath);
   }
 
+  void exitLevel(BuildContext context) {
+    teardown();
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
   Future<void> loadNextLevel() async {
     final int nextLevelId = (level['id'] as int) + 1;
     final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
     level = nextLevel;
     await reloadLevel();
+  }
+
+  void pauseLevel() {
+    pauseEngine();
+    running = false;
+    overlays.add(PauseOverlay.overlayKey);
+  }
+
+  void resumeLevel() {
+    resumeEngine();
+    running = true;
+    overlays.remove(PauseOverlay.overlayKey);
   }
 
   Future<void> reloadLevel() async {
@@ -92,8 +112,7 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setup() async {
     if (!running) {
-      resumeEngine();
-      running = true;
+      resumeLevel();
     }
     asteroidHits = 0;
 

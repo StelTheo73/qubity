@@ -39,11 +39,10 @@ class PauseButton extends MenuButton {
   @override
   void onTapUp(TapUpEvent event) {
     if (!gameRef.running) {
-      gameRef.resumeEngine();
+      gameRef.resumeLevel();
     } else {
-      gameRef.pauseEngine();
+      gameRef.pauseLevel();
     }
-    gameRef.running = !gameRef.running;
   }
 }
 

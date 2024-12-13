@@ -105,7 +105,7 @@ class LevelStates {
 
       final StateComponent targetComponent = StateComponent(
         position: Vector2(position.dx, 30 + MenuButton.menuButtonSize.y),
-        paint: Paint()..color = Colors.green,
+        paint: Paint()..color = Palette.secondary,
         text: targetState.replaceFirst('|', '').replaceAll('>', ''),
       );
 

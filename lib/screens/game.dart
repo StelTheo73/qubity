@@ -2,9 +2,20 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/alert/level_exit.dart';
+import '../components/overlays/pause_overlay.dart';
 import '../game/game.dart';
 import '../utils/config.dart';
+
+final Map<String, Widget Function(BuildContext context, QubityGame game)>
+    _overlayBuilderMap = {
+  PauseOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      PauseOverlay(
+        onResume: game.resumeLevel,
+        onRestart: game.reloadLevel,
+        onExit: () => game.exitLevel(context),
+        gameSize: game.size,
+      ),
+};
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.initialLevel});
@@ -31,22 +42,10 @@ class _GameScreenState extends State<GameScreen> {
       return;
     }
 
-    _game.pauseEngine();
-    final bool shouldPop = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const LevelExitAlert();
-          },
-        ) ??
-        false;
-
-    if (shouldPop) {
-      await _game.teardown();
-      if (context.mounted) {
-        Navigator.of(context).pop();
-      }
+    if (!_game.running) {
+      _game.resumeLevel();
     } else {
-      _game.resumeEngine();
+      _game.pauseLevel();
     }
   }
 
@@ -57,6 +56,7 @@ class _GameScreenState extends State<GameScreen> {
       onPopInvoked: _handleGameExit,
       child: GameWidget<QubityGame>(
         game: _game,
+        overlayBuilderMap: _overlayBuilderMap,
       ),
     );
   }
