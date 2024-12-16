@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/spaceships.dart';
 
 enum DeviceStoreKeys {
-  unlockedLevel('unlockedLevel'),
-  spaceshipId('spaceship');
+  levelScores('levelScores'),
+  spaceshipId('spaceship'),
+  unlockedLevel('unlockedLevel');
 
   const DeviceStoreKeys(this.key);
 
@@ -21,8 +24,28 @@ class DeviceStore {
     await _setupDeviceStore();
   }
 
+  static Future<double> getLevelScore(int level) async {
+    final Map<String, double> scores = await getLevelScores();
+    return scores[level.toString()] ?? 0.0;
+  }
+
+  static Future<Map<String, double>> getLevelScores() async {
+    final String scoresString =
+        await prefs.getString(DeviceStoreKeys.levelScores.key) ?? '{}';
+    final Map<String, dynamic> scoresMap =
+        jsonDecode(scoresString) as Map<String, dynamic>;
+    return scoresMap.map((String key, dynamic value) =>
+        MapEntry<String, double>(key, double.parse(value.toString())));
+  }
+
   static Future<int> getUnlockedLevel() async {
     return (await prefs.getInt(DeviceStoreKeys.unlockedLevel.key)) ?? 1;
+  }
+
+  static Future<void> setLevelScore(int level, double score) async {
+    final Map<String, double> scores = await getLevelScores();
+    scores[level.toString()] = score;
+    await prefs.setString(DeviceStoreKeys.levelScores.key, jsonEncode(scores));
   }
 
   static Future<void> setUnlockedLevel(int level) async {
@@ -32,6 +55,7 @@ class DeviceStore {
   static Future<void> resetDeviceStore() async {
     await prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1);
     await prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId);
+    await prefs.setString(DeviceStoreKeys.levelScores.key, '{}');
   }
 
   // Private Methods
@@ -49,6 +73,14 @@ class DeviceStore {
     if (spaceship.isEmpty) {
       await prefs.setString(
           DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId);
+    }
+
+    final String scoresString =
+        await prefs.getString(DeviceStoreKeys.levelScores.key) ?? '{}';
+    final Map<String, dynamic> scoresMap =
+        jsonDecode(scoresString) as Map<String, dynamic>;
+    if (scoresMap.isEmpty) {
+      await prefs.setString(DeviceStoreKeys.levelScores.key, '{}');
     }
   }
 }

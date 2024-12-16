@@ -16,6 +16,7 @@ class LevelCompletionOverlay extends StatelessWidget {
     required this.onExit,
     required this.score,
     required this.nextLevelId,
+    required this.newHighScore,
   });
 
   final Vector2 gameSize;
@@ -24,6 +25,7 @@ class LevelCompletionOverlay extends StatelessWidget {
   final VoidCallback reloadLevel;
   final double score;
   final int nextLevelId;
+  final bool newHighScore;
 
   static const String overlayKey = 'level_completion_overlay';
   static const int priority = 2;
@@ -54,6 +56,13 @@ class LevelCompletionOverlay extends StatelessWidget {
             starWidth: 60,
             starHeight: 60,
           ),
+          const SizedBox(height: 5),
+          if (newHighScore)
+            const RobotoText(
+              text: 'New High Score!',
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           const SizedBox(height: 20),
           if (hasNextLevel)
             BaseButton(

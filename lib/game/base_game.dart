@@ -31,6 +31,7 @@ class BaseGame extends FlameGame<World>
   int gatesUsed = 0;
   int shotsFired = 0;
   double score = 3;
+  bool newHighScore = false;
 
   bool running = true;
   YamlMap level;
@@ -53,8 +54,10 @@ class BaseGame extends FlameGame<World>
   Future<void> onLevelCompletion() async {
     pauseLevel(addOverlay: false);
 
-    _calculateScore();
-    await _unlockNextLevel();
+    await Future.wait(<Future<void>>[
+      _calculateScore(),
+      _unlockNextLevel(),
+    ]);
 
     overlays.add(
       LevelCompletionOverlay.overlayKey,
@@ -145,7 +148,10 @@ class BaseGame extends FlameGame<World>
     ]);
   }
 
-  void _calculateScore() {
+  Future<void> _calculateScore() async {
+    final double previousScore =
+        await DeviceStore.getLevelScore(level['id'] as int);
+
     final int minGates = level['steps'] as int;
     final int minShots = LevelStates.levelEnemies.length;
 
@@ -169,6 +175,13 @@ class BaseGame extends FlameGame<World>
     if (shotsFired > 2 * minShots) {
       score -= 0.5;
     }
+
+    if (score <= previousScore) {
+      return;
+    }
+
+    newHighScore = true;
+    await DeviceStore.setLevelScore(level['id'] as int, score);
   }
 
   void _closeOverlays() {
@@ -182,6 +195,7 @@ class BaseGame extends FlameGame<World>
     if (!running) {
       resumeLevel();
     }
+    newHighScore = false;
     asteroidHits = 0;
     gatesUsed = 0;
     shotsFired = 0;
