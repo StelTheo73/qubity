@@ -8,6 +8,7 @@ import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/overlays/completion_overlay.dart';
+import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
 import '../constants/colors.dart';
@@ -36,6 +37,7 @@ class BaseGame extends FlameGame<World>
 
   // Components
   // ----------
+  late LevelStateOverlay levelStateOverlay;
   late QRegister gameRegister;
   late PauseButton pauseButton;
   late RegisterComponent registerComponent;
@@ -62,59 +64,11 @@ class BaseGame extends FlameGame<World>
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-    final TextPaint levelText = TextPaint(
-      style: GoogleFonts.roboto(
-        textStyle: const TextStyle(
-          color: Palette.secondary,
-          decoration: TextDecoration.none,
-          fontStyle: FontStyle.normal,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-    final TextPaint shotsFiredText = TextPaint(
-      style: GoogleFonts.roboto(
-        textStyle: const TextStyle(
-          color: Palette.white,
-          decoration: TextDecoration.none,
-          fontStyle: FontStyle.normal,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-    final TextPaint gatesUsedText = TextPaint(
-      style: GoogleFonts.roboto(
-        textStyle: const TextStyle(
-          color: Palette.white,
-          decoration: TextDecoration.none,
-          fontStyle: FontStyle.normal,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-    levelText.render(
+    levelStateOverlay.render(
       canvas,
-      'Level ${level['id']}',
-      Vector2(15, 20),
-      anchor: Anchor.centerLeft,
-    );
-
-    shotsFiredText.render(
-      canvas,
-      'Shots Fired: $shotsFired',
-      Vector2(100, 0),
-    );
-
-    gatesUsedText.render(
-      canvas,
-      'Gates Used: $gatesUsed',
-      Vector2(100, 20),
+      level['id'] as int,
+      shotsFired,
+      gatesUsed,
     );
   }
 
@@ -281,6 +235,7 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setupUI() async {
+    levelStateOverlay = LevelStateOverlay();
     shootButton = ShootButton();
     pauseButton = PauseButton();
     restartButton = RestartButton();

@@ -1,49 +1,64 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
-import '../../game/game.dart';
 
-class LevelStateOverlay extends Component with HasGameRef<QubityGame> {
-  final TextPaint levelText = TextPaint(
-    style: const TextStyle(
-      color: Palette.secondary,
-      fontSize: 16,
+class LevelStateOverlay {
+  final TextPaint _levelText = TextPaint(
+    style: GoogleFonts.roboto(
+      textStyle: const TextStyle(
+        color: Palette.secondary,
+        decoration: TextDecoration.none,
+        fontStyle: FontStyle.normal,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 
-  final TextPaint shotsFiredText = TextPaint(
-    style: const TextStyle(
-      color: Palette.white,
-      fontSize: 16,
+  final TextPaint _shotsFiredText = TextPaint(
+    style: GoogleFonts.roboto(
+      textStyle: const TextStyle(
+        color: Palette.white,
+        decoration: TextDecoration.none,
+        fontStyle: FontStyle.normal,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 
-  final TextPaint gatesUsedText = TextPaint(
-    style: const TextStyle(
-      color: Palette.white,
-      fontSize: 16,
+  final TextPaint _gatesUsedText = TextPaint(
+    style: GoogleFonts.roboto(
+      textStyle: const TextStyle(
+        color: Palette.white,
+        decoration: TextDecoration.none,
+        fontStyle: FontStyle.normal,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 
-  @override
-  void render(Canvas canvas) {
-    levelText.render(
+  void render(Canvas canvas, int levelId, int shotsFired, int gatesUsed) {
+    _levelText.render(
       canvas,
-      'Level ${gameRef.level['id']}',
-      Vector2(0, 0),
+      'Level $levelId',
+      Vector2(15, 20),
+      anchor: Anchor.centerLeft,
     );
 
-    shotsFiredText.render(
+    _shotsFiredText.render(
       canvas,
-      'Shots Fired: ${gameRef.shotsFired}',
-      Vector2(0, 20),
+      'Shots Fired: $shotsFired',
+      Vector2(100, 0),
     );
 
-    gatesUsedText.render(
+    _gatesUsedText.render(
       canvas,
-      'Gates Used: ${gameRef.gatesUsed}',
-      Vector2(20, 20),
+      'Gates Used: $gatesUsed',
+      Vector2(100, 20),
     );
   }
 }

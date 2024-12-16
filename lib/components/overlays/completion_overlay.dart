@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';
+import 'base_overlay.dart';
 
 class CompletionOverlay extends StatelessWidget {
   const CompletionOverlay({
@@ -20,47 +21,31 @@ class CompletionOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          width: gameSize.x,
-          height: gameSize.y,
-          color: Palette.black.withOpacity(0.5),
-        ),
-        Center(
-          child: Container(
-            padding: const EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-              color: Palette.white,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            width: gameSize.x * 0.8,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const RobotoText(
-                  text: 'Congratulations!',
-                  color: Palette.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 10),
-                const RobotoText(
-                  text: 'You have completed the game!',
-                  color: Palette.black,
-                  fontSize: 16,
-                ),
-                const SizedBox(height: 20),
-                BaseButton(
-                  onPressed: onExit,
-                  text: 'Level Selection',
-                  width: 200,
-                ),
-              ],
-            ),
+    return BaseOverlay(
+      gameSize: gameSize,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const RobotoText(
+            text: 'Congratulations!',
+            color: Palette.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-        ),
-      ],
+          const SizedBox(height: 10),
+          const RobotoText(
+            text: 'You have completed the game!',
+            color: Palette.black,
+            fontSize: 16,
+          ),
+          const SizedBox(height: 20),
+          BaseButton(
+            onPressed: onExit,
+            text: 'Level Selection',
+            width: 200,
+          ),
+        ],
+      ),
     );
   }
 }

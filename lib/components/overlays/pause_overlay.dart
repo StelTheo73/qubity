@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../button/base_button.dart';
+import 'base_overlay.dart';
 
 class PauseOverlay extends StatelessWidget {
   const PauseOverlay({
@@ -13,56 +13,40 @@ class PauseOverlay extends StatelessWidget {
     required this.gameSize,
   });
 
+  final Vector2 gameSize;
   final VoidCallback onResume;
   final VoidCallback onRestart;
   final VoidCallback onExit;
-  final Vector2 gameSize;
 
   static const String overlayKey = 'pause_overlay';
   static const int priority = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          width: gameSize.x,
-          height: gameSize.y,
-          color: Palette.black.withOpacity(0.5),
-        ),
-        Center(
-          child: Container(
-            padding: const EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-              color: Palette.white,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            width: gameSize.x * 0.8,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                BaseButton(
-                  onPressed: onResume,
-                  text: 'Resume',
-                  width: 200,
-                ),
-                const SizedBox(height: 10),
-                BaseButton(
-                  onPressed: onRestart,
-                  text: 'Restart',
-                  width: 200,
-                ),
-                const SizedBox(height: 10),
-                BaseButton(
-                  onPressed: onExit,
-                  text: 'Exit',
-                  width: 200,
-                ),
-              ],
-            ),
+    return BaseOverlay(
+      gameSize: gameSize,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          BaseButton(
+            onPressed: onResume,
+            text: 'Resume',
+            width: 200,
           ),
-        ),
-      ],
+          const SizedBox(height: 10),
+          BaseButton(
+            onPressed: onRestart,
+            text: 'Restart',
+            width: 200,
+          ),
+          const SizedBox(height: 10),
+          BaseButton(
+            onPressed: onExit,
+            text: 'Exit',
+            width: 200,
+          ),
+        ],
+      ),
     );
   }
 }
