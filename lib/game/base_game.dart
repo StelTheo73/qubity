@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/overlays/game_completion_overlay.dart';
 import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
-import '../utils/config.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
@@ -53,14 +51,6 @@ class BaseGame extends FlameGame<World>
 
   Future<void> onLevelCompletion() async {
     pauseLevel(addOverlay: false);
-
-    if (nextLevelId > Configuration.noOfLevels) {
-      overlays.add(
-        GameCompletionOverlay.overlayKey,
-        priority: GameCompletionOverlay.priority,
-      );
-      return;
-    }
 
     _calculateScore();
 
@@ -108,7 +98,6 @@ class BaseGame extends FlameGame<World>
     final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
     level = nextLevel;
     await reloadLevel();
-    overlays.remove(LevelCompletionOverlay.overlayKey);
   }
 
   void pauseLevel({bool addOverlay = true}) {
@@ -180,6 +169,11 @@ class BaseGame extends FlameGame<World>
     }
   }
 
+  void _closeOverlays() {
+    final List<String> activeOverlays = overlays.activeOverlays.toList();
+    activeOverlays.forEach(overlays.remove);
+  }
+
   Future<void> _setup() async {
     nextLevelId = (level['id'] as int) + 1;
 
@@ -190,6 +184,8 @@ class BaseGame extends FlameGame<World>
     gatesUsed = 0;
     shotsFired = 0;
     score = 3;
+
+    _closeOverlays();
 
     await _setupStates();
     await _setupRegister();
