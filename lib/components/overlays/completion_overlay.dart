@@ -38,14 +38,14 @@ class CompletionOverlay extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const TextRoboto(
+                const RobotoText(
                   text: 'Congratulations!',
                   color: Palette.black,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 10),
-                const TextRoboto(
+                const RobotoText(
                   text: 'You have completed the game!',
                   color: Palette.black,
                   fontSize: 16,

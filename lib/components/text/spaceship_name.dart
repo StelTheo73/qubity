@@ -13,7 +13,7 @@ class SpaceshipNameText extends StatelessWidget {
       width: 100,
       height: 40,
       alignment: Alignment.center,
-      child: TextRoboto(
+      child: RobotoText(
         text: name,
         fontSize: 14,
         fontWeight: FontWeight.bold,

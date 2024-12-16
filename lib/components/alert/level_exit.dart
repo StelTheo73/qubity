@@ -21,13 +21,13 @@ class LevelExitAlert extends AlertDialog {
     const Color color = Palette.black;
 
     return AlertDialog(
-      title: const TextRoboto(
+      title: const RobotoText(
         text: 'Exit Level',
         fontSize: 22,
         fontWeight: FontWeight.bold,
         color: color,
       ),
-      content: const TextRoboto(
+      content: const RobotoText(
         text: 'Are you sure you want to return to level selection?',
         color: color,
         fontSize: 14,
@@ -35,7 +35,7 @@ class LevelExitAlert extends AlertDialog {
       actions: <Widget>[
         TextButton(
           onPressed: () => onYes(context),
-          child: const TextRoboto(
+          child: const RobotoText(
             text: 'Exit Level',
             fontSize: 14,
             color: color,
@@ -43,7 +43,7 @@ class LevelExitAlert extends AlertDialog {
         ),
         TextButton(
           onPressed: () => onNo(context),
-          child: const TextRoboto(
+          child: const RobotoText(
             text: 'Continue Playing',
             fontSize: 14,
           ),

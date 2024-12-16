@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextRoboto extends StatelessWidget {
-  const TextRoboto({
+class RobotoText extends StatelessWidget {
+  const RobotoText({
     super.key,
     required this.text,
     this.color = Colors.orange,

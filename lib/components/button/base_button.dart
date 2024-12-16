@@ -30,7 +30,7 @@ class BaseButton extends StatelessWidget {
           foregroundColor: Palette.black,
         ),
         onPressed: onPressed,
-        child: TextRoboto(
+        child: RobotoText(
           text: text,
           textAlign: TextAlign.center,
           color: Palette.black,
