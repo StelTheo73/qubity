@@ -6,8 +6,8 @@ import '../button/base_button.dart';
 import '../text/roboto.dart';
 import 'base_overlay.dart';
 
-class CompletionOverlay extends StatelessWidget {
-  const CompletionOverlay({
+class GameCompletionOverlay extends StatelessWidget {
+  const GameCompletionOverlay({
     super.key,
     required this.onExit,
     required this.gameSize,
@@ -16,7 +16,7 @@ class CompletionOverlay extends StatelessWidget {
   final VoidCallback onExit;
   final Vector2 gameSize;
 
-  static const String overlayKey = 'completion_overlay';
+  static const String overlayKey = 'game_completion_overlay';
   static const int priority = 2;
 
   @override
@@ -28,7 +28,6 @@ class CompletionOverlay extends StatelessWidget {
         children: <Widget>[
           const RobotoText(
             text: 'Congratulations!',
-            color: Palette.black,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),

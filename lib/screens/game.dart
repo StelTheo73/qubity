@@ -2,7 +2,8 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/overlays/completion_overlay.dart';
+import '../components/overlays/game_completion_overlay.dart';
+import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../game/game.dart';
 import '../utils/config.dart';
@@ -17,9 +18,15 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         onExit: () => game.exitLevel(context),
         gameSize: game.size,
       ),
-  CompletionOverlay.overlayKey: (BuildContext context, QubityGame game) =>
-      CompletionOverlay(
+  GameCompletionOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      GameCompletionOverlay(
         onExit: () => game.exitLevel(context),
+        gameSize: game.size,
+      ),
+  LevelCompletionOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      LevelCompletionOverlay(
+        onExit: () => game.exitLevel(context),
+        loadNextLevel: game.loadNextLevel,
         gameSize: game.size,
       ),
 };

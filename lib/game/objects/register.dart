@@ -120,7 +120,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       int qubitId, double positionX, String label) {
     final Vector2 componentSize = Vector2(10, size.y * 1.5);
 
-    final RectangleComponent rectangleComponent = RectangleComponent(
+    final RectangleComponent cable = RectangleComponent(
       size: componentSize,
       anchor: Anchor.topCenter,
       position: Vector2(positionX, size.y),
@@ -133,10 +133,10 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     gatesHighlight
         .add(_getGateComponent(qubitId, componentSize, gatePaintHighlight));
 
-    rectangleComponent.add(circuitLabels.last);
-    rectangleComponent.add(gatesDefault.last);
+    cable.add(circuitLabels.last);
+    cable.add(gatesDefault.last);
 
-    return rectangleComponent;
+    return cable;
   }
 
   TextBoxComponent<TextPaint> _getCableComponentLabel(
@@ -145,7 +145,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       text: label,
       anchor: Anchor.topCenter,
       align: Anchor.center,
-      position: Vector2(cableComponentSize.x / 2, cableComponentSize.y),
+      position: Vector2(cableComponentSize.x / 2, cableComponentSize.y + 5),
       boxConfig: const TextBoxConfig(
         margins: EdgeInsets.zero,
       ),
@@ -173,19 +173,19 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
     if (register.size == 2) {
       positionX.add(size.x * 0.2);
       positionX.add(size.x * 0.8);
-      labels.add('2nd bit');
+      labels.add('2nd qubit');
     } else {
       positionX.add(size.x * 0.5);
     }
-    labels.add('1st bit');
+    labels.add('1st qubit');
 
     for (int i = 0; i < positionX.length; i++) {
-      final RectangleComponent rectangleComponent = _getCableComponent(
+      final RectangleComponent cableComponent = _getCableComponent(
         positionX.length - 1 - i,
         positionX[i],
         labels[i],
       );
-      cableComponents.add(rectangleComponent);
+      cableComponents.add(cableComponent);
     }
 
     return cableComponents;
@@ -216,7 +216,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       textRenderer: TextPaint(
         style: GoogleFonts.roboto(
           textStyle: const TextStyle(
-            color: Palette.white,
+            color: Palette.black,
             fontSize: 14.0,
             fontWeight: FontWeight.bold,
           ),

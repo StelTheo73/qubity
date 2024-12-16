@@ -10,6 +10,7 @@ class Configuration {
   static late final String appName;
   static late final bool debugMode;
   static late final bool music;
+  static late final int noOfLevels;
 
   static Future<void> init() async {
     _loadGoogleFonts();
@@ -24,6 +25,7 @@ class Configuration {
     appName = configMap['app']['name'] as String;
     debugMode = configMap['debugMode'] as bool;
     music = configMap['music'] as bool;
+    noOfLevels = configMap['levels'] as int;
   }
 
   static void _loadGoogleFonts() {

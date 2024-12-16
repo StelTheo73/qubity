@@ -3,15 +3,15 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
-import '../components/overlays/completion_overlay.dart';
+import '../components/overlays/game_completion_overlay.dart';
+import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
-import '../constants/colors.dart';
+import '../utils/config.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
@@ -34,6 +34,7 @@ class BaseGame extends FlameGame<World>
 
   bool running = true;
   YamlMap level;
+  late int nextLevelId;
 
   // Components
   // ----------
@@ -49,8 +50,28 @@ class BaseGame extends FlameGame<World>
   // Public Methods
   // --------------
 
+  Future<void> onLevelCompletion() async {
+    pauseLevel(addOverlay: false);
+    nextLevelId = (level['id'] as int) + 1;
+
+    if (nextLevelId > Configuration.noOfLevels) {
+      overlays.add(
+        GameCompletionOverlay.overlayKey,
+        priority: GameCompletionOverlay.priority,
+      );
+      return;
+    }
+
+    overlays.add(
+      LevelCompletionOverlay.overlayKey,
+      priority: LevelCompletionOverlay.priority,
+    );
+  }
+
   @override
   Future<void> onLoad() async {
+    nextLevelId = (level['id'] as int) + 1;
+
     await _cacheImages();
     await _setupParallax();
 
@@ -84,19 +105,10 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadNextLevel() async {
-    pauseLevel(addOverlay: false);
-    final int nextLevelId = (level['id'] as int) + 1;
-    try {
-      final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
-      level = nextLevel;
-    } catch (error) {
-      overlays.add(
-        CompletionOverlay.overlayKey,
-        priority: CompletionOverlay.priority,
-      );
-      return;
-    }
+    final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
+    level = nextLevel;
     await reloadLevel();
+    overlays.remove(LevelCompletionOverlay.overlayKey);
   }
 
   void pauseLevel({bool addOverlay = true}) {

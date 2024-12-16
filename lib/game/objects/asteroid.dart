@@ -43,7 +43,7 @@ class Asteroid extends SpriteComponent
       other.removeFromParent();
     }
     await gameRef
-        .sleep((animationDuration * 1000).toInt())
+        .sleep((2 * animationDuration * 1000).toInt())
         .then((_) => gameRef.asteroidHits++);
   }
 
