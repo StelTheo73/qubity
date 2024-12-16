@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/button/base_button.dart';
+import '../constants/colors.dart';
+import '../utils/device_store.dart';
 import 'base.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -15,7 +18,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return const BaseScreen(
       title: 'Settings',
       body: Center(
-        child: Text('Settings Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            BaseButton(
+              onPressed: DeviceStore.resetDeviceStore,
+              text: 'Delete Game Data',
+              color: Palette.danger,
+              width: 200,
+            ),
+          ],
+        ),
       ),
     );
   }

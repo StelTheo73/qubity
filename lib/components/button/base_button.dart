@@ -11,6 +11,8 @@ class BaseButton extends StatelessWidget {
     required this.width,
     this.height = 50,
     this.fontSize = 16,
+    this.color = Palette.primary,
+    this.textColor = Palette.black,
   });
 
   final VoidCallback onPressed;
@@ -18,6 +20,8 @@ class BaseButton extends StatelessWidget {
   final double width;
   final double height;
   final double fontSize;
+  final Color color;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,8 @@ class BaseButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Palette.secondary,
-          foregroundColor: Palette.black,
+          backgroundColor: color,
+          foregroundColor: textColor,
         ),
         onPressed: onPressed,
         child: RobotoText(

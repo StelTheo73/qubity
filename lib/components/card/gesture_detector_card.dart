@@ -18,7 +18,7 @@ class GestureDetectorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color color = Palette.secondary;
+    const Color color = Palette.primary;
     final Color colorOpacity = opacity ? color.withOpacity(0.6) : color;
 
     return GestureDetector(

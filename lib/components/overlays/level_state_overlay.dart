@@ -8,7 +8,7 @@ class LevelStateOverlay {
   final TextPaint _levelText = TextPaint(
     style: GoogleFonts.roboto(
       textStyle: const TextStyle(
-        color: Palette.secondary,
+        color: Palette.primary,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontSize: 20,

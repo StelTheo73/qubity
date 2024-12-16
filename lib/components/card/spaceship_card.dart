@@ -55,7 +55,7 @@ class UnlockedSpaceShip extends StatelessWidget {
                           Icon(
                             Icons.check_circle,
                             size: 40.0,
-                            color: Palette.primary.withOpacity(0.9),
+                            color: Palette.secondary.withOpacity(0.9),
                           ),
                       ],
                     ),

@@ -61,13 +61,13 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
           size: Vector2(gameSize.x * 0.4, 50),
           anchor: Anchor.centerLeft,
           position: Vector2(gameSize.x * 0.05, gameSize.y * 0.7),
-          paint: Paint()..color = Palette.primary,
+          paint: Paint()..color = Palette.secondary,
         );
 
   final Vector2 gameSize;
   final QRegister register;
-  final Paint gatePaintDefault = Paint()..color = Palette.primary;
-  final Paint gatePaintHighlight = Paint()..color = Palette.secondary;
+  final Paint gatePaintDefault = Paint()..color = Palette.secondary;
+  final Paint gatePaintHighlight = Paint()..color = Palette.primary;
 
   late TextBoxComponent<TextPaint> textComponent;
   final List<RectangleComponent> cableComponents =
@@ -124,7 +124,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       size: componentSize,
       anchor: Anchor.topCenter,
       position: Vector2(positionX, size.y),
-      paint: Paint()..color = Palette.primary.withOpacity(0.8),
+      paint: Paint()..color = Palette.secondary.withOpacity(0.8),
     );
 
     circuitLabels.add(_getCableComponentLabel(componentSize, label));

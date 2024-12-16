@@ -21,8 +21,9 @@ class GateComponent extends RectangleComponent
   double positionX;
   double positionY;
 
-  final Paint defaultPaint = Paint()..color = Palette.primary.withOpacity(0.4);
-  final Paint selectedPaint = Paint()..color = Palette.secondary;
+  final Paint defaultPaint = Paint()
+    ..color = Palette.secondary.withOpacity(0.4);
+  final Paint selectedPaint = Paint()..color = Palette.primary;
 
   @override
   Future<void> onLoad() async {
@@ -39,7 +40,7 @@ class GateComponent extends RectangleComponent
 
     final RectangleComponent spriteBackground = RectangleComponent(
       size: Vector2(size.x * 0.8, size.y * 0.8),
-      paint: Paint()..color = Palette.primary,
+      paint: Paint()..color = Palette.secondary,
       anchor: Anchor.center,
       position: Vector2(size.x / 2, size.y / 2),
     );

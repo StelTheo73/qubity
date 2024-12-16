@@ -10,6 +10,7 @@ import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
+import '../utils/device_store.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
@@ -53,6 +54,7 @@ class BaseGame extends FlameGame<World>
     pauseLevel(addOverlay: false);
 
     _calculateScore();
+    await _unlockNextLevel();
 
     overlays.add(
       LevelCompletionOverlay.overlayKey,
@@ -281,5 +283,9 @@ class BaseGame extends FlameGame<World>
       pauseButton,
       restartButton,
     ]);
+  }
+
+  Future<void> _unlockNextLevel() async {
+    DeviceStore.setUnlockedLevel(nextLevelId);
   }
 }
