@@ -124,7 +124,7 @@ class RegisterComponent extends RectangleComponent with HasGameRef<QubityGame> {
       size: componentSize,
       anchor: Anchor.topCenter,
       position: Vector2(positionX, size.y),
-      paint: Paint()..color = (Palette.primary).withOpacity(0.8),
+      paint: Paint()..color = Palette.primary.withOpacity(0.8),
     );
 
     circuitLabels.add(_getCableComponentLabel(componentSize, label));

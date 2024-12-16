@@ -27,7 +27,9 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
       LevelCompletionOverlay(
         onExit: () => game.exitLevel(context),
         loadNextLevel: game.loadNextLevel,
+        reloadLevel: game.reloadLevel,
         gameSize: game.size,
+        score: game.score,
       ),
 };
 

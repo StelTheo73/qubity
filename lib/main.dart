@@ -41,7 +41,8 @@ class QubityApp extends StatelessWidget {
         AppRoute.levels.route: (BuildContext context) => const LevelsScreen(),
         AppRoute.spaceships.route: (BuildContext context) =>
             const SpaceshipsScreen(),
-        AppRoute.settings.route: (BuildContext context) => SettingsScreen()
+        AppRoute.settings.route: (BuildContext context) =>
+            const SettingsScreen()
       },
     );
   }

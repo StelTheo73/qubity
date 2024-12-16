@@ -31,6 +31,7 @@ class BaseGame extends FlameGame<World>
   int asteroidHits = 0;
   int gatesUsed = 0;
   int shotsFired = 0;
+  double score = 3;
 
   bool running = true;
   YamlMap level;
@@ -52,7 +53,6 @@ class BaseGame extends FlameGame<World>
 
   Future<void> onLevelCompletion() async {
     pauseLevel(addOverlay: false);
-    nextLevelId = (level['id'] as int) + 1;
 
     if (nextLevelId > Configuration.noOfLevels) {
       overlays.add(
@@ -62,6 +62,8 @@ class BaseGame extends FlameGame<World>
       return;
     }
 
+    _calculateScore();
+
     overlays.add(
       LevelCompletionOverlay.overlayKey,
       priority: LevelCompletionOverlay.priority,
@@ -70,8 +72,6 @@ class BaseGame extends FlameGame<World>
 
   @override
   Future<void> onLoad() async {
-    nextLevelId = (level['id'] as int) + 1;
-
     await _cacheImages();
     await _setupParallax();
 
@@ -154,13 +154,42 @@ class BaseGame extends FlameGame<World>
     ]);
   }
 
+  void _calculateScore() {
+    final int minGates = level['steps'] as int;
+    final int minShots = LevelStates.levelEnemies.length;
+
+    if (gatesUsed > 4 * minGates || shotsFired > 3 * minShots) {
+      score = 0.5;
+      return;
+    }
+
+    if (shotsFired > minShots) {
+      score--;
+    }
+
+    if (gatesUsed > minGates) {
+      score -= 0.5;
+    }
+
+    if (gatesUsed > 2 * minGates) {
+      score -= 0.5;
+    }
+
+    if (shotsFired > 2 * minShots) {
+      score -= 0.5;
+    }
+  }
+
   Future<void> _setup() async {
+    nextLevelId = (level['id'] as int) + 1;
+
     if (!running) {
       resumeLevel();
     }
     asteroidHits = 0;
     gatesUsed = 0;
     shotsFired = 0;
+    score = 3;
 
     await _setupStates();
     await _setupRegister();

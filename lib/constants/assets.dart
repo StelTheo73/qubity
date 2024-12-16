@@ -31,6 +31,10 @@ const String gatePath = 'assets/images/gates/';
 // Icons
 const String pauseButtonPath = 'assets/images/icons/pause.png';
 const String restartButtonPath = 'assets/images/icons/restart.png';
+const String starFullPath = 'assets/images/icons/star_full.png';
+const String starHalfPath = 'assets/images/icons/star_half.png';
+const String starEmptyPath = 'assets/images/icons/star_empty.png';
+
 //
 // Parallax
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
