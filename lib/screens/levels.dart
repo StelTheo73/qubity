@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../components/card/gesture_detector_card.dart';
 import '../components/score/score.dart';
 import '../constants/routes.dart';
-import '../state/level_score_notifier.dart';
 import '../utils/level.dart';
 import 'base.dart';
 
@@ -77,16 +76,10 @@ class LevelsScreenState extends State<LevelsScreen> {
                                 child: Text(snapshot.data![index]['description']
                                     as String),
                               ),
-                              ListenableBuilder(
-                                listenable: levelScoreNotifier,
-                                builder: (BuildContext context, Widget? child) {
-                                  return Score(
-                                    score: levelScoreNotifier.getLevelScore(
-                                        snapshot.data![index]['id'] as int),
-                                    starWidth: 20,
-                                    starHeight: 20,
-                                  );
-                                },
+                              Score(
+                                levelId: index + 1,
+                                starWidth: 20,
+                                starHeight: 20,
                               ),
                             ],
                           ),

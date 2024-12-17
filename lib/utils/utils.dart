@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../state/high_score_notifier.dart';
 import '../state/level_score_notifier.dart';
+import '../state/level_state_notifier.dart';
 import '../state/spaceship_notifier.dart';
 import 'device_store.dart';
 
@@ -18,7 +20,9 @@ class Utils {
   }
 
   static void resetGame() {
+    highScoreNotifier.resetState();
     levelScoreNotifier.resetState();
+    levelStateNotifier.resetState();
     spaceshipNotifier.resetState();
     DeviceStore.resetDeviceStore();
   }

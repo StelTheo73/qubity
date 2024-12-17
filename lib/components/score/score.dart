@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../../state/level_score_notifier.dart';
 import 'star.dart';
 
 class Score extends StatelessWidget {
   const Score({
     super.key,
-    required this.score,
     required this.starWidth,
     required this.starHeight,
+    required this.levelId,
   });
 
-  final double score;
+  final int levelId;
   final double starWidth;
   final double starHeight;
 
-  List<Widget> _getStars() {
+  List<Widget> _getStars(double score) {
     final List<Widget> stars = <Widget>[];
 
     final int fullStars = score ~/ 1;
@@ -47,9 +48,16 @@ class Score extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _getStars(),
+    return ListenableBuilder(
+      listenable: levelScoreNotifier,
+      builder: (BuildContext context, Widget? child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _getStars(
+            levelScoreNotifier.getLevelScore(levelId),
+          ),
+        );
+      },
     );
   }
 }

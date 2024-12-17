@@ -10,6 +10,7 @@ import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
+import '../state/high_score_notifier.dart';
 import '../state/level_score_notifier.dart';
 import '../state/level_state_notifier.dart';
 import '../utils/device_store.dart';
@@ -33,7 +34,6 @@ class BaseGame extends FlameGame<World>
   int gatesUsed = 0;
   int shotsFired = 0;
   double score = 3;
-  bool newHighScore = false;
 
   bool running = true;
   YamlMap level;
@@ -192,7 +192,7 @@ class BaseGame extends FlameGame<World>
       return;
     }
 
-    newHighScore = true;
+    highScoreNotifier.setHighScore(true);
     levelScoreNotifier.setLevelScore(levelId, score);
     DeviceStore.setLevelScore(levelId, score);
   }
@@ -203,7 +203,7 @@ class BaseGame extends FlameGame<World>
     if (!running) {
       resumeLevel();
     }
-    newHighScore = false;
+    highScoreNotifier.setHighScore(false);
     asteroidHits = 0;
     gatesUsed = 0;
     shotsFired = 0;

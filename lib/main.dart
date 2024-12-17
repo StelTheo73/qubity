@@ -7,6 +7,7 @@ import 'screens/home.dart';
 import 'screens/levels.dart';
 import 'screens/settings.dart';
 import 'screens/spaceships.dart';
+import 'state/level_score_notifier.dart';
 import 'utils/config.dart';
 import 'utils/device_store.dart';
 import 'utils/level.dart';
@@ -19,6 +20,8 @@ Future<void> main() async {
   await DeviceStore.init();
   await Configuration.init();
   await LevelLoader.init();
+
+  levelScoreNotifier.init();
 
   runApp(const QubityApp());
 }

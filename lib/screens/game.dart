@@ -24,7 +24,6 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         reloadLevel: game.reloadLevel,
         gameSize: game.size,
         score: game.score,
-        newHighScore: game.newHighScore,
       ),
 };
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/device_store.dart';
+
 class LevelScoreNotifier extends ChangeNotifier {
   final Map<int, double> _levelScore = <int, double>{};
 
@@ -11,6 +13,14 @@ class LevelScoreNotifier extends ChangeNotifier {
 
   void setLevelScore(int levelId, double score) {
     _levelScore[levelId] = score;
+    notifyListeners();
+  }
+
+  Future<void> init() async {
+    final Map<String, double> scores = await DeviceStore.getLevelScores();
+    scores.forEach((String key, double value) {
+      _levelScore[int.parse(key)] = value;
+    });
     notifyListeners();
   }
 

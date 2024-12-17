@@ -14,27 +14,12 @@ class LevelLoader {
     levelStates = await _loadStates();
   }
 
-  static Future<YamlList> loadLevels() async {
-    final String levels = await rootBundle.loadString(levelsPath);
-    return loadYaml(levels)['levels'] as YamlList;
-  }
-
   static Future<YamlMap> getLevelById(int id) async {
     final YamlList levels = await loadLevels();
     if (id > levels.length) {
       throw ArgumentError('Level $id does not exist');
     }
     return levels[id - 1] as YamlMap;
-  }
-
-  static Future<YamlMap> _loadGates() async {
-    final String levelGates = await rootBundle.loadString(levelGatesPath);
-    return loadYaml(levelGates)['gates'] as YamlMap;
-  }
-
-  static Future<YamlMap> _loadStates() async {
-    final String levelStates = await rootBundle.loadString(levelStatesPath);
-    return loadYaml(levelStates)['states'] as YamlMap;
   }
 
   static YamlList getLevelGates(YamlMap level) {
@@ -52,5 +37,22 @@ class LevelLoader {
   static Future<int> getLastUnlockedLevel() async {
     return await DeviceStore.prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ??
         1;
+  }
+
+  static Future<YamlList> loadLevels() async {
+    final String levels = await rootBundle.loadString(levelsPath);
+    return loadYaml(levels)['levels'] as YamlList;
+  }
+
+  // Private Methods
+  // ---------------
+  static Future<YamlMap> _loadGates() async {
+    final String levelGates = await rootBundle.loadString(levelGatesPath);
+    return loadYaml(levelGates)['gates'] as YamlMap;
+  }
+
+  static Future<YamlMap> _loadStates() async {
+    final String levelStates = await rootBundle.loadString(levelStatesPath);
+    return loadYaml(levelStates)['states'] as YamlMap;
   }
 }
