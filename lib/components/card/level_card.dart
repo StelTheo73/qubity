@@ -20,7 +20,7 @@ class GatesWidget extends StatelessWidget {
     return RobotoText(
       text: text,
       color: Palette.black,
-      fontSize: 12,
+      fontSize: 14,
     );
   }
 }
@@ -61,14 +61,10 @@ class LevelCard extends StatelessWidget {
             RobotoText(
               text: 'Qubits: $noOfQubits',
               color: Palette.black,
-              fontSize: 12,
+              fontSize: 14,
             ),
             GatesWidget(gates: levelGates),
-            LevelCardScore(
-              levelId: levelId,
-              starWidth: 20,
-              starHeight: 20,
-            ),
+            LevelCardScore(levelId: levelId),
           ],
         ),
       ),

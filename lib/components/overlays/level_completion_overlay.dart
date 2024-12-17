@@ -89,10 +89,7 @@ class LevelCompletionOverlay extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          const LevelCompletionScore(
-            starWidth: 60,
-            starHeight: 60,
-          ),
+          const LevelCompletionScore(),
           const SizedBox(height: 5),
           const HighScoreWidget(),
           const SizedBox(height: 20),

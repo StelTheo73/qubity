@@ -43,9 +43,9 @@ mixin _ScoreMixin {
 class LevelCardScore extends StatelessWidget with _ScoreMixin {
   const LevelCardScore({
     super.key,
-    required this.starWidth,
-    required this.starHeight,
     required this.levelId,
+    this.starWidth = 25,
+    this.starHeight = 25,
   });
 
   final int levelId;
@@ -73,8 +73,8 @@ class LevelCardScore extends StatelessWidget with _ScoreMixin {
 class LevelCompletionScore extends StatelessWidget with _ScoreMixin {
   const LevelCompletionScore({
     super.key,
-    required this.starWidth,
-    required this.starHeight,
+    this.starWidth = 60,
+    this.starHeight = 60,
   });
 
   @override
