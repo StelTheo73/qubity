@@ -16,7 +16,6 @@ class SpaceshipsScreen extends StatefulWidget {
 
 class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
   late Future<List<dynamic>> futures;
-  final SpaceshipNotifier spaceshipNotifier = SpaceshipNotifier();
 
   @override
   void initState() {

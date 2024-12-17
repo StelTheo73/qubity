@@ -20,13 +20,11 @@ Future<void> main() async {
   await Configuration.init();
   await LevelLoader.init();
 
-  runApp(QubityApp());
+  runApp(const QubityApp());
 }
 
 class QubityApp extends StatelessWidget {
   const QubityApp({super.key});
-
-  // final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,6 @@ class QubityApp extends StatelessWidget {
         AppRoute.settings.route: (BuildContext context) =>
             const SettingsScreen()
       },
-      // navigatorObservers: <NavigatorObserver>[routeObserver],
     );
   }
 }

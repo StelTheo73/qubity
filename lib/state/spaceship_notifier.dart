@@ -11,4 +11,11 @@ class SpaceshipNotifier extends ChangeNotifier {
     _selectedSpaceshipId = spaceshipId;
     notifyListeners();
   }
+
+  void resetState() {
+    _selectedSpaceshipId = defaultSpaceshipId;
+    notifyListeners();
+  }
 }
+
+final SpaceshipNotifier spaceshipNotifier = SpaceshipNotifier();

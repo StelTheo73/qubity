@@ -10,6 +10,8 @@ import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
+import '../state/level_score_notifier.dart';
+import '../state/level_state_notifier.dart';
 import '../utils/device_store.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
@@ -35,7 +37,6 @@ class BaseGame extends FlameGame<World>
 
   bool running = true;
   YamlMap level;
-  late int nextLevelId;
 
   // Components
   // ----------
@@ -100,7 +101,9 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadNextLevel() async {
-    final YamlMap nextLevel = await LevelLoader.getLevelById(nextLevelId);
+    final YamlMap nextLevel = await LevelLoader.getLevelById(
+      levelStateNotifier.nextLevelId,
+    );
     level = nextLevel;
     await reloadLevel();
   }
@@ -149,14 +152,12 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _calculateScore() async {
-    final double previousScore =
-        await DeviceStore.getLevelScore(level['id'] as int);
-
     final int minGates = level['steps'] as int;
     final int minShots = LevelStates.levelEnemies.length;
 
     if (gatesUsed > 4 * minGates || shotsFired > 3 * minShots) {
       score = 0.5;
+      await _saveScore();
       return;
     }
 
@@ -176,12 +177,7 @@ class BaseGame extends FlameGame<World>
       score -= 0.5;
     }
 
-    if (score <= previousScore) {
-      return;
-    }
-
-    newHighScore = true;
-    await DeviceStore.setLevelScore(level['id'] as int, score);
+    await _saveScore();
   }
 
   void _closeOverlays() {
@@ -189,8 +185,20 @@ class BaseGame extends FlameGame<World>
     activeOverlays.forEach(overlays.remove);
   }
 
+  Future<void> _saveScore() async {
+    final int levelId = level['id'] as int;
+    final double previousScore = levelScoreNotifier.getLevelScore(levelId);
+    if (score <= previousScore) {
+      return;
+    }
+
+    newHighScore = true;
+    levelScoreNotifier.setLevelScore(levelId, score);
+    DeviceStore.setLevelScore(levelId, score);
+  }
+
   Future<void> _setup() async {
-    nextLevelId = (level['id'] as int) + 1;
+    levelStateNotifier.setLevelId(level['id'] as int);
 
     if (!running) {
       resumeLevel();
@@ -300,6 +308,6 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _unlockNextLevel() async {
-    DeviceStore.setUnlockedLevel(nextLevelId);
+    DeviceStore.setUnlockedLevel(levelStateNotifier.nextLevelId);
   }
 }

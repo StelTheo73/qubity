@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
+import '../../state/level_state_notifier.dart';
 import '../../utils/config.dart';
 import '../button/base_button.dart';
 import '../score/score.dart';
@@ -15,7 +16,6 @@ class LevelCompletionOverlay extends StatelessWidget {
     required this.reloadLevel,
     required this.onExit,
     required this.score,
-    required this.nextLevelId,
     required this.newHighScore,
   });
 
@@ -24,7 +24,6 @@ class LevelCompletionOverlay extends StatelessWidget {
   final VoidCallback onExit;
   final VoidCallback reloadLevel;
   final double score;
-  final int nextLevelId;
   final bool newHighScore;
 
   static const String overlayKey = 'level_completion_overlay';
@@ -32,14 +31,6 @@ class LevelCompletionOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final bool hasNextLevel;
-
-    if (nextLevelId > Configuration.noOfLevels) {
-      hasNextLevel = false;
-    } else {
-      hasNextLevel = true;
-    }
-
     return BaseOverlay(
       gameSize: gameSize,
       child: Column(
@@ -64,18 +55,31 @@ class LevelCompletionOverlay extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           const SizedBox(height: 20),
-          if (hasNextLevel)
-            BaseButton(
-              onPressed: loadNextLevel,
-              text: 'Next Level',
-              width: 200,
-            )
-          else
-            const RobotoText(
-              text: 'You have completed the game!',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          ListenableBuilder(
+            listenable: levelStateNotifier,
+            builder: (BuildContext context, Widget? child) {
+              late final bool hasNextLevel;
+
+              if (levelStateNotifier.nextLevelId > Configuration.noOfLevels) {
+                hasNextLevel = false;
+              } else {
+                hasNextLevel = true;
+              }
+
+              if (hasNextLevel) {
+                return BaseButton(
+                  onPressed: loadNextLevel,
+                  text: 'Next Level',
+                  width: 200,
+                );
+              }
+              return const RobotoText(
+                text: 'You have completed the game!',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              );
+            },
+          ),
           const SizedBox(height: 20),
           BaseButton(
             onPressed: reloadLevel,

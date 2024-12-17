@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/card/gesture_detector_card.dart';
 import '../components/score/score.dart';
 import '../constants/routes.dart';
-import '../utils/device_store.dart';
+import '../state/level_score_notifier.dart';
 import '../utils/level.dart';
 import 'base.dart';
 
@@ -15,9 +15,7 @@ class LevelsScreen extends StatefulWidget {
 }
 
 class LevelsScreenState extends State<LevelsScreen> {
-// with RouteAware
   late Future<List<dynamic>> levelsFuture;
-  late Future<Map<String, dynamic>> levelScores;
 
   @override
   void initState() {
@@ -25,19 +23,7 @@ class LevelsScreenState extends State<LevelsScreen> {
     _loadLevels();
   }
 
-  // @override
-  // void didPopNext() {
-  //   setState(() {
-  //     levelScores = DeviceStore.getLevelScores();
-  //   });
-
-  //   super.didPopNext();
-  // }
-
   void _loadLevels() {
-    setState(() {
-      levelScores = DeviceStore.getLevelScores();
-    });
     setState(() {
       levelsFuture = LevelLoader.loadLevels();
     });
@@ -91,32 +77,21 @@ class LevelsScreenState extends State<LevelsScreen> {
                                 child: Text(snapshot.data![index]['description']
                                     as String),
                               ),
-                              FutureBuilder<Map<String, dynamic>>(
-                                future: levelScores,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<Map<String, dynamic>>
-                                        snapshot) {
-                                  if (snapshot.connectionState ==
-                                          ConnectionState.done &&
-                                      snapshot.hasData) {
-                                    return Score(
-                                      score: (snapshot
-                                                  .data?[(index + 1).toString()]
-                                              as double?) ??
-                                          0.0,
-                                      starWidth: 20,
-                                      starHeight: 20,
-                                    );
-                                  } else {
-                                    return const CircularProgressIndicator();
-                                  }
+                              ListenableBuilder(
+                                listenable: levelScoreNotifier,
+                                builder: (BuildContext context, Widget? child) {
+                                  return Score(
+                                    score: levelScoreNotifier.getLevelScore(
+                                        snapshot.data![index]['id'] as int),
+                                    starWidth: 20,
+                                    starHeight: 20,
+                                  );
                                 },
                               ),
                             ],
                           ),
                         ),
                       );
-                      // );
                     },
                   ),
                 ),
