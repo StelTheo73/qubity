@@ -8,7 +8,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'x'
-    description: 'X Gate'
 
   - id: 2
     states: 'x'
@@ -17,7 +16,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'x'
-    description: 'X Gate reverse'
 
   - id: 3
     states: 'y'
@@ -26,7 +24,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'y'
-    description: 'Y Gate'
 
   - id: 4
     states: 'y'
@@ -35,7 +32,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'y'
-    description: 'Y Gate'
 
   - id: 5
     states: 'y'
@@ -44,7 +40,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'y'
-    description: 'Y Gate reverse'
 
   - id: 6
     states: 'y'
@@ -53,7 +48,6 @@ levels:
     target_image: enemy_001
     steps: 1
     gates: 'y'
-    description: 'Y Gate reverse'
 
   - id: 7
     states: 'xy'
@@ -62,7 +56,6 @@ levels:
     target_image: enemy_001
     steps: 2
     gates: 'xy'
-    description: 'X and Y Gate'
 
   - id: 8
     states: 'xy'
@@ -71,7 +64,6 @@ levels:
     target_image: enemy_001
     steps: 2
     gates: 'xy'
-    description: 'X and Y Gate'
 
   - id: 9
     states: 'h'
@@ -80,7 +72,6 @@ levels:
     target_image: enemy_001
     steps: 3
     gates: 'xz'
-    description: 'X and Z Gate'
 
   - id: 10
     states: 'h'
@@ -89,7 +80,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'h'
-    description: 'H Gate'
 
   - id: 11
     states: 'h'
@@ -98,7 +88,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'h'
-    description: 'H gate'
 
   - id: 12
     states: 'h'
@@ -107,7 +96,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'h'
-    description: 'H Gate reverse'
 
   - id: 13
     states: 'h'
@@ -116,7 +104,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'h'
-    description: 'H Gate reverse'
 
   - id: 14
     states: 'h'
@@ -125,7 +112,6 @@ levels:
     target_image: enemy_002
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate'
 
   - id: 15
     states: 'h'
@@ -134,7 +120,6 @@ levels:
     target_image: enemy_002
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate'
 
   - id: 16
     states: 'h'
@@ -143,7 +128,6 @@ levels:
     target_image: enemy_002
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate reverse'
 
   - id: 17
     states: 'h'
@@ -152,7 +136,6 @@ levels:
     target_image: enemy_002
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate reverse'
 
   - id: 18
     states: '2bits'
@@ -161,7 +144,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'x'
-    description: 'X Gate 2 bit'
 
   - id: 19
     states: '2bits'
@@ -170,7 +152,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'x'
-    description: 'X Gate 2 bit'
 
   - id: 20
     states: '2bits'
@@ -179,7 +160,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'x'
-    description: 'X Gate 2 bit'
 
   - id: 21
     states: '2bits'
@@ -188,7 +168,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'x'
-    description: 'X Gate 2 bit'
 
   - id: 22
     states: '2bits_phase'
@@ -197,7 +176,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 23
     states: '2bits_phase'
@@ -206,7 +184,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 24
     states: '2bits_phase'
@@ -215,7 +192,6 @@ levels:
     target_image: enemy_002
     steps: 1
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 25
     states: '2bits_phase'
@@ -224,7 +200,6 @@ levels:
     target_image: enemy_003
     steps: 1
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 26
     states: '2bits_phase'
@@ -233,7 +208,6 @@ levels:
     target_image: enemy_003
     steps: 1
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 27
     states: '2bits_phase'
@@ -242,7 +216,6 @@ levels:
     target_image: enemy_003
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 28
     states: '2bits_phase'
@@ -251,7 +224,6 @@ levels:
     target_image: enemy_003
     steps: 2
     gates: 'hx'
-    description: 'H and X Gate 2 bit'
 
   - id: 29
     states: '2bits_phase'
@@ -260,7 +232,6 @@ levels:
     target_image: enemy_003
     steps: 2
     gates: 'hxz'
-    description: 'H, X and Z Gate 2 bit'
 
   - id: 30
     states: '2bits_phase'
@@ -269,4 +240,3 @@ levels:
     target_image: enemy_003
     steps: 3
     gates: 'hxz'
-    description: 'H, X and Z Gate 2 bit'

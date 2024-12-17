@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import '../../state/high_score_notifier.dart';
+import '../../state/current_score_notifier.dart';
 import '../../state/level_state_notifier.dart';
 import '../../utils/config.dart';
 import '../button/base_button.dart';
@@ -15,9 +15,9 @@ class HighScoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: highScoreNotifier,
+      listenable: currentScoreNotifier,
       builder: (BuildContext context, Widget? child) {
-        if (highScoreNotifier.highScore) {
+        if (currentScoreNotifier.highScore) {
           return const RobotoText(
             text: 'New High Score!',
             fontSize: 12,
@@ -57,24 +57,6 @@ class NextLevelWidget extends StatelessWidget {
   }
 }
 
-class ScoreWidget extends StatelessWidget {
-  const ScoreWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: levelStateNotifier,
-      builder: (BuildContext context, Widget? child) {
-        return Score(
-          levelId: levelStateNotifier.levelId,
-          starWidth: 60,
-          starHeight: 60,
-        );
-      },
-    );
-  }
-}
-
 class LevelCompletionOverlay extends StatelessWidget {
   const LevelCompletionOverlay({
     super.key,
@@ -107,7 +89,10 @@ class LevelCompletionOverlay extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          const ScoreWidget(),
+          const LevelCompletionScore(
+            starWidth: 60,
+            starHeight: 60,
+          ),
           const SizedBox(height: 5),
           const HighScoreWidget(),
           const SizedBox(height: 20),

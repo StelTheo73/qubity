@@ -10,7 +10,7 @@ import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
-import '../state/high_score_notifier.dart';
+import '../state/current_score_notifier.dart';
 import '../state/level_score_notifier.dart';
 import '../state/level_state_notifier.dart';
 import '../utils/device_store.dart';
@@ -188,11 +188,14 @@ class BaseGame extends FlameGame<World>
   Future<void> _saveScore() async {
     final int levelId = level['id'] as int;
     final double previousScore = levelScoreNotifier.getLevelScore(levelId);
+
+    currentScoreNotifier.setCurrentScore(score);
+
     if (score <= previousScore) {
       return;
     }
 
-    highScoreNotifier.setHighScore(true);
+    currentScoreNotifier.setHighScore(true);
     levelScoreNotifier.setLevelScore(levelId, score);
     DeviceStore.setLevelScore(levelId, score);
   }
@@ -203,7 +206,7 @@ class BaseGame extends FlameGame<World>
     if (!running) {
       resumeLevel();
     }
-    highScoreNotifier.setHighScore(false);
+    currentScoreNotifier.setHighScore(false);
     asteroidHits = 0;
     gatesUsed = 0;
     shotsFired = 0;

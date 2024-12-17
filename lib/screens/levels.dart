@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yaml/yaml.dart';
 
-import '../components/card/gesture_detector_card.dart';
-import '../components/score/score.dart';
-import '../constants/routes.dart';
+import '../components/card/level_card.dart';
 import '../utils/level.dart';
 import 'base.dart';
 
@@ -51,39 +50,8 @@ class LevelsScreenState extends State<LevelsScreen> {
                     ),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetectorCard(
-                        onTap: () async {
-                          Navigator.pushNamed(
-                            context,
-                            AppRoute.game.route,
-                            arguments: snapshot.data![index],
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'Level ${index + 1}',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(snapshot.data![index]['description']
-                                    as String),
-                              ),
-                              Score(
-                                levelId: index + 1,
-                                starWidth: 20,
-                                starHeight: 20,
-                              ),
-                            ],
-                          ),
-                        ),
+                      return LevelCard(
+                        level: snapshot.data![index] as YamlMap,
                       );
                     },
                   ),
