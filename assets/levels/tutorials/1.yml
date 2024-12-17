@@ -1,0 +1,7 @@
+slides:
+  - title: 'X Gate'
+    description: |+
+      In this level you will learn about the X gate.
+      The X gate is also known as the NOT gate, because it flips the state of a qubit.
+
+      If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.

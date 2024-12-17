@@ -11,12 +11,14 @@ class PauseOverlay extends StatelessWidget {
     required this.onRestart,
     required this.onExit,
     required this.gameSize,
+    required this.onHelp,
   });
 
   final Vector2 gameSize;
   final VoidCallback onResume;
   final VoidCallback onRestart;
   final VoidCallback onExit;
+  final VoidCallback onHelp;
 
   static const String overlayKey = 'pause_overlay';
   static const int priority = 1;
@@ -33,6 +35,8 @@ class PauseOverlay extends StatelessWidget {
             text: 'Resume',
             width: 200,
           ),
+          const SizedBox(height: 10),
+          BaseButton(onPressed: onHelp, text: 'Help', width: 200),
           const SizedBox(height: 10),
           BaseButton(
             onPressed: onRestart,

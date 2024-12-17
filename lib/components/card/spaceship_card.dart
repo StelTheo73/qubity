@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../state/spaceship_notifier.dart';
+import '../../store/spaceship_notifier.dart';
 import '../../utils/spaceship.dart';
 import '../text/spaceship_name.dart';
 import './gesture_detector_card.dart';

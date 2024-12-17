@@ -7,7 +7,7 @@ import 'screens/home.dart';
 import 'screens/levels.dart';
 import 'screens/settings.dart';
 import 'screens/spaceships.dart';
-import 'state/level_score_notifier.dart';
+import 'store/level_score_notifier.dart';
 import 'utils/config.dart';
 import 'utils/device_store.dart';
 import 'utils/level.dart';

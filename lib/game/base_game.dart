@@ -8,11 +8,13 @@ import 'package:yaml/yaml.dart';
 
 import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
+import '../components/overlays/level_tutorial_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
-import '../state/current_score_notifier.dart';
-import '../state/level_score_notifier.dart';
-import '../state/level_state_notifier.dart';
+import '../store/current_score_notifier.dart';
+import '../store/level_score_notifier.dart';
+import '../store/level_state_notifier.dart';
+import '../store/tutorial_notifier.dart';
 import '../utils/device_store.dart';
 import '../utils/level.dart';
 import 'components/menu_button.dart';
@@ -74,6 +76,7 @@ class BaseGame extends FlameGame<World>
     await Future.wait(<Future<void>>[
       _setupUI(),
       _setup(),
+      loadTutorial(),
     ]);
     await super.onLoad();
   }
@@ -83,7 +86,7 @@ class BaseGame extends FlameGame<World>
     super.render(canvas);
     levelStateOverlay.render(
       canvas,
-      level['id'] as int,
+      levelStateNotifier.levelId,
       shotsFired,
       gatesUsed,
     );
@@ -91,6 +94,11 @@ class BaseGame extends FlameGame<World>
 
   Future<void> cacheImage(String imagePath) async {
     await images.load(imagePath);
+  }
+
+  void closeOverlays() {
+    final List<String> activeOverlays = overlays.activeOverlays.toList();
+    activeOverlays.forEach(overlays.remove);
   }
 
   void exitLevel(BuildContext context) {
@@ -106,6 +114,14 @@ class BaseGame extends FlameGame<World>
     );
     level = nextLevel;
     await reloadLevel();
+    await loadTutorial();
+  }
+
+  Future<void> loadTutorial() async {
+    final List<Map<String, String>> tutorial =
+        await LevelLoader.getLevelTutorial(levelStateNotifier.levelId);
+    tutorialNotifier.setTutorialMap(tutorial);
+    // showHelp();
   }
 
   void pauseLevel({bool addOverlay = true}) {
@@ -121,12 +137,20 @@ class BaseGame extends FlameGame<World>
   void resumeLevel() {
     resumeEngine();
     running = true;
-    overlays.remove(PauseOverlay.overlayKey);
+    closeOverlays();
   }
 
   Future<void> reloadLevel() async {
     await teardown();
     await _setup();
+  }
+
+  void showHelp() {
+    closeOverlays();
+    overlays.add(
+      LevelTutorialOverlay.overlayKey,
+      priority: LevelTutorialOverlay.priority,
+    );
   }
 
   Future<void> sleep(int milliseconds) async {
@@ -180,13 +204,8 @@ class BaseGame extends FlameGame<World>
     await _saveScore();
   }
 
-  void _closeOverlays() {
-    final List<String> activeOverlays = overlays.activeOverlays.toList();
-    activeOverlays.forEach(overlays.remove);
-  }
-
   Future<void> _saveScore() async {
-    final int levelId = level['id'] as int;
+    final int levelId = levelStateNotifier.levelId;
     final double previousScore = levelScoreNotifier.getLevelScore(levelId);
 
     currentScoreNotifier.setCurrentScore(score);
@@ -212,7 +231,7 @@ class BaseGame extends FlameGame<World>
     shotsFired = 0;
     score = 3;
 
-    _closeOverlays();
+    closeOverlays();
 
     await _setupStates();
     await _setupRegister();

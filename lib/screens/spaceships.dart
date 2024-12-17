@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/card/spaceship_card.dart';
 import '../constants/spaceships.dart';
-import '../state/spaceship_notifier.dart';
+import '../store/spaceship_notifier.dart';
 import '../utils/level.dart';
 import '../utils/spaceship.dart';
 import 'base.dart';
@@ -11,7 +11,7 @@ class SpaceshipsScreen extends StatefulWidget {
   const SpaceshipsScreen({super.key});
 
   @override
-  _SpaceshipsScreenState createState() => _SpaceshipsScreenState();
+  State<StatefulWidget> createState() => _SpaceshipsScreenState();
 }
 
 class _SpaceshipsScreenState extends State<SpaceshipsScreen> {

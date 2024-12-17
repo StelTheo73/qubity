@@ -2,8 +2,9 @@ import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart'
-    show levelGatesPath, levelStatesPath, levelsPath;
+    show levelGatesPath, levelStatesPath, levelTutorialsPath, levelsPath;
 import 'device_store.dart';
+import 'utils.dart';
 
 class LevelLoader {
   static late final YamlMap levelGates;
@@ -34,8 +35,34 @@ class LevelLoader {
     return level['targets'] as YamlList;
   }
 
+  static Future<List<Map<String, String>>> getLevelTutorial(int levelId) async {
+    try {
+      final YamlMap tutorialYaml =
+          await Utils.loadYamlMap('$levelTutorialsPath$levelId.yml');
+
+      final List<Map<String, String>> slides =
+          (tutorialYaml['slides'] as YamlList)
+              .map((slide) => Map<String, String>.from(slide as YamlMap))
+              .toList();
+
+      return slides;
+    } catch (e) {
+      final YamlMap tutorialYaml =
+          await Utils.loadYamlMap('${levelTutorialsPath}default.yml');
+
+      final List<Map<String, String>> slides =
+          (tutorialYaml['slides'] as YamlList)
+              .map((slide) => Map<String, String>.from(slide as YamlMap))
+              .toList();
+
+      return slides;
+    }
+  }
+
   static Future<int> getLastUnlockedLevel() async {
-    return await DeviceStore.prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ??
+    return await DeviceStore.prefs.getInt(
+          DeviceStoreKeys.unlockedLevel.key,
+        ) ??
         1;
   }
 

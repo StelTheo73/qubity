@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../state/current_score_notifier.dart';
-import '../../state/level_score_notifier.dart';
+import '../../store/current_score_notifier.dart';
+import '../../store/level_score_notifier.dart';
 import 'star.dart';
 
 mixin _ScoreMixin {

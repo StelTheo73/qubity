@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/overlays/level_completion_overlay.dart';
+import '../components/overlays/level_tutorial_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../game/game.dart';
 import '../utils/config.dart';
@@ -15,6 +16,7 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         onResume: game.resumeLevel,
         onRestart: game.reloadLevel,
         onExit: () => game.exitLevel(context),
+        onHelp: game.showHelp,
         gameSize: game.size,
       ),
   LevelCompletionOverlay.overlayKey: (BuildContext context, QubityGame game) =>
@@ -25,6 +27,11 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         gameSize: game.size,
         score: game.score,
       ),
+  LevelTutorialOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      LevelTutorialOverlay(
+        gameSize: game.size,
+        onResume: game.resumeLevel,
+      ),
 };
 
 class GameScreen extends StatefulWidget {
@@ -33,7 +40,7 @@ class GameScreen extends StatefulWidget {
   final YamlMap initialLevel;
 
   @override
-  _GameScreenState createState() => _GameScreenState();
+  State<StatefulWidget> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {

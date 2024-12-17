@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:yaml/yaml.dart';
 
-import '../state/current_score_notifier.dart';
-import '../state/level_score_notifier.dart';
-import '../state/level_state_notifier.dart';
-import '../state/spaceship_notifier.dart';
+import '../store/current_score_notifier.dart';
+import '../store/level_score_notifier.dart';
+import '../store/level_state_notifier.dart';
+import '../store/spaceship_notifier.dart';
+import '../store/tutorial_notifier.dart';
 import 'device_store.dart';
 
 class Utils {
@@ -19,11 +22,17 @@ class Utils {
     screenHeight = view.display.size.height;
   }
 
+  static Future<YamlMap> loadYamlMap(String filePath) async {
+    final String yamlString = await rootBundle.loadString(filePath);
+    return loadYaml(yamlString) as YamlMap;
+  }
+
   static void resetGame() {
     currentScoreNotifier.resetState();
     levelScoreNotifier.resetState();
     levelStateNotifier.resetState();
     spaceshipNotifier.resetState();
+    tutorialNotifier.resetState();
     DeviceStore.resetDeviceStore();
   }
 }

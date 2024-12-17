@@ -43,6 +43,7 @@ flutter:
     - assets/images/parallax/
     - assets/images/rest/
     - assets/images/spaceships/
+    - assets/levels/tutorials/
     # files
     - assets/config/config.yml
     - assets/levels/levels.yml

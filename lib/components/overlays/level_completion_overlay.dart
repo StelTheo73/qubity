@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import '../../state/current_score_notifier.dart';
-import '../../state/level_state_notifier.dart';
+import '../../store/current_score_notifier.dart';
+import '../../store/level_state_notifier.dart';
 import '../../utils/config.dart';
 import '../button/base_button.dart';
 import '../score/score.dart';

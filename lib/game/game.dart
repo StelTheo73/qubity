@@ -9,13 +9,8 @@ import 'state/level_state.dart';
 class QubityGame extends BaseGame {
   QubityGame({required super.level});
 
-  Future<void> updateSpaceships() async {
-    LevelStates.resetSpaceshipPositions();
-    LevelStates.createSpaceshipPositions(gameRegister);
-    LevelStates.removeLevelSpaceships(removeAll);
-    LevelStates.createLevelSpaceships();
-    await addAll(LevelStates.levelSpaceships);
-  }
+  // Public Methods
+  // --------------
 
   Future<void> applyGate(int qubitId) async {
     final Gate? gateToApply = selectedGate?.gate;
@@ -67,6 +62,11 @@ class QubityGame extends BaseGame {
     return false;
   }
 
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+  }
+
   void quantumCalculation({
     required String gate0,
     String gate1 = 'I',
@@ -95,21 +95,27 @@ class QubityGame extends BaseGame {
     registerComponent.highlightCircuitGates();
   }
 
+  @override
+  void update(double dt) {
+    super.update(dt);
+    _triggerLevelCompletion();
+  }
+
+  Future<void> updateSpaceships() async {
+    LevelStates.resetSpaceshipPositions();
+    LevelStates.createSpaceshipPositions(gameRegister);
+    LevelStates.removeLevelSpaceships(removeAll);
+    LevelStates.createLevelSpaceships();
+    await addAll(LevelStates.levelSpaceships);
+  }
+
+  // Private Methods
+  // ---------------
+
   Future<void> _triggerLevelCompletion() async {
     if (asteroidHits < LevelStates.levelEnemies.length) {
       return;
     }
     await onLevelCompletion();
-  }
-
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    _triggerLevelCompletion();
   }
 }
