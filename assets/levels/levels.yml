@@ -158,7 +158,7 @@ levels:
     initial: [['1', '0'], ['1', '0']]
     targets: ['|11>']
     target_image: enemy_002
-    steps: 1
+    steps: 2
     gates: 'x'
 
   - id: 21
@@ -166,7 +166,7 @@ levels:
     initial: [['0', '1'], ['0', '1']]
     targets: ['|00>']
     target_image: enemy_002
-    steps: 1
+    steps: 2
     gates: 'x'
 
   - id: 22
@@ -206,7 +206,7 @@ levels:
     initial: [['1', '0'], ['1', '0']]
     targets: ['|00>', '|01>', '|10>', '|11>']
     target_image: enemy_003
-    steps: 1
+    steps: 2
     gates: 'hx'
 
   - id: 27
