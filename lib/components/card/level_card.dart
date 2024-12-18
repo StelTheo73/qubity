@@ -34,10 +34,7 @@ class LevelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final int levelId = level['id'] as int;
     final int noOfQubits = (level['initial'] as YamlList).length;
-    final List<String> levelGates =
-        LevelLoader.getLevelGates(level).value.map((dynamic gate) {
-      return gate as String;
-    }).toList();
+    final List<String> levelGates = LevelLoader.getLevelGates(level);
 
     return GestureDetectorCard(
       onTap: () async {

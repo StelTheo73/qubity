@@ -7,11 +7,13 @@ import 'package:qartvm/qartvm.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/overlays/level_completion_overlay.dart';
+import '../components/overlays/level_help_overlay.dart';
 import '../components/overlays/level_state_overlay.dart';
 import '../components/overlays/level_tutorial_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../constants/assets.dart';
 import '../store/current_score_notifier.dart';
+import '../store/level_help_notifier.dart';
 import '../store/level_score_notifier.dart';
 import '../store/level_state_notifier.dart';
 import '../store/tutorial_notifier.dart';
@@ -77,6 +79,7 @@ class BaseGame extends FlameGame<World>
       _setupUI(),
       _setup(),
       loadTutorial(),
+      loadHelp(),
     ]);
     await super.onLoad();
   }
@@ -108,6 +111,12 @@ class BaseGame extends FlameGame<World>
     }
   }
 
+  Future<void> loadHelp() async {
+    final List<Map<String, String>> help =
+        await LevelLoader.getLevelHelp(level);
+    levelHelpNotifier.setLevelHelpMap(help);
+  }
+
   Future<void> loadNextLevel() async {
     final YamlMap nextLevel = await LevelLoader.getLevelById(
       levelStateNotifier.nextLevelId,
@@ -121,7 +130,15 @@ class BaseGame extends FlameGame<World>
     final List<Map<String, String>> tutorial =
         await LevelLoader.getLevelTutorial(levelStateNotifier.levelId);
     tutorialNotifier.setTutorialMap(tutorial);
-    // showHelp();
+
+    if (tutorial.isEmpty) {
+      return;
+    }
+
+    overlays.add(
+      LevelTutorialOverlay.overlayKey,
+      priority: LevelTutorialOverlay.priority,
+    );
   }
 
   void pauseLevel({bool addOverlay = true}) {
@@ -148,8 +165,8 @@ class BaseGame extends FlameGame<World>
   void showHelp() {
     closeOverlays();
     overlays.add(
-      LevelTutorialOverlay.overlayKey,
-      priority: LevelTutorialOverlay.priority,
+      LevelHelpOverlay.overlayKey,
+      priority: LevelHelpOverlay.priority,
     );
   }
 
@@ -161,6 +178,9 @@ class BaseGame extends FlameGame<World>
     LevelStates.teardown(removeAll, children);
     selectedGate = null;
     remove(registerComponent);
+
+    tutorialNotifier.resetState();
+    levelHelpNotifier.resetState();
   }
 
   // Private Methods
@@ -244,7 +264,7 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _setupGates() async {
-    final YamlList levelGates = LevelLoader.getLevelGates(level);
+    final List<String> levelGates = LevelLoader.getLevelGates(level);
     // levelGates..insert(, element) TODO insert I gate
     LevelStates.createLevelGates(size, levelGates);
     await addAll(LevelStates.levelGateComponents);

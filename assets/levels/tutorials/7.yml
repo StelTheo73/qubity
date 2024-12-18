@@ -1,1 +1,33 @@
 slides:
+  en:
+    - title: 'Pauli-X and Pauli-Y Gates'
+      description: |+
+        In this level you will use the X and Y gates to control the spaceship.
+    - title: 'Remember:'
+      description: |+
+        The X Gate flips the state of a qubit.
+
+        If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
+    - title: 'Remember:'
+      description: |+
+        The Y Gate flips the state of a qubit and adds a phase.
+
+        If the qubit is in state |0⟩, it will be flipped to i|1⟩ and vice versa.
+
+        If the qubit is in state |1⟩, it will be flipped to -i|0⟩ and vice versa.
+  gr:
+    - title: 'Πύλες Pauli-X και Pauli-Y'
+      description: |+
+        Σε αυτό το επίπεδο θα χρησιμοποιήσετε τις πύλες X και Y για να ελέγξετε το διαστημόπλοιο.
+    - title: 'Θυμηθείτε:'
+      description: |+
+        Η Πύλη X αντιστρέφει την κατάσταση ενός κβαντικού bit.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα μεταβεί στην κατάσταση |1⟩, και αντίστροφα.
+    - title: 'Θυμηθείτε:'
+      description: |+
+        Η Πύλη Y αντιστρέφει την κατάσταση ενός κβαντικού bit και προσθέτει μια φάση.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα μεταβεί στην κατάσταση i|1⟩ και αντίστροφα.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |1⟩, τότε θα μεταβεί στην κατάσταση -i|0⟩ και αντίστροφα.

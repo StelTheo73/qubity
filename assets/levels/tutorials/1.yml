@@ -1,7 +1,17 @@
 slides:
-  - title: 'X Gate'
-    description: |+
-      In this level you will learn about the X gate.
-      The X gate is also known as the NOT gate, because it flips the state of a qubit.
+  en:
+    - title: 'Pauli-X Gate'
+      description: |+
+        In this level you will learn about the X gate.
 
-      If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
+        The X gate is also known as the NOT gate, because it flips the state of a qubit.
+
+        If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
+  gr:
+    - title: 'Πύλη Pauli-X'
+      description: |+
+        Σε αυτό το επίπεδο θα μάθετε για την πύλη X.
+
+        Η πύλη X είναι επίσης γνωστή ως πύλη NOT, επειδή αντιστρέφει την κατάσταση ενός κβαντικού bit.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα μεταβεί στην κατάσταση |1⟩, και αντίστροφα.

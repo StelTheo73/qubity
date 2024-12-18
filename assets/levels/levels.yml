@@ -60,9 +60,9 @@ levels:
   - id: 8
     states: 'xy'
     initial: [['0', '-i']]
-    targets: ['|1>']
+    targets: ['i|0>']
     target_image: enemy_001
-    steps: 2
+    steps: 3
     gates: 'xy'
 
   - id: 9

@@ -47,5 +47,6 @@ flutter:
     # files
     - assets/config/config.yml
     - assets/levels/levels.yml
+    - assets/levels/level_help.yml
     - assets/levels/level_gates.yml
     - assets/levels/level_states.yml

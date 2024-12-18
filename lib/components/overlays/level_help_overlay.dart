@@ -2,13 +2,13 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../store/tutorial_notifier.dart';
+import '../../store/level_help_notifier.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';
 import 'base_overlay.dart';
 
-class TutorialWidget extends StatelessWidget {
-  const TutorialWidget({
+class HelpWidget extends StatelessWidget {
+  const HelpWidget({
     super.key,
     required this.title,
     required this.description,
@@ -37,8 +37,8 @@ class TutorialWidget extends StatelessWidget {
   }
 }
 
-class LevelTutorialOverlay extends StatefulWidget {
-  const LevelTutorialOverlay({
+class LevelHelpOverlay extends StatefulWidget {
+  const LevelHelpOverlay({
     super.key,
     required this.gameSize,
     required this.onResume,
@@ -47,14 +47,14 @@ class LevelTutorialOverlay extends StatefulWidget {
   final Vector2 gameSize;
   final VoidCallback onResume;
 
-  static const String overlayKey = 'level_tutorial_overlay';
+  static const String overlayKey = 'level_help_overlay';
   static const int priority = 3;
 
   @override
-  State<StatefulWidget> createState() => _LevelTutorialOverlayState();
+  State<StatefulWidget> createState() => _LevelHelpOverlayState();
 }
 
-class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
+class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
   ValueNotifier<int> indexNotifier = ValueNotifier<int>(0);
   int index = 0;
   late Widget visibleChild;
@@ -66,14 +66,9 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
   void initState() {
     super.initState();
 
-    if (tutorialNotifier.tutorialMap.isEmpty) {
-      widget.onResume();
-      return;
-    }
-
     startButton = BaseButton(
       onPressed: widget.onResume,
-      text: 'Start Level',
+      text: 'Resume Level',
       width: 200,
     );
 
@@ -84,7 +79,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
     );
 
     setState(() {
-      if (tutorialNotifier.tutorialMap.length > 1) {
+      if (levelHelpNotifier.levelHelpMap.length > 1) {
         visibleButton = nextButton;
       } else {
         visibleButton = startButton;
@@ -94,15 +89,15 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
         valueListenable: indexNotifier,
         builder: (BuildContext context, int index, Widget? child) {
           return ListenableBuilder(
-            listenable: tutorialNotifier,
+            listenable: levelHelpNotifier,
             builder: (
               BuildContext context,
               Widget? child,
             ) {
-              return TutorialWidget(
-                title: tutorialNotifier.tutorialMap[index]['title'] ?? '',
+              return HelpWidget(
+                title: levelHelpNotifier.levelHelpMap[index]['title'] ?? '',
                 description:
-                    tutorialNotifier.tutorialMap[index]['description'] ?? '',
+                    levelHelpNotifier.levelHelpMap[index]['description'] ?? '',
               );
             },
           );
@@ -114,7 +109,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
   void _loadNextSlide() {
     setState(() {
       indexNotifier.value = indexNotifier.value + 1;
-      if (indexNotifier.value == tutorialNotifier.tutorialMap.length - 1) {
+      if (indexNotifier.value == levelHelpNotifier.levelHelpMap.length - 1) {
         visibleButton = startButton;
       }
     });

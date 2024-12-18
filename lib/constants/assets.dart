@@ -6,6 +6,7 @@ const String configPath = 'assets/config/config.yml';
 //
 const String levelsPath = 'assets/levels/levels.yml';
 const String levelGatesPath = 'assets/levels/level_gates.yml';
+const String levelHelpPath = 'assets/levels/level_help.yml';
 const String levelStatesPath = 'assets/levels/level_states.yml';
 const String levelTutorialsPath = 'assets/levels/tutorials/';
 

@@ -2,7 +2,12 @@ import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart'
-    show levelGatesPath, levelStatesPath, levelTutorialsPath, levelsPath;
+    show
+        levelGatesPath,
+        levelHelpPath,
+        levelStatesPath,
+        levelTutorialsPath,
+        levelsPath;
 import 'device_store.dart';
 import 'utils.dart';
 
@@ -23,8 +28,12 @@ class LevelLoader {
     return levels[id - 1] as YamlMap;
   }
 
-  static YamlList getLevelGates(YamlMap level) {
-    return levelGates[level['gates'] as String] as YamlList;
+  static List<String> getLevelGates(YamlMap level) {
+    return (levelGates[level['gates'] as String] as YamlList)
+        .value
+        .map((dynamic gate) {
+      return gate as String;
+    }).toList();
   }
 
   static YamlMap getLevelStates(YamlMap level) {
@@ -35,27 +44,34 @@ class LevelLoader {
     return level['targets'] as YamlList;
   }
 
+  static Future<List<Map<String, String>>> getLevelHelp(YamlMap level) async {
+    final List<String> levelGates = getLevelGates(level);
+    final YamlMap helpYaml = await Utils.loadYamlMap(levelHelpPath);
+
+    final List<YamlMap> gateSlides =
+        levelGates.map((gate) => helpYaml['gates'][gate] as YamlMap).toList();
+
+    final List<Map<String, String>> slides = gateSlides.expand((gate) {
+      return (gate['slides']['en'] as YamlList)
+          .map((slide) => Map<String, String>.from(slide as YamlMap));
+    }).toList();
+
+    return slides;
+  }
+
   static Future<List<Map<String, String>>> getLevelTutorial(int levelId) async {
     try {
       final YamlMap tutorialYaml =
           await Utils.loadYamlMap('$levelTutorialsPath$levelId.yml');
 
       final List<Map<String, String>> slides =
-          (tutorialYaml['slides'] as YamlList)
+          (tutorialYaml['slides']['en'] as YamlList)
               .map((slide) => Map<String, String>.from(slide as YamlMap))
               .toList();
 
       return slides;
     } catch (e) {
-      final YamlMap tutorialYaml =
-          await Utils.loadYamlMap('${levelTutorialsPath}default.yml');
-
-      final List<Map<String, String>> slides =
-          (tutorialYaml['slides'] as YamlList)
-              .map((slide) => Map<String, String>.from(slide as YamlMap))
-              .toList();
-
-      return slides;
+      return <Map<String, String>>[];
     }
   }
 

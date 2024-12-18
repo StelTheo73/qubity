@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/overlays/level_completion_overlay.dart';
+import '../components/overlays/level_help_overlay.dart';
 import '../components/overlays/level_tutorial_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
 import '../game/game.dart';
@@ -26,6 +27,11 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         reloadLevel: game.reloadLevel,
         gameSize: game.size,
         score: game.score,
+      ),
+  LevelHelpOverlay.overlayKey: (BuildContext context, QubityGame game) =>
+      LevelHelpOverlay(
+        gameSize: game.size,
+        onResume: game.resumeLevel,
       ),
   LevelTutorialOverlay.overlayKey: (BuildContext context, QubityGame game) =>
       LevelTutorialOverlay(

@@ -1,0 +1,117 @@
+gates:
+  X:
+    slides:
+      en:
+        - title: 'Pauli-X Gate'
+          description: |+
+            The X Gate flips the state of a qubit.
+
+            If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
+      gr:
+        - title: 'Πύλη Pauli-X'
+          description: |+
+            Η Πύλη X αντιστρέφει την κατάσταση ενός κβαντικού bit.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα μεταβεί στην κατάσταση |1⟩, και αντίστροφα.
+  Y:
+    slides:
+      en:
+        - title: 'Pauli-Y Gate'
+          description: |+
+            The Y Gate flips the state and shifts the phase of a qubit.
+
+            If the qubit is in state |0⟩, it will be flipped to i|1⟩, and vice versa.
+
+            If the qubit is in state |1⟩, it will be flipped to -i|0⟩, and vice versa.
+        - title: 'Tip:'
+          description: |+
+            Remember that i x i equals -1.
+
+            When applying the Y Gate, ignore the phase factor initially.
+
+            First, flip the qubit and shift the phase factor according to the Y Gate rules, then multiply by the qubit's initial phase factor.
+        - title: 'Examples:'
+          description: |+
+            1. Y|0⟩ = i|1⟩
+            2. Y|1⟩ = -i|0⟩
+            3. Yi|0⟩ = -|1⟩
+            4. Yi|1⟩ = |0⟩
+            5. Y(-i)|0⟩ = |1⟩
+            6. Y(-i)|1⟩ = i|0⟩
+      gr:
+        - title: 'Πύλη Pauli-Y'
+          description: |+
+            Η Πύλη Y αντιστρέφει την κατάσταση και μετατοπίζει τη φάση ενός κβαντικού bit.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, μεταβεί στην κατάσταση i|1⟩, και αντίστροφα.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |1⟩, τότε θα μεταβεί στην κατάσταση -i|0⟩, και αντίστροφα.
+        - title: 'Συμβουλή:'
+          description: |+
+            Θυμηθείτε ότι i x i ισούται με -1.
+
+            Όταν εφαρμόζετε την Πύλη Y, αγνοήστε αρχικά τον παράγοντα της φάσης.
+
+            Πρώτα, αντιστρέψτε το qubit και αλλάξτε τον παράγοντα φάσης σύμφωνα με τους κανόνες της Πύλης Y, και στη συνέχεια πολλαπλασιάστε με τον αρχικό παράγοντα φάσης του κβαντικού bit.
+        - title: 'Παραδείγματα:'
+          description: |+
+            1. Y|0⟩ = i|1⟩
+            2. Y|1⟩ = -i|0⟩
+            3. Yi|0⟩ = -|1⟩
+            4. Yi|1⟩ = |0⟩
+            5. Y(-i)|0⟩ = |1⟩
+            6. Y(-i)|1⟩ = i|0⟩
+  Z:
+    slides:
+      en:
+        - title: 'Pauli-Z Gate'
+          description: |+
+            The Z Gate flips the phase of a qubit by 180 degrees without altering the amplitude.
+
+            If the qubit is in state |0⟩, it will remain in state |0⟩.
+
+            If the qubit is in state |1⟩, it will be flipped to -|1⟩.
+      gr:
+        - title: 'Πύλη Pauli-Z'
+          description: |+
+            Η Πύλη Z αντιστρέφει τη φάση ενός κβαντικού bit κατά 180 μοίρες χωρίς να αλλάξει το πλάτος.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα παραμείνει στην κατάσταση |0⟩.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |1⟩, τότε θα μεταβεί στην κατάσταση -|1⟩.
+  H:
+    slides:
+      en:
+        - title: 'Hadamard Gate'
+          description: |+
+            The Hadamard Gate creates a superposition of the |0⟩ and |1⟩ states.
+
+            If the qubit is in state |0⟩, applying a Hadamard Gate puts it in a superposition of |0⟩ and |1⟩.
+
+            If the qubit is in state |1⟩, applying a Hadamard Gate puts it in a superposition of |0⟩ and -|1⟩.
+        - title: 'Hadamard Gate'
+          description: |+
+            The Hadamard Gate can also remove the superposition, restoring the qubit to its original state.
+        - title: 'Examples:'
+          description: |+
+            1. H|0⟩ = |0⟩ + |1⟩
+            2. H|1⟩ = |0⟩ - |1⟩
+            3. H(|0⟩ + |1⟩) = |0⟩
+            4. H(|0⟩ - |1⟩) = |1⟩
+      gr:
+        - title: 'Πύλη Hadamard'
+          description: |+
+            Η Πύλη Hadamard δημιουργεί υπερθέση των καταστάσεων |0⟩ και |1⟩.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε η εφαρμογή της Πύλης Hadamard δημιουργεί υπερθέση των καταστάσεων |0⟩ και |1⟩.
+
+            Άν το κβαντικό bit βρίσκεται στην κατάσταση |1⟩, τότε η εφαρμογή της Πύλης Hadamard δημιουργεί υπερθέση των καταστάσεων |0⟩ και -|1⟩.
+        - title: 'Πύλη Hadamard'
+          description: |+
+            Η Πύλη Hadamard μπορεί επίσης να αναιρέσει την υπερθέση, επαναφέροντας το κβαντικό bit στην αρχική του κατάσταση.
+        - title: 'Παραδείγματα:'
+          description: |+
+            1. H|0⟩ = |0⟩ + |1⟩
+            2. H|1⟩ = |0⟩ - |1⟩
+            3. H(|0⟩ + |1⟩) = |0⟩
+            4. H(|0⟩ - |1⟩) = |1⟩

@@ -1,1 +1,21 @@
 slides:
+  en:
+    - title: 'Hadamard Gate'
+      description: |+
+        In this level you will learn about the Hadamard gate.
+
+        The Hadamard gate is a fundamental gate in quantum computing. It creates a superposition of the |0⟩ and |1⟩ states.
+
+        If the qubit is in state |0⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and |1⟩.
+
+        If the qubit is in state |1⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and -|1⟩.
+  gr:
+    - title: 'Πύλη Hadamard'
+      description: |+
+        Σε αυτό το επίπεδο θα μάθετε για την πύλη Hadamard.
+
+        Η πύλη Hadamard είναι μια βασική πύλη στην κβαντική υπολογιστική. Δημιουργεί υπερθέση των καταστάσεων |0⟩ και |1⟩.
+
+        Εάν το κβαντικό bit είναι στην κατάσταση |0⟩, η εφαρμογή μιας πύλης Hadamard το τοποθετεί σε υπερθέση των καταστάσεων |0⟩ και |1⟩.
+
+        Εάν το κβαντικό bit είναι στην κατάσταση |1⟩, η εφαρμογή μιας πύλης Hadamard το τοποθετεί σε υπερθέση των καταστάσεων |0⟩ και -|1⟩.

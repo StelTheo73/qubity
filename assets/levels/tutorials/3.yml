@@ -1,1 +1,21 @@
 slides:
+  en:
+    - title: 'Pauli-Y Gate'
+      description: |+
+        In this level you will learn about the Y gate.
+
+        The Y gate is similar to the X gate, but with a twist. It flips the state of a qubit, but also shifts the phase.
+
+        If the qubit is in state |0⟩, it will be flipped to i|1⟩ and vice versa.
+
+        If the qubit is in state |1⟩, it will be flipped to -i|0⟩ and vice versa.
+  gr:
+    - title: 'Πύλη Pauli-Y'
+      description: |+
+        Σε αυτό το επίπεδο θα μάθετε για την πύλη Y.
+
+        Η πύλη Y είναι παρόμοια με την πύλη X, αλλά με μια παραλλαγή. Αντιστρέφει την κατάσταση ενός κβαντικού bit, αλλά μετατοπίζει επίσης τη φάση.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |0⟩, τότε θα μεταβεί στην κατάσταση i|1⟩ και αντίστροφα.
+
+        Άν το κβαντικό bit βρίσκεται στην κατάσταση |1⟩, τότε θα μεταβεί στην κατάσταση -i|0⟩ και αντίστροφα.

@@ -1,7 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:qartvm/qartvm.dart';
-import 'package:yaml/yaml.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/gates.dart';
@@ -63,7 +62,7 @@ class LevelStates {
   }
 
   //
-  static void createLevelGates(Vector2 gameSize, YamlList levelGates) {
+  static void createLevelGates(Vector2 gameSize, List<String> levelGates) {
     const double boxSize = 50.0;
     final double initialOffsetX = gameSize.x * 0.1;
     final double initialOffsetY = gameSize.y * 0.95;
@@ -71,7 +70,7 @@ class LevelStates {
 
     for (int i = 0; i < levelGates.length; i++) {
       final GateComponent gateComponent = GateComponent(
-        Gate.getGateFromString(levelGates[i] as String),
+        Gate.getGateFromString(levelGates[i]),
         offsetX,
         initialOffsetY,
       );

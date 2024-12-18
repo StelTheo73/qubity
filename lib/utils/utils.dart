@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 import '../store/current_score_notifier.dart';
+import '../store/level_help_notifier.dart';
 import '../store/level_score_notifier.dart';
 import '../store/level_state_notifier.dart';
 import '../store/spaceship_notifier.dart';
@@ -33,6 +34,7 @@ class Utils {
     levelStateNotifier.resetState();
     spaceshipNotifier.resetState();
     tutorialNotifier.resetState();
+    levelHelpNotifier.resetState();
     DeviceStore.resetDeviceStore();
   }
 }
