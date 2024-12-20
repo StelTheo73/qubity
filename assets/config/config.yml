@@ -1,5 +1,7 @@
 app:
   name: 'Qubity'
+defaultLanguage: 'en'
 debugMode: false
 levels: 30
+locales: ['en', 'gr']
 music: false

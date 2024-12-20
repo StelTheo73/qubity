@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../components/card/spaceship_card.dart';
 import '../constants/spaceships.dart';
@@ -29,7 +30,7 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      title: 'Select a Spaceship',
+      title: AppLocalizations.of(context)!.spaceshipSelect,
       body: FutureBuilder<List<dynamic>>(
         future: futures,
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {

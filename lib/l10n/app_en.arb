@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "deleteGameData": "Delete Game Data",
+  "levelId": "Level {levelId}",
+  "levelGatesList": "Gates: {gates}",
+  "levels": "Levels",
+  "selectLanguage": "Select Language",
+  "settings": "Settings",
+  "spaceships": "Spaceships",
+  "spaceshipSelect": "Select a Spaceship",
+  "tutorial": "Tutorial"
+}

@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/spaceships.dart';
+import 'config.dart';
 
 enum DeviceStoreKeys {
+  language('language'),
   levelScores('levelScores'),
   spaceshipId('spaceship'),
   unlockedLevel('unlockedLevel');
@@ -22,6 +24,10 @@ class DeviceStore {
 
   static Future<void> init() async {
     await _setupDeviceStore();
+  }
+
+  static Future<String> getLanguage() async {
+    return await prefs.getString(DeviceStoreKeys.language.key) ?? 'en';
   }
 
   static Future<double> getLevelScore(int level) async {
@@ -42,6 +48,10 @@ class DeviceStore {
     return (await prefs.getInt(DeviceStoreKeys.unlockedLevel.key)) ?? 1;
   }
 
+  static Future<void> setLanguage(String language) async {
+    await prefs.setString(DeviceStoreKeys.language.key, language);
+  }
+
   static Future<void> setLevelScore(int level, double score) async {
     final Map<String, double> scores = await getLevelScores();
     scores[level.toString()] = score;
@@ -53,15 +63,27 @@ class DeviceStore {
   }
 
   static Future<void> resetDeviceStore() async {
-    await prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1);
-    await prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId);
-    await prefs.setString(DeviceStoreKeys.levelScores.key, '{}');
+    Future.wait(
+      <Future<void>>[
+        prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1),
+        prefs.setString(
+            DeviceStoreKeys.language.key, Configuration.defaultLanguage),
+        prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId),
+        prefs.setString(DeviceStoreKeys.levelScores.key, '{}'),
+      ],
+    );
   }
 
   // Private Methods
   // ---------------
 
   static Future<void> _setupDeviceStore() async {
+    final String language =
+        await prefs.getString(DeviceStoreKeys.language.key) ?? '';
+    if (language.isEmpty) {
+      await prefs.setString(DeviceStoreKeys.language.key, 'en');
+    }
+
     final int level =
         await prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ?? -1;
     if (level == -1) {

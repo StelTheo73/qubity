@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../components/button/page_button.dart';
 import '../constants/routes.dart';
@@ -27,16 +28,24 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               PageButton(
-                  buttonText: 'Levels', navigateTo: AppRoute.levels.route),
+                buttonText: AppLocalizations.of(context)!.levels,
+                navigateTo: AppRoute.levels.route,
+              ),
               const SizedBox(height: 20),
               PageButton(
-                  buttonText: 'Spaceships',
-                  navigateTo: AppRoute.spaceships.route),
+                buttonText: AppLocalizations.of(context)!.spaceships,
+                navigateTo: AppRoute.spaceships.route,
+              ),
               const SizedBox(height: 20),
               PageButton(
-                  buttonText: 'Settings', navigateTo: AppRoute.settings.route),
+                buttonText: AppLocalizations.of(context)!.settings,
+                navigateTo: AppRoute.settings.route,
+              ),
               const SizedBox(height: 20),
-              PageButton(buttonText: 'About', navigateTo: AppRoute.about.route),
+              PageButton(
+                buttonText: 'About',
+                navigateTo: AppRoute.about.route,
+              ),
             ],
           ),
         ),

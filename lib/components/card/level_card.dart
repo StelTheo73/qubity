@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../constants/colors.dart';
@@ -15,7 +16,9 @@ class GatesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String text = 'Gates: ${gates.join(', ')}';
+    final String text =
+        AppLocalizations.of(context)!.levelGatesList(gates.join(', '));
+    // final String text = 'Gates: ${gates.join(', ')}';
 
     return RobotoText(
       text: text,
@@ -50,9 +53,9 @@ class LevelCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             RobotoText(
-              text: 'Level $levelId',
+              text: AppLocalizations.of(context)!.levelId(levelId),
               color: Palette.black,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             RobotoText(

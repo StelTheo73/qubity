@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/card/level_card.dart';
@@ -30,7 +31,7 @@ class LevelsScreenState extends State<LevelsScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      title: 'Levels',
+      title: AppLocalizations.of(context)!.levels,
       body: FutureBuilder<List<dynamic>>(
         future: levelsFuture,
         builder: (

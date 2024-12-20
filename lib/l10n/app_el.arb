@@ -1,0 +1,12 @@
+{
+  "@@locale": "el",
+  "deleteGameData": "Διαγραφή Δεδομένων",
+  "levelId": "Επίπεδο {levelId}",
+  "levelGatesList": "Πύλες: {gates}",
+  "levels": "Επίπεδα",
+  "settings": "Ρυθμίσεις",
+  "selectLanguage": "Επιλογή Γλώσσας",
+  "spaceships": "Διαστημόπλοια",
+  "spaceshipSelect": "Επιλογή Διαστημοπλοίου",
+  "tutorial": "Οδηγίες"
+}
