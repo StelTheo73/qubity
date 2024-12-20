@@ -15,7 +15,7 @@ slides:
         If the qubit is in state |0⟩, it will be flipped to i|1⟩ and vice versa.
 
         If the qubit is in state |1⟩, it will be flipped to -i|0⟩ and vice versa.
-  gr:
+  el:
     - title: 'Πύλες Pauli-X και Pauli-Y'
       description: |+
         Σε αυτό το επίπεδο θα χρησιμοποιήσετε τις πύλες X και Y για να ελέγξετε το διαστημόπλοιο.

@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants/colors.dart';
 import '../../store/tutorial_notifier.dart';
@@ -58,9 +59,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
   ValueNotifier<int> indexNotifier = ValueNotifier<int>(0);
   int index = 0;
   late Widget visibleChild;
-  late BaseButton visibleButton;
-  late final BaseButton nextButton;
-  late final BaseButton startButton;
+  late bool showStartButton;
 
   @override
   void initState() {
@@ -71,24 +70,8 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
       return;
     }
 
-    startButton = BaseButton(
-      onPressed: widget.onResume,
-      text: 'Start Level',
-      width: 200,
-    );
-
-    nextButton = BaseButton(
-      onPressed: _loadNextSlide,
-      text: 'Next Slide',
-      width: 200,
-    );
-
     setState(() {
-      if (tutorialNotifier.tutorialMap.length > 1) {
-        visibleButton = nextButton;
-      } else {
-        visibleButton = startButton;
-      }
+      showStartButton = (tutorialNotifier.tutorialMap.length == 1);
 
       visibleChild = ValueListenableBuilder<int>(
         valueListenable: indexNotifier,
@@ -115,7 +98,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
     setState(() {
       indexNotifier.value = indexNotifier.value + 1;
       if (indexNotifier.value == tutorialNotifier.tutorialMap.length - 1) {
-        visibleButton = startButton;
+        showStartButton = true;
       }
     });
   }
@@ -129,7 +112,18 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
         children: <Widget>[
           visibleChild,
           const SizedBox(height: 10),
-          visibleButton,
+          if (showStartButton)
+            BaseButton(
+              onPressed: widget.onResume,
+              text: AppLocalizations.of(context)!.startLevel,
+              width: 200,
+            )
+          else
+            BaseButton(
+              onPressed: _loadNextSlide,
+              text: AppLocalizations.of(context)!.next,
+              width: 200,
+            ),
         ],
       ),
     );

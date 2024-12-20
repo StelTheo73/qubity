@@ -8,7 +8,7 @@ import '../constants/assets.dart'
         levelStatesPath,
         levelTutorialsPath,
         levelsPath;
-import 'device_store.dart';
+import '../store/locale_notifier.dart';
 import 'utils.dart';
 
 class LevelLoader {
@@ -47,12 +47,13 @@ class LevelLoader {
   static Future<List<Map<String, String>>> getLevelHelp(YamlMap level) async {
     final List<String> levelGates = getLevelGates(level);
     final YamlMap helpYaml = await Utils.loadYamlMap(levelHelpPath);
+    final String language = localeNotifier.locale.languageCode;
 
     final List<YamlMap> gateSlides =
         levelGates.map((gate) => helpYaml['gates'][gate] as YamlMap).toList();
 
     final List<Map<String, String>> slides = gateSlides.expand((gate) {
-      return (gate['slides']['en'] as YamlList)
+      return (gate['slides'][language] as YamlList)
           .map((slide) => Map<String, String>.from(slide as YamlMap));
     }).toList();
 
@@ -63,9 +64,9 @@ class LevelLoader {
     try {
       final YamlMap tutorialYaml =
           await Utils.loadYamlMap('$levelTutorialsPath$levelId.yml');
-
+      final String language = localeNotifier.locale.languageCode;
       final List<Map<String, String>> slides =
-          (tutorialYaml['slides']['en'] as YamlList)
+          (tutorialYaml['slides'][language] as YamlList)
               .map((slide) => Map<String, String>.from(slide as YamlMap))
               .toList();
 
@@ -73,13 +74,6 @@ class LevelLoader {
     } catch (e) {
       return <Map<String, String>>[];
     }
-  }
-
-  static Future<int> getLastUnlockedLevel() async {
-    return await DeviceStore.prefs.getInt(
-          DeviceStoreKeys.unlockedLevel.key,
-        ) ??
-        1;
   }
 
   static Future<YamlList> loadLevels() async {

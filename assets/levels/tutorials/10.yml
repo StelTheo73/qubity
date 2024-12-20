@@ -9,7 +9,7 @@ slides:
         If the qubit is in state |0⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and |1⟩.
 
         If the qubit is in state |1⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and -|1⟩.
-  gr:
+  el:
     - title: 'Πύλη Hadamard'
       description: |+
         Σε αυτό το επίπεδο θα μάθετε για την πύλη Hadamard.

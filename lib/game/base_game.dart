@@ -127,6 +127,7 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadTutorial() async {
+    print('loadLevelTutorial');
     final List<Map<String, String>> tutorial =
         await LevelLoader.getLevelTutorial(levelStateNotifier.levelId);
     tutorialNotifier.setTutorialMap(tutorial);

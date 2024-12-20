@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/card/spaceship_card.dart';
 import '../constants/spaceships.dart';
 import '../store/spaceship_notifier.dart';
-import '../utils/level.dart';
+import '../utils/device_store.dart';
 import '../utils/spaceship.dart';
 import 'base.dart';
 
@@ -22,7 +22,7 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
   void initState() {
     super.initState();
     futures = Future.wait(<Future<dynamic>>[
-      LevelLoader.getLastUnlockedLevel(),
+      DeviceStore.getUnlockedLevel(),
       SpaceshipLoader.getSelectedSpaceshipId(),
     ]);
   }

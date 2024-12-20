@@ -7,7 +7,7 @@ gates:
             The X Gate flips the state of a qubit.
 
             If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
-      gr:
+      el:
         - title: 'Πύλη Pauli-X'
           description: |+
             Η Πύλη X αντιστρέφει την κατάσταση ενός κβαντικού bit.
@@ -38,7 +38,7 @@ gates:
             4. Yi|1⟩ = |0⟩
             5. Y(-i)|0⟩ = |1⟩
             6. Y(-i)|1⟩ = i|0⟩
-      gr:
+      el:
         - title: 'Πύλη Pauli-Y'
           description: |+
             Η Πύλη Y αντιστρέφει την κατάσταση και μετατοπίζει τη φάση ενός κβαντικού bit.
@@ -71,7 +71,7 @@ gates:
             If the qubit is in state |0⟩, it will remain in state |0⟩.
 
             If the qubit is in state |1⟩, it will be flipped to -|1⟩.
-      gr:
+      el:
         - title: 'Πύλη Pauli-Z'
           description: |+
             Η Πύλη Z αντιστρέφει τη φάση ενός κβαντικού bit κατά 180 μοίρες χωρίς να αλλάξει το πλάτος.
@@ -98,7 +98,7 @@ gates:
             2. H|1⟩ = |0⟩ - |1⟩
             3. H(|0⟩ + |1⟩) = |0⟩
             4. H(|0⟩ - |1⟩) = |1⟩
-      gr:
+      el:
         - title: 'Πύλη Hadamard'
           description: |+
             Η Πύλη Hadamard δημιουργεί υπερθέση των καταστάσεων |0⟩ και |1⟩.

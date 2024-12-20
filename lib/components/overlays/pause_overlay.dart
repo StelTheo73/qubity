@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../button/base_button.dart';
 import 'base_overlay.dart';
@@ -32,21 +33,25 @@ class PauseOverlay extends StatelessWidget {
         children: <Widget>[
           BaseButton(
             onPressed: onResume,
-            text: 'Resume',
+            text: AppLocalizations.of(context)!.resume,
             width: 200,
           ),
           const SizedBox(height: 10),
-          BaseButton(onPressed: onHelp, text: 'Help', width: 200),
+          BaseButton(
+            onPressed: onHelp,
+            text: AppLocalizations.of(context)!.help,
+            width: 200,
+          ),
           const SizedBox(height: 10),
           BaseButton(
             onPressed: onRestart,
-            text: 'Restart',
+            text: AppLocalizations.of(context)!.restart,
             width: 200,
           ),
           const SizedBox(height: 10),
           BaseButton(
             onPressed: onExit,
-            text: 'Exit',
+            text: AppLocalizations.of(context)!.exit,
             width: 200,
           ),
         ],

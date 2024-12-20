@@ -1,12 +1,18 @@
 {
   "@@locale": "en",
   "deleteGameData": "Delete Game Data",
+  "exit": "Exit",
+  "help": "Help",
   "levelId": "Level {levelId}",
   "levelGatesList": "Gates: {gates}",
   "levels": "Levels",
+  "next": "Next",
+  "restart": "Restart",
+  "resume": "Resume",
   "selectLanguage": "Select Language",
   "settings": "Settings",
   "spaceships": "Spaceships",
   "spaceshipSelect": "Select a Spaceship",
+  "startLevel": "Start Level",
   "tutorial": "Tutorial"
 }

@@ -14,7 +14,7 @@ slides:
         The X Gate flips the state of a qubit.
 
         If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
-  gr:
+  el:
     - title: 'Πύλη Pauli-Z'
       description: |+
         Σε αυτό το επίπεδο θα μάθετε για την πύλη Z.

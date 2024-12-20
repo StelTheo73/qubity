@@ -25,7 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: <Widget>[
             const SizedBox(height: 20),
             const LanguageSelector(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 100),
             BaseButton(
               onPressed: Utils.resetGame,
               text: AppLocalizations.of(context)!.deleteGameData,

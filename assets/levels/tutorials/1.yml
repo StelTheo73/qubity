@@ -7,7 +7,7 @@ slides:
         The X gate is also known as the NOT gate, because it flips the state of a qubit.
 
         If the qubit is in state |0⟩, it will be flipped to |1⟩, and vice versa.
-  gr:
+  el:
     - title: 'Πύλη Pauli-X'
       description: |+
         Σε αυτό το επίπεδο θα μάθετε για την πύλη X.

@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants/colors.dart';
 import '../../store/level_help_notifier.dart';
@@ -59,31 +60,14 @@ class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
   int index = 0;
   late Widget visibleChild;
   late BaseButton visibleButton;
-  late final BaseButton nextButton;
-  late final BaseButton startButton;
+  late bool showStartButton;
 
   @override
   void initState() {
     super.initState();
 
-    startButton = BaseButton(
-      onPressed: widget.onResume,
-      text: 'Resume Level',
-      width: 200,
-    );
-
-    nextButton = BaseButton(
-      onPressed: _loadNextSlide,
-      text: 'Next Slide',
-      width: 200,
-    );
-
     setState(() {
-      if (levelHelpNotifier.levelHelpMap.length > 1) {
-        visibleButton = nextButton;
-      } else {
-        visibleButton = startButton;
-      }
+      showStartButton = (levelHelpNotifier.levelHelpMap.length == 1);
 
       visibleChild = ValueListenableBuilder<int>(
         valueListenable: indexNotifier,
@@ -110,13 +94,27 @@ class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
     setState(() {
       indexNotifier.value = indexNotifier.value + 1;
       if (indexNotifier.value == levelHelpNotifier.levelHelpMap.length - 1) {
-        visibleButton = startButton;
+        showStartButton = true;
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (levelHelpNotifier.levelHelpMap.length > 1) {
+      visibleButton = BaseButton(
+        onPressed: _loadNextSlide,
+        text: AppLocalizations.of(context)!.next,
+        width: 200,
+      );
+    } else {
+      visibleButton = BaseButton(
+        onPressed: widget.onResume,
+        text: AppLocalizations.of(context)!.startLevel,
+        width: 200,
+      );
+    }
+
     return BaseOverlay(
       gameSize: widget.gameSize,
       child: Column(
@@ -124,7 +122,18 @@ class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
         children: <Widget>[
           visibleChild,
           const SizedBox(height: 10),
-          visibleButton,
+          if (showStartButton)
+            BaseButton(
+              onPressed: widget.onResume,
+              text: AppLocalizations.of(context)!.startLevel,
+              width: 200,
+            )
+          else
+            BaseButton(
+              onPressed: _loadNextSlide,
+              text: AppLocalizations.of(context)!.next,
+              width: 200,
+            ),
         ],
       ),
     );

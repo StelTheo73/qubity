@@ -1,12 +1,18 @@
 {
   "@@locale": "el",
   "deleteGameData": "Διαγραφή Δεδομένων",
+  "exit": "Έξοδος",
+  "help": "Βοήθεια",
   "levelId": "Επίπεδο {levelId}",
   "levelGatesList": "Πύλες: {gates}",
   "levels": "Επίπεδα",
+  "restart": "Επανεκκίνηση",
+  "resume": "Συνέχεια",
+  "next": "Επόμενο",
   "settings": "Ρυθμίσεις",
   "selectLanguage": "Επιλογή Γλώσσας",
   "spaceships": "Διαστημόπλοια",
   "spaceshipSelect": "Επιλογή Διαστημοπλοίου",
+  "startLevel": "Έναρξη",
   "tutorial": "Οδηγίες"
 }
