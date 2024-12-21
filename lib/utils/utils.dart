@@ -29,6 +29,14 @@ class Utils {
     await DeviceStore.setLanguage(language);
   }
 
+  static void enterFullScreen() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+  static void exitFullScreen() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  }
+
   static Future<YamlMap> loadYamlMap(String filePath) async {
     final String yamlString = await rootBundle.loadString(filePath);
     return loadYaml(yamlString) as YamlMap;
@@ -36,7 +44,6 @@ class Utils {
 
   static void resetGame() {
     currentScoreNotifier.resetState();
-    localeNotifier.resetState();
     levelHelpNotifier.resetState();
     levelScoreNotifier.resetState();
     levelStateNotifier.resetState();

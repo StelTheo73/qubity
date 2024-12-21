@@ -43,6 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 20),
               PageButton(
+                buttonText: AppLocalizations.of(context)!.quiz,
+                navigateTo: AppRoute.quiz.route,
+              ),
+              const SizedBox(height: 20),
+              PageButton(
                 buttonText: 'About',
                 navigateTo: AppRoute.about.route,
               ),

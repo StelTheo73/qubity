@@ -19,6 +19,7 @@ import '../store/level_state_notifier.dart';
 import '../store/tutorial_notifier.dart';
 import '../utils/device_store.dart';
 import '../utils/level.dart';
+import '../utils/utils.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
 import 'game_utils.dart';
@@ -72,6 +73,7 @@ class BaseGame extends FlameGame<World>
 
   @override
   Future<void> onLoad() async {
+    Utils.enterFullScreen();
     await _cacheImages();
     await _setupParallax();
 
@@ -106,6 +108,7 @@ class BaseGame extends FlameGame<World>
 
   void exitLevel(BuildContext context) {
     teardown();
+    Utils.exitFullScreen();
     if (context.mounted) {
       Navigator.of(context).pop();
     }
@@ -127,7 +130,6 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadTutorial() async {
-    print('loadLevelTutorial');
     final List<Map<String, String>> tutorial =
         await LevelLoader.getLevelTutorial(levelStateNotifier.levelId);
     tutorialNotifier.setTutorialMap(tutorial);

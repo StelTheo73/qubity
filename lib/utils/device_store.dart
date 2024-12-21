@@ -66,8 +66,6 @@ class DeviceStore {
     Future.wait(
       <Future<void>>[
         prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1),
-        prefs.setString(
-            DeviceStoreKeys.language.key, Configuration.defaultLanguage),
         prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId),
         prefs.setString(DeviceStoreKeys.levelScores.key, '{}'),
       ],

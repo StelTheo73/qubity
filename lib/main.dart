@@ -7,6 +7,7 @@ import 'constants/routes.dart';
 import 'screens/game.dart';
 import 'screens/home.dart';
 import 'screens/levels.dart';
+import 'screens/quiz.dart';
 import 'screens/settings.dart';
 import 'screens/spaceships.dart';
 import 'store/level_score_notifier.dart';
@@ -53,14 +54,15 @@ class QubityApp extends StatelessWidget {
           ],
           supportedLocales: AppLocalizations.supportedLocales,
           routes: <String, WidgetBuilder>{
-            AppRoute.home.route: (BuildContext context) => const HomeScreen(),
             AppRoute.game.route: (BuildContext context) {
               final YamlMap level =
                   ModalRoute.of(context)!.settings.arguments! as YamlMap;
               return GameScreen(initialLevel: level);
             },
+            AppRoute.home.route: (BuildContext context) => const HomeScreen(),
             AppRoute.levels.route: (BuildContext context) =>
                 const LevelsScreen(),
+            AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
             AppRoute.spaceships.route: (BuildContext context) =>
                 const SpaceshipsScreen(),
             AppRoute.settings.route: (BuildContext context) =>

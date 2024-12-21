@@ -17,7 +17,6 @@ class Configuration {
 
   static Future<void> init() async {
     _loadGoogleFonts();
-    Flame.device.fullScreen();
     Flame.device.setPortrait();
     await _loadConfig();
   }
