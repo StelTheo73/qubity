@@ -30,21 +30,25 @@ class _HomeScreenState extends State<HomeScreen> {
               PageButton(
                 buttonText: AppLocalizations.of(context)!.levels,
                 navigateTo: AppRoute.levels.route,
+                icon: Icons.videogame_asset,
               ),
               const SizedBox(height: 20),
               PageButton(
                 buttonText: AppLocalizations.of(context)!.spaceships,
                 navigateTo: AppRoute.spaceships.route,
+                icon: Icons.rocket,
               ),
               const SizedBox(height: 20),
               PageButton(
                 buttonText: AppLocalizations.of(context)!.settings,
                 navigateTo: AppRoute.settings.route,
+                icon: Icons.settings,
               ),
               const SizedBox(height: 20),
               PageButton(
                 buttonText: AppLocalizations.of(context)!.quiz,
                 navigateTo: AppRoute.quiz.route,
+                icon: Icons.quiz,
               ),
               const SizedBox(height: 20),
               PageButton(

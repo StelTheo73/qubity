@@ -13,6 +13,8 @@ class BaseButton extends StatelessWidget {
     this.fontSize = 16,
     this.color = Palette.primary,
     this.textColor = Palette.black,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+    this.icon,
   });
 
   final VoidCallback onPressed;
@@ -22,6 +24,8 @@ class BaseButton extends StatelessWidget {
   final double fontSize;
   final Color color;
   final Color textColor;
+  final MainAxisAlignment mainAxisAlignment;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +38,19 @@ class BaseButton extends StatelessWidget {
           foregroundColor: textColor,
         ),
         onPressed: onPressed,
-        child: RobotoText(
-          text: text,
-          textAlign: TextAlign.center,
-          color: Palette.black,
-          fontSize: fontSize,
-          fontWeight: FontWeight.bold,
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment,
+          children: <Widget>[
+            if (icon != null) Icon(icon),
+            if (icon != null) const SizedBox(width: 10),
+            RobotoText(
+              text: text,
+              textAlign: TextAlign.center,
+              color: Palette.black,
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ],
         ),
       ),
     );
