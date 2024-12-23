@@ -9,11 +9,13 @@ class BaseScreen extends StatelessWidget {
     required this.title,
     required this.body,
     this.showBackButton = true,
+    this.hasBackground = true,
   });
 
   final Widget body;
   final bool showBackButton;
   final String title;
+  final bool hasBackground;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,14 @@ class BaseScreen extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(backgroundSmallScreenPath),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: hasBackground
+            ? const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(backgroundSmallScreenPath),
+                  fit: BoxFit.cover,
+                ),
+              )
+            : null,
         child: body,
       ),
     );

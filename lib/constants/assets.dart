@@ -36,7 +36,6 @@ const String restartButtonPath = 'assets/images/icons/restart.png';
 const String starFullPath = 'assets/images/icons/star_full.png';
 const String starHalfPath = 'assets/images/icons/star_half.png';
 const String starEmptyPath = 'assets/images/icons/star_empty.png';
-
 //
 // Parallax
 const String parallaxBigStarsPath = 'assets/images/parallax/big_stars.png';
@@ -47,3 +46,7 @@ const String addButtonPath = 'assets/images/rest/add.png';
 const String explosionPath = 'assets/images/rest/explosion.png';
 const String missilePath = 'assets/images/rest/missile.png';
 const String shootButtonPath = 'assets/images/rest/shoot_button.png';
+
+// Quiz
+//
+const String questionsPath = 'assets/quiz/questions.yml';

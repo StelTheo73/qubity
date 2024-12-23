@@ -7,6 +7,7 @@
   "levelGatesList": "Πύλες: {gates}",
   "levels": "Επίπεδα",
   "next": "Επόμενο",
+  "questionId": "Ερώτηση {questionId}",
   "quiz": "Κουίζ",
   "restart": "Επανεκκίνηση",
   "resume": "Συνέχεια",
@@ -15,5 +16,7 @@
   "spaceships": "Διαστημόπλοια",
   "spaceshipSelect": "Επιλογή Διαστημοπλοίου",
   "startLevel": "Έναρξη",
+  "submit": "Υποβολή",
+  "testYourKnowledge": "Ελέγξτε τις γνώσεις σας",
   "tutorial": "Οδηγίες"
 }

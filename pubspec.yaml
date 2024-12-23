@@ -55,3 +55,4 @@ flutter:
     - assets/levels/level_help.yml
     - assets/levels/level_gates.yml
     - assets/levels/level_states.yml
+    - assets/quiz/questions.yml

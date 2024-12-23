@@ -1,0 +1,85 @@
+questions:
+  - id: 1
+    question:
+      en: 'What is the capital of France?'
+      el: 'Ποια είναι η πρωτεύουσα της Γαλλίας;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Berlin'
+        el: 'Βερολίνο'
+      - en: 'Madrid'
+        el: 'Μαδρίτη'
+    correct: 0
+  - id: 2
+    question:
+      en: 'What is the capital of Germany?'
+      el: 'Ποια είναι η πρωτεύουσα της Γερμανίας;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Berlin'
+        el: 'Βερολίνο'
+      - en: 'Madrid'
+        el: 'Μαδρίτη'
+    correct: 2
+  - id: 3
+    question:
+      en: 'What is the capital of Spain?'
+      el: 'Ποια είναι η πρωτεύουσα της Ισπανίας;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Berlin'
+        el: 'Βερολίνο'
+      - en: 'Madrid'
+        el: 'Μαδρίτη'
+    correct: 3
+  - id: 4
+    question:
+      en: 'What is the capital of the United Kingdom?'
+      el: 'Ποια είναι η πρωτεύουσα του Ηνωμένου Βασιλείου;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Berlin'
+        el: 'Βερολίνο'
+      - en: 'Madrid'
+        el: 'Μαδρίτη'
+    correct: 1
+  - id: 5
+    question:
+      en: 'What is the capital of Italy?'
+      el: 'Ποια είναι η πρωτεύουσα της Ιταλίας;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Rome'
+        el: 'Ρώμη'
+      - en: 'Madrid'
+        el: 'Μαδρίτη'
+    correct: 2
+  - id: 6
+    question:
+      en: 'What is the capital of Greece?'
+      el: 'Ποια είναι η πρωτεύουσα της Ελλάδας;'
+    answers:
+      - en: 'Paris'
+        el: 'Παρίσι'
+      - en: 'London'
+        el: 'Λονδίνο'
+      - en: 'Berlin'
+        el: 'Βερολίνο'
+      - en: 'Athens'
+        el: 'Αθήνα'
+    correct: 3
