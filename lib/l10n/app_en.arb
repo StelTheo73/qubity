@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "deleteGameData": "Delete Game Data",
+  "deleteGameData": "Delete Data",
   "exit": "Exit",
   "help": "Help",
   "levelId": "Level {levelId}",

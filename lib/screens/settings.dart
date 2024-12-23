@@ -31,6 +31,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               text: AppLocalizations.of(context)!.deleteGameData,
               color: Palette.danger,
               width: 200,
+              icon: Icons.delete_forever_outlined,
+              mainAxisAlignment: MainAxisAlignment.start,
             ),
           ],
         ),

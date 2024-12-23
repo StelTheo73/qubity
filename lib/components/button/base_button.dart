@@ -43,12 +43,14 @@ class BaseButton extends StatelessWidget {
           children: <Widget>[
             if (icon != null) Icon(icon),
             if (icon != null) const SizedBox(width: 10),
-            RobotoText(
-              text: text,
-              textAlign: TextAlign.center,
-              color: Palette.black,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+            Flexible(
+              child: RobotoText(
+                text: text,
+                textAlign: TextAlign.center,
+                color: Palette.black,
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
