@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../components/button/base_button.dart';
-import '../components/form/radio/quiz_radio_group.dart';
-import '../components/text/roboto.dart';
-import '../utils/quiz.dart';
-import 'base.dart';
+import '../../components/button/base_button.dart';
+import '../../components/form/radio/quiz_radio_group.dart';
+import '../../utils/quiz.dart';
+import '../base.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -34,7 +33,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      title: AppLocalizations.of(context)!.quiz,
+      title: AppLocalizations.of(context)!.testYourKnowledge,
       hasBackground: false,
       body: FutureBuilder<List<Question>>(
         future: quizFuture,
@@ -49,12 +48,6 @@ class _QuizScreenState extends State<QuizScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const SizedBox(height: 20),
-                    RobotoText(
-                      text: AppLocalizations.of(context)!.testYourKnowledge,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
                     const SizedBox(height: 20),
                     Form(
                       key: _formKey,
@@ -71,7 +64,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                               }
-                              print(_quizController.answers);
+                              _quizController.onSubmit();
                             },
                             text: AppLocalizations.of(context)!.submit,
                             width: 200,

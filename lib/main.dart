@@ -7,7 +7,9 @@ import 'constants/routes.dart';
 import 'screens/game.dart';
 import 'screens/home.dart';
 import 'screens/levels.dart';
-import 'screens/quiz.dart';
+import 'screens/quiz/quiz.dart';
+import 'screens/quiz/quiz_history.dart';
+import 'screens/quiz/quiz_menu.dart';
 import 'screens/settings.dart';
 import 'screens/spaceships.dart';
 import 'store/level_score_notifier.dart';
@@ -63,6 +65,10 @@ class QubityApp extends StatelessWidget {
             AppRoute.levels.route: (BuildContext context) =>
                 const LevelsScreen(),
             AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
+            AppRoute.quizMenu.route: (BuildContext context) =>
+                const QuizMenuScreen(),
+            AppRoute.quizHistory.route: (BuildContext context) =>
+                const QuizHistoryScreen(),
             AppRoute.spaceships.route: (BuildContext context) =>
                 const SpaceshipsScreen(),
             AppRoute.settings.route: (BuildContext context) =>

@@ -4,6 +4,9 @@ enum AppRoute {
   home('/'),
   levels('/levels'),
   quiz('/quiz'),
+  quizHistory('/quiz-history'),
+  quizMenu('/quiz-menu'),
+  quizResult('/quiz-result'),
   spaceships('/spaceships'),
   settings('/settings');
 

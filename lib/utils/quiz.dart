@@ -2,6 +2,7 @@ import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart';
 import '../store/locale_notifier.dart';
+import 'device_store.dart';
 import 'utils.dart';
 
 class QuizController {
@@ -28,6 +29,16 @@ class QuizController {
   int getScore() {
     return _answers.values.where((bool answer) => answer).length;
   }
+
+  Future<void> onSubmit() async {
+    final int score = getScore();
+    final QuizScore quizScore = QuizScore(
+      score: score,
+      noOfQuestions: _answers.length,
+      date: Utils.getUtcTime(),
+    );
+    await quizScore.save();
+  }
 }
 
 class Question {
@@ -42,6 +53,35 @@ class Question {
   final String question;
   final List<String> answers;
   final int correctAnswer;
+}
+
+class QuizScore {
+  QuizScore({
+    required this.score,
+    required this.noOfQuestions,
+    required this.date,
+  });
+
+  final int score;
+  final int noOfQuestions;
+  final DateTime date;
+
+  static Future<List<QuizScore>> load() async {
+    return DeviceStore.getQuizScore();
+  }
+
+  String get formattedDate {
+    final DateTime localDate = date.toLocal();
+    return Utils.getFormattedDate(localDate);
+  }
+
+  String toJson() {
+    return '{ "score": $score, "date": "${date.toIso8601String()}", "noOfQuestions": $noOfQuestions }';
+  }
+
+  Future<void> save() async {
+    await DeviceStore.setQuizScore(this);
+  }
 }
 
 class Quiz {

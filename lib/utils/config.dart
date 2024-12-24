@@ -12,6 +12,7 @@ class Configuration {
   static late final String defaultLanguage;
   static late final bool debugMode;
   static late final List<Locale> locales;
+  static late final int maxQuizScoreHistory;
   static late final bool music;
   static late final int noOfLevels;
 
@@ -28,6 +29,7 @@ class Configuration {
     defaultLanguage = configMap['defaultLanguage'] as String;
     debugMode = configMap['debugMode'] as bool;
     locales = _getSupportedLocales(configMap['locales'] as YamlList);
+    maxQuizScoreHistory = configMap['maxQuizScoreHistory'] as int;
     music = configMap['music'] as bool;
     noOfLevels = configMap['levels'] as int;
   }

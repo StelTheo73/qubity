@@ -9,6 +9,8 @@
   "next": "Επόμενο",
   "questionId": "Ερώτηση {questionId}",
   "quiz": "Κουίζ",
+  "quizHistory": "Ιστορικό",
+  "quizHistoryView": "Προβολή προηγούμενων αποτελεσμάτων",
   "restart": "Επανεκκίνηση",
   "resume": "Συνέχεια",
   "settings": "Ρυθμίσεις",
@@ -17,6 +19,8 @@
   "spaceshipSelect": "Επιλογή Διαστημοπλοίου",
   "startLevel": "Έναρξη",
   "submit": "Υποβολή",
+  "takeQuiz": "Κάντε ένα κουίζ για να ελέγξετε τις γνώσεις σας",
   "testYourKnowledge": "Ελέγξτε τις γνώσεις σας",
-  "tutorial": "Οδηγίες"
+  "tutorial": "Οδηγίες",
+  "yourScore": "Το σκορ σας:"
 }
