@@ -41,7 +41,7 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
               children: <Widget>[
                 const SizedBox(height: 20),
                 if (snapshot.hasData)
-                  for (final QuizScore quizScore in snapshot.data!)
+                  for (final QuizScore quizScore in snapshot.data!.reversed)
                     Card(
                       elevation: 2.0,
                       color: Palette.white,
