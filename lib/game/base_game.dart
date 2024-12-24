@@ -85,6 +85,12 @@ class BaseGame extends FlameGame<World>
     await super.onLoad();
   }
 
+  void onTapUpCircuitGate(TapUpEvent event) {}
+
+  void onTapUpGate(TapUpEvent event) {}
+
+  void onTapUpShootButton(TapUpEvent event) {}
+
   @override
   void render(Canvas canvas) {
     super.render(canvas);

@@ -32,5 +32,6 @@ class ShootButton extends SpriteComponent
       spaceship.shoot();
       gameRef.increaseShotsFired();
     }
+    gameRef.onTapUpShootButton(event);
   }
 }

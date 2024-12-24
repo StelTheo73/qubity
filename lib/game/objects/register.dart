@@ -51,6 +51,7 @@ class CircuitGateComponent extends RectangleComponent
 
     gameRef.applyGate(qubitId);
     gameRef.increaseGatesUsed();
+    gameRef.onTapUpCircuitGate(event);
     super.onTapUp(event);
   }
 }

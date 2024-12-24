@@ -2,6 +2,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
+import '../../components/overlays/level_tutorial_overlay.dart';
 import '../../components/overlays/pause_overlay.dart';
 import '../../game/tutorial_game.dart';
 import '../../utils/config.dart';
@@ -18,24 +19,11 @@ final Map<String, Widget Function(BuildContext context, TutorialGame game)>
         onHelp: game.showHelp,
         gameSize: game.size,
       ),
-  // LevelCompletionOverlay.overlayKey: (BuildContext context, TutorialGame game) =>
-  //     LevelCompletionOverlay(
-  //       onExit: () => game.exitLevel(context),
-  //       loadNextLevel: game.loadNextLevel,
-  //       reloadLevel: game.reloadLevel,
-  //       gameSize: game.size,
-  //       score: game.score,
-  //     ),
-  // LevelHelpOverlay.overlayKey: (BuildContext context, TutorialGame game) =>
-  //     LevelHelpOverlay(
-  //       gameSize: game.size,
-  //       onResume: game.resumeLevel,
-  //     ),
-  // LevelTutorialOverlay.overlayKey: (BuildContext context, TutorialGame game) =>
-  //     LevelTutorialOverlay(
-  //       gameSize: game.size,
-  //       onResume: game.resumeLevel,
-  //     ),
+  LevelTutorialOverlay.overlayKey: (BuildContext context, TutorialGame game) =>
+      LevelTutorialOverlay(
+        gameSize: game.size,
+        onResume: game.resumeLevel,
+      ),
 };
 
 class TutorialScreen extends StatefulWidget {

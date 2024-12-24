@@ -69,6 +69,7 @@ class GateComponent extends RectangleComponent
     }
 
     gameRef.selectGate(this);
+    gameRef.onTapUpGate(event);
     super.onTapUp(event);
   }
 }
