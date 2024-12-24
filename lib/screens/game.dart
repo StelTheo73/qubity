@@ -46,7 +46,7 @@ class GameScreen extends StatefulWidget {
   final YamlMap initialLevel;
 
   @override
-  State<StatefulWidget> createState() => _GameScreenState();
+  State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {

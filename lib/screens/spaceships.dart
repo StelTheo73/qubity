@@ -12,7 +12,7 @@ class SpaceshipsScreen extends StatefulWidget {
   const SpaceshipsScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _SpaceshipsScreenState();
+  State<SpaceshipsScreen> createState() => _SpaceshipsScreenState();
 }
 
 class _SpaceshipsScreenState extends State<SpaceshipsScreen> {

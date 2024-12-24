@@ -10,7 +10,7 @@ class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _QuizScreenState();
+  State<QuizScreen> createState() => _QuizScreenState();
 }
 
 class _QuizScreenState extends State<QuizScreen> {

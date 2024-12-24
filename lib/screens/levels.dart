@@ -10,10 +10,10 @@ class LevelsScreen extends StatefulWidget {
   const LevelsScreen({super.key});
 
   @override
-  LevelsScreenState createState() => LevelsScreenState();
+  State<LevelsScreen> createState() => _LevelsScreenState();
 }
 
-class LevelsScreenState extends State<LevelsScreen> {
+class _LevelsScreenState extends State<LevelsScreen> {
   late Future<List<dynamic>> levelsFuture;
 
   @override

@@ -10,7 +10,7 @@ class QuizHistoryScreen extends StatefulWidget {
   const QuizHistoryScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _QuizHistoryScreenState();
+  State<QuizHistoryScreen> createState() => _QuizHistoryScreenState();
 }
 
 class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
