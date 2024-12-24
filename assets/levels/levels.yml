@@ -1,6 +1,14 @@
 title: Game Levels
 
 levels:
+  - id: 0
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['-|00>', '|10>']
+    target_image: enemy_003
+    steps: 3
+    gates: 'hxz'
+
   - id: 1
     states: 'x'
     initial: [['1', '0']]

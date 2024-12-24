@@ -95,10 +95,17 @@ class QubityGame extends BaseGame {
     registerComponent.highlightCircuitGates();
   }
 
+  Future<void> triggerLevelCompletion() async {
+    if (asteroidHits < LevelStates.levelEnemies.length) {
+      return;
+    }
+    await onLevelCompletion();
+  }
+
   @override
   void update(double dt) {
     super.update(dt);
-    _triggerLevelCompletion();
+    triggerLevelCompletion();
   }
 
   Future<void> updateSpaceships() async {
@@ -107,15 +114,5 @@ class QubityGame extends BaseGame {
     LevelStates.removeLevelSpaceships(removeAll);
     LevelStates.createLevelSpaceships();
     await addAll(LevelStates.levelSpaceships);
-  }
-
-  // Private Methods
-  // ---------------
-
-  Future<void> _triggerLevelCompletion() async {
-    if (asteroidHits < LevelStates.levelEnemies.length) {
-      return;
-    }
-    await onLevelCompletion();
   }
 }

@@ -15,6 +15,7 @@ class Configuration {
   static late final int maxQuizScoreHistory;
   static late final bool music;
   static late final int noOfLevels;
+  static late final int tutorialLevelId;
 
   static Future<void> init() async {
     _loadGoogleFonts();
@@ -32,6 +33,7 @@ class Configuration {
     maxQuizScoreHistory = configMap['maxQuizScoreHistory'] as int;
     music = configMap['music'] as bool;
     noOfLevels = configMap['levels'] as int;
+    tutorialLevelId = configMap['tutorialLevelId'] as int;
   }
 
   static void _loadGoogleFonts() {

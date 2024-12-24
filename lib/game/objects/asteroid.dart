@@ -5,8 +5,8 @@ import 'package:flame/components.dart';
 import 'package:flame/particles.dart';
 import 'package:flame/sprite.dart';
 
-import '../game.dart';
 import '../game_utils.dart';
+import '../qubity_game.dart';
 import 'missile.dart';
 
 class Asteroid extends SpriteComponent

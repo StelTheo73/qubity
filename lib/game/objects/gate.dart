@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/gates.dart';
-import '../game.dart';
 import '../game_utils.dart';
+import '../qubity_game.dart';
 
 class GateComponent extends RectangleComponent
     with HasGameRef<QubityGame>, TapCallbacks {

@@ -6,8 +6,9 @@ import '../components/overlays/level_completion_overlay.dart';
 import '../components/overlays/level_help_overlay.dart';
 import '../components/overlays/level_tutorial_overlay.dart';
 import '../components/overlays/pause_overlay.dart';
-import '../game/game.dart';
+import '../game/qubity_game.dart';
 import '../utils/config.dart';
+import '../utils/utils.dart';
 
 final Map<String, Widget Function(BuildContext context, QubityGame game)>
     _overlayBuilderMap =
@@ -51,13 +52,21 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   late final QubityGame _game;
+  late final Future<bool> isFullScreen;
 
   @override
   void initState() {
     _game = QubityGame(level: widget.initialLevel);
     _game.debugMode = Configuration.debugMode;
-
     super.initState();
+    setState(() {
+      isFullScreen = enterFullScreen();
+    });
+  }
+
+  Future<bool> enterFullScreen() async {
+    await Utils.enterFullScreen();
+    return true;
   }
 
   Future<void> _handleGameExit(bool didPop) async {
@@ -74,13 +83,24 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: _handleGameExit,
-      child: GameWidget<QubityGame>(
-        game: _game,
-        overlayBuilderMap: _overlayBuilderMap,
-      ),
+    return FutureBuilder<bool>(
+      future: isFullScreen,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.hasData && (snapshot.data ?? false)) {
+          return PopScope(
+            canPop: false,
+            onPopInvoked: _handleGameExit,
+            child: GameWidget<QubityGame>(
+              game: _game,
+              overlayBuilderMap: _overlayBuilderMap,
+            ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

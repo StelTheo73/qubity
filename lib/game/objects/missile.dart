@@ -1,10 +1,11 @@
 import 'dart:math';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../../constants/assets.dart';
-import '../game.dart';
 import '../game_utils.dart';
+import '../qubity_game.dart';
 
 class Missile extends PositionComponent
     with HasGameRef<QubityGame>, CollisionCallbacks {

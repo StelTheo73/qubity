@@ -2,8 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 
 import '../../constants/assets.dart';
-import '../game.dart';
 import '../game_utils.dart';
+import '../qubity_game.dart';
 
 abstract class MenuButton extends SpriteComponent
     with HasGameRef<QubityGame>, TapCallbacks {

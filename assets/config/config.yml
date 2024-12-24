@@ -6,3 +6,4 @@ levels: 30
 locales: ['en', 'gr']
 maxQuizScoreHistory: 3
 music: false
+tutorialLevelId: 0

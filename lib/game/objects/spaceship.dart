@@ -2,8 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 
 import '../../utils/spaceship.dart';
-import '../game.dart';
 import '../game_utils.dart';
+import '../qubity_game.dart';
 import 'missile.dart';
 
 class Spaceship extends SpriteComponent with HasGameRef<QubityGame> {

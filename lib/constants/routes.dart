@@ -8,7 +8,8 @@ enum AppRoute {
   quizMenu('/quiz-menu'),
   quizResult('/quiz-result'),
   spaceships('/spaceships'),
-  settings('/settings');
+  settings('/settings'),
+  tutorial('/tutorial');
 
   const AppRoute(this.route);
 

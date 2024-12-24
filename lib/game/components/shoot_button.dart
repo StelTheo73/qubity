@@ -2,9 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 
 import '../../constants/assets.dart';
-import '../game.dart';
 import '../game_utils.dart';
 import '../objects/spaceship.dart';
+import '../qubity_game.dart';
 import '../state/level_state.dart';
 
 class ShootButton extends SpriteComponent
@@ -18,7 +18,7 @@ class ShootButton extends SpriteComponent
     size = Vector2(70, 70);
     anchor = Anchor.center;
     x = gameRef.size.x * 0.8;
-    y = gameRef.size.y * 0.9;
+    y = gameRef.size.y * 0.7;
     super.onLoad();
   }
 

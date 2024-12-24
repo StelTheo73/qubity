@@ -18,7 +18,6 @@ class GatesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final String text =
         AppLocalizations.of(context)!.levelGatesList(gates.join(', '));
-    // final String text = 'Gates: ${gates.join(', ')}';
 
     return RobotoText(
       text: text,

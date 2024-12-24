@@ -29,12 +29,14 @@ class Utils {
     await DeviceStore.setLanguage(language);
   }
 
-  static void enterFullScreen() {
+  static Future<void> enterFullScreen() async {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    await Future<void>.delayed(const Duration(milliseconds: 100), () {});
   }
 
-  static void exitFullScreen() {
+  static Future<void> exitFullScreen() async {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    await Future<void>.delayed(const Duration(milliseconds: 100), () {});
   }
 
   static DateTime getLocalTime() {

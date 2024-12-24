@@ -9,23 +9,35 @@ import '../constants/assets.dart'
         levelTutorialsPath,
         levelsPath;
 import '../store/locale_notifier.dart';
+import 'config.dart';
 import 'utils.dart';
 
 class LevelLoader {
   static late final YamlMap levelGates;
   static late final YamlMap levelStates;
+  static late final YamlMap tutorialLevel;
 
   static Future<void> init() async {
-    levelGates = await _loadGates();
-    levelStates = await _loadStates();
+    final List<YamlMap> results = await Future.wait(<Future<YamlMap>>[
+      _loadGates(),
+      _loadStates(),
+      _loadTutorialLevel(),
+    ]);
+
+    levelGates = results[0];
+    levelStates = results[1];
+    tutorialLevel = results[2];
   }
 
-  static Future<YamlMap> getLevelById(int id) async {
-    final YamlList levels = await loadLevels();
+  static Future<YamlMap> getLevelById(
+    int id, {
+    bool includeTutorial = true,
+  }) async {
+    final YamlList levels = await loadLevels(includeTutorial: includeTutorial);
     if (id > levels.length) {
       throw ArgumentError('Level $id does not exist');
     }
-    return levels[id - 1] as YamlMap;
+    return levels[id] as YamlMap;
   }
 
   static List<String> getLevelGates(YamlMap level) {
@@ -76,9 +88,21 @@ class LevelLoader {
     }
   }
 
-  static Future<YamlList> loadLevels() async {
-    final String levels = await rootBundle.loadString(levelsPath);
-    return loadYaml(levels)['levels'] as YamlList;
+  static Future<YamlList> loadLevels({bool includeTutorial = false}) async {
+    final String levelsString = await rootBundle.loadString(levelsPath);
+
+    final YamlList levelsList =
+        await loadYaml(levelsString)['levels'] as YamlList;
+
+    if (includeTutorial) {
+      return levelsList;
+    }
+
+    return YamlList.wrap(
+      levelsList.where((level) {
+        return level['id'] != Configuration.tutorialLevelId;
+      }).toList(),
+    );
   }
 
   // Private Methods
@@ -91,5 +115,9 @@ class LevelLoader {
   static Future<YamlMap> _loadStates() async {
     final String levelStates = await rootBundle.loadString(levelStatesPath);
     return loadYaml(levelStates)['states'] as YamlMap;
+  }
+
+  static Future<YamlMap> _loadTutorialLevel() async {
+    return getLevelById(Configuration.tutorialLevelId);
   }
 }

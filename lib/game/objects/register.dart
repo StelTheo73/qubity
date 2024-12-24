@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qartvm/qartvm.dart';
 
 import '../../constants/colors.dart';
-import '../game.dart';
+import '../qubity_game.dart';
 import '../state/level_state.dart';
 import 'sprites.dart';
 

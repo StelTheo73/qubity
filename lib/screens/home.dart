@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/button/page_button.dart';
 import '../constants/routes.dart';
 import '../utils/config.dart';
+import '../utils/level.dart';
 import 'base.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final List<dynamic> levels;
-
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
@@ -46,14 +45,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 20),
               PageButton(
-                buttonText: AppLocalizations.of(context)!.settings,
-                navigateTo: AppRoute.settings.route,
-                icon: Icons.settings,
+                buttonText: AppLocalizations.of(context)!.tutorial,
+                navigateTo: AppRoute.tutorial.route,
+                icon: Icons.school,
+                navigateArguments: LevelLoader.tutorialLevel,
               ),
               const SizedBox(height: 20),
               PageButton(
-                buttonText: 'About',
-                navigateTo: AppRoute.about.route,
+                buttonText: AppLocalizations.of(context)!.settings,
+                navigateTo: AppRoute.settings.route,
+                icon: Icons.settings,
               ),
             ],
           ),

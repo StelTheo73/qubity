@@ -12,6 +12,7 @@ import 'screens/quiz/quiz_history.dart';
 import 'screens/quiz/quiz_menu.dart';
 import 'screens/settings.dart';
 import 'screens/spaceships.dart';
+import 'screens/tutorial/tutorial.dart';
 import 'store/level_score_notifier.dart';
 import 'store/locale_notifier.dart';
 import 'utils/config.dart';
@@ -72,7 +73,12 @@ class QubityApp extends StatelessWidget {
             AppRoute.spaceships.route: (BuildContext context) =>
                 const SpaceshipsScreen(),
             AppRoute.settings.route: (BuildContext context) =>
-                const SettingsScreen()
+                const SettingsScreen(),
+            AppRoute.tutorial.route: (BuildContext context) {
+              final YamlMap level =
+                  ModalRoute.of(context)!.settings.arguments! as YamlMap;
+              return TutorialScreen(tutorialLevel: level);
+            }
           },
         );
       },
