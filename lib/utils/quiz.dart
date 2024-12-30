@@ -8,8 +8,15 @@ import 'utils.dart';
 
 class QuizController {
   final Map<int, bool> _answers = <int, bool>{};
+  final Map<int, int> _selectedAnswers = <int, int>{};
+
+  // The index of the selected answer in quiz question's answers list
+  int? getSelectedAnswer(int questionId) {
+    return _selectedAnswers[questionId];
+  }
 
   void setAnswer(int questionId, int correctAnswer, int selectedAnswer) {
+    _selectedAnswers[questionId] = selectedAnswer;
     _answers[questionId] = correctAnswer == selectedAnswer;
   }
 
@@ -91,7 +98,7 @@ class QuizScore {
 }
 
 class Quiz {
-  int numberOfQuestions = 0;
+  int numberOfQuestions = -1;
 
   static Question _buildQuestion(YamlMap question) {
     final String language = localeNotifier.locale.languageCode;

@@ -11,7 +11,7 @@ class RadioGroup extends StatefulWidget {
     required this.onChanged,
     required this.answers,
     this.showDivider = true,
-    this.initialAnswer = -1,
+    this.initialAnswer,
     this.id,
   });
 
@@ -19,7 +19,7 @@ class RadioGroup extends StatefulWidget {
   final List<String> answers;
   final bool showDivider;
   final void Function(int) onChanged;
-  final int initialAnswer;
+  final int? initialAnswer;
   final int? id;
 
   @override
@@ -27,7 +27,7 @@ class RadioGroup extends StatefulWidget {
 }
 
 class _RadioGroupState extends State<RadioGroup> {
-  late int _answer;
+  late int? _answer;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _RadioGroupState extends State<RadioGroup> {
   }
 
   String? _validate() {
-    if (_answer == -1) {
+    if (_answer == null) {
       return 'Please select an answer';
     }
     return null;
