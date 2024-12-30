@@ -85,6 +85,8 @@ class QuizScore {
 }
 
 class Quiz {
+  int numberOfQuestions = 0;
+
   static Question _buildQuestion(YamlMap question) {
     final String language = localeNotifier.locale.languageCode;
 
@@ -99,15 +101,16 @@ class Quiz {
     );
   }
 
-  static Future<List<Question>> load() async {
+  Future<List<Question>> load() async {
     final YamlMap quiz = await Utils.loadYamlMap(questionsPath);
-    final int numberOfQuestions = (quiz['questions'] as YamlList).length;
+    numberOfQuestions = (quiz['questions'] as YamlList).length;
     final List<Question> questions = <Question>[];
 
     for (int index = 0; index < numberOfQuestions; index++) {
       final YamlMap question = quiz['questions'][index] as YamlMap;
       questions.add(_buildQuestion(question));
     }
+
     return questions;
   }
 }
