@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:yaml/yaml.dart';
 
 import '../constants/assets.dart';
@@ -76,7 +77,12 @@ class QuizScore {
   }
 
   String toJson() {
-    return '{ "score": $score, "date": "${date.toIso8601String()}", "noOfQuestions": $noOfQuestions }';
+    final Map<String, dynamic> data = <String, dynamic>{
+      'score': score,
+      'date': date.toIso8601String(),
+      'noOfQuestions': noOfQuestions,
+    };
+    return jsonEncode(data);
   }
 
   Future<void> save() async {
