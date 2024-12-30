@@ -40,6 +40,7 @@ class BaseGame extends FlameGame<World>
   int shotsFired = 0;
   double score = 3;
 
+  bool isTutorialOpen = false;
   bool running = true;
   YamlMap level;
 
@@ -82,6 +83,7 @@ class BaseGame extends FlameGame<World>
       loadTutorial(),
       loadHelp(),
     ]);
+
     await super.onLoad();
   }
 
@@ -135,7 +137,10 @@ class BaseGame extends FlameGame<World>
     );
     level = nextLevel;
     await reloadLevel();
-    await loadTutorial();
+    await Future.wait(<Future<void>>[
+      loadTutorial(),
+      loadHelp(),
+    ]);
   }
 
   Future<void> loadTutorial() async {
@@ -144,8 +149,10 @@ class BaseGame extends FlameGame<World>
     tutorialNotifier.setTutorialMap(tutorial);
 
     if (tutorial.isEmpty) {
+      isTutorialOpen = false;
       return;
     }
+    isTutorialOpen = true;
 
     overlays.add(
       LevelTutorialOverlay.overlayKey,
@@ -154,6 +161,10 @@ class BaseGame extends FlameGame<World>
   }
 
   void pauseLevel({bool addOverlay = true}) {
+    if (isTutorialOpen) {
+      return;
+    }
+
     pauseEngine();
     running = false;
     addOverlay &&
@@ -175,6 +186,7 @@ class BaseGame extends FlameGame<World>
   void resumeLevel() {
     resumeEngine();
     running = true;
+    isTutorialOpen = false;
     closeOverlays();
   }
 

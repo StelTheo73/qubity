@@ -23,6 +23,7 @@ class TutorialGame extends QubityGame {
   late final RectangleComponent gateTutorial;
   late final RectangleComponent registerTutorial;
   late final RectangleComponent shootTutorial;
+  late final RectangleComponent exitTutorial;
 
   TutorialState tutorialState = TutorialState.gate;
 
@@ -45,6 +46,8 @@ class TutorialGame extends QubityGame {
     ]);
 
     await setupGameTutorial();
+
+    pauseLevel(addOverlay: false);
   }
 
   @override
@@ -70,6 +73,7 @@ class TutorialGame extends QubityGame {
     if (tutorialState == TutorialState.shoot) {
       tutorialState = TutorialState.completed;
       remove(shootTutorial);
+      add(exitTutorial);
     }
   }
 
@@ -174,6 +178,31 @@ class TutorialGame extends QubityGame {
             ),
           ),
           size: Vector2(120, 60),
+          anchor: Anchor.topLeft,
+        ),
+      ],
+    );
+
+    exitTutorial = RectangleComponent(
+      anchor: Anchor.center,
+      position: Vector2(size.x / 2, size.y * 0.4),
+      size: Vector2(200, 60),
+      paint: Paint()..color = Palette.primary,
+      children: <Component>[
+        TextBoxComponent<TextPaint>(
+          text:
+              'Click the pause button on the top right corner to exit tutorial',
+          align: Anchor.center,
+          textRenderer: TextPaint(
+            style: GoogleFonts.roboto(
+              textStyle: const TextStyle(
+                color: Palette.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          size: Vector2(200, 60),
           anchor: Anchor.topLeft,
         ),
       ],
