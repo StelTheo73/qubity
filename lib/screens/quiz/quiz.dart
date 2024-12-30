@@ -51,26 +51,31 @@ class _QuizScreenState extends State<QuizScreen> {
                     const SizedBox(height: 20),
                     Form(
                       key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          for (final Question question in snapshot.data!)
-                            QuizRadioGroup(
-                              question: question,
-                              controller: _quizController,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 40,
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            for (final Question question in snapshot.data!)
+                              QuizRadioGroup(
+                                question: question,
+                                controller: _quizController,
+                              ),
+                            const SizedBox(height: 20),
+                            BaseButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                }
+                                _quizController.onSubmit();
+                              },
+                              text: AppLocalizations.of(context)!.submit,
+                              width: 200,
                             ),
-                          const SizedBox(height: 20),
-                          BaseButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _formKey.currentState!.save();
-                              }
-                              _quizController.onSubmit();
-                            },
-                            text: AppLocalizations.of(context)!.submit,
-                            width: 200,
-                          ),
-                          const SizedBox(height: 20),
-                        ],
+                            const SizedBox(height: 20),
+                          ],
+                        ),
                       ),
                     ),
                   ],
