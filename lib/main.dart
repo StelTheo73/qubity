@@ -24,6 +24,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Utils.init();
+  await Utils.exitFullScreen();
   await DeviceStore.init();
   await Configuration.init();
   await LevelLoader.init();
