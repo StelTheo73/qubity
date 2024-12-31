@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../models/quiz/quiz.dart';
 import '../../store/quiz_submission_notifier.dart';
-import '../../utils/quiz.dart';
 import '../base.dart';
 import 'quiz_form.dart';
 import 'quiz_results.dart';

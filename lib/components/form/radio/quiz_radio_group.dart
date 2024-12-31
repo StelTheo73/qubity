@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/quiz.dart';
+import '../../../models/quiz/quiz.dart';
 import 'radio_group.dart';
 
 class QuizRadioGroup extends StatelessWidget {

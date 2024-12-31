@@ -5,8 +5,8 @@ import '../../components/button/base_button.dart';
 import '../../components/form/radio/quiz_radio_group.dart';
 import '../../components/text/roboto.dart';
 import '../../constants/colors.dart';
+import '../../models/quiz/quiz.dart';
 import '../../store/quiz_submission_notifier.dart';
-import '../../utils/quiz.dart';
 
 class QuizForm extends StatefulWidget {
   const QuizForm({

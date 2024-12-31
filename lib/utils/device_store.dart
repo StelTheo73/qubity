@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/spaceships.dart';
+import '../models/quiz/quiz.dart';
 import 'config.dart';
-import 'quiz.dart';
 
 enum DeviceStoreKeys {
   language('language'),

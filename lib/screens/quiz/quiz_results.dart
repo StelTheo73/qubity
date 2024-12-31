@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../components/button/base_button.dart';
 import '../../components/text/roboto.dart';
+import '../../models/quiz/quiz.dart';
 import '../../store/quiz_submission_notifier.dart';
-import '../../utils/quiz.dart';
 
 class QuizResults extends StatefulWidget {
   const QuizResults({

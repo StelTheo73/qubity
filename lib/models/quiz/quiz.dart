@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:yaml/yaml.dart';
 
-import '../constants/assets.dart';
-import '../store/locale_notifier.dart';
-import 'device_store.dart';
-import 'utils.dart';
+import '../../constants/assets.dart';
+import '../../store/locale_notifier.dart';
+import '../../utils/device_store.dart';
+import '../../utils/utils.dart';
 
 class QuizController {
   final Map<int, bool> _answers = <int, bool>{};

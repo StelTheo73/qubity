@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/text/roboto.dart';
 import '../../constants/colors.dart';
-import '../../utils/quiz.dart';
+import '../../models/quiz/quiz.dart';
 import '../base.dart';
 
 class QuizHistoryScreen extends StatefulWidget {
