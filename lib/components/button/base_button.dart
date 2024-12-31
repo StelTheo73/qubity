@@ -41,7 +41,11 @@ class BaseButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: mainAxisAlignment,
           children: <Widget>[
-            if (icon != null) Icon(icon),
+            if (icon != null)
+              Icon(
+                icon,
+                color: Palette.black,
+              ),
             if (icon != null) const SizedBox(width: 10),
             Flexible(
               child: RobotoText(

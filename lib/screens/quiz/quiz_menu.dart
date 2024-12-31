@@ -36,7 +36,10 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
                 fontSize: 16,
                 color: Palette.black,
               ),
-              trailing: const Icon(Icons.quiz),
+              trailing: const Icon(
+                Icons.quiz,
+                color: Palette.black,
+              ),
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.quiz.route);
               },
@@ -56,7 +59,10 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
                 fontSize: 16,
                 color: Palette.black,
               ),
-              trailing: const Icon(Icons.history),
+              trailing: const Icon(
+                Icons.history,
+                color: Palette.black,
+              ),
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.quizHistory.route);
               },
