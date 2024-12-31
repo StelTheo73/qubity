@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+  "correctAnswer": "Correct answer: {correctAnswer}",
   "deleteGameData": "Delete Data",
   "exit": "Exit",
   "help": "Help",
@@ -13,6 +14,8 @@
   "quizHistoryView": "View previous quiz results",
   "restart": "Restart",
   "resume": "Resume",
+  "selectAllAnswers": "Please answer all questions before submitting",
+  "selectAnAnswer": "Please select an answer",
   "selectLanguage": "Select Language",
   "settings": "Settings",
   "spaceships": "Spaceships",
@@ -22,5 +25,7 @@
   "takeQuiz": "Take a quiz to test your knowledge",
   "testYourKnowledge": "Test Your Knowledge",
   "tutorial": "Tutorial",
-  "yourScore": "Your Score:"
+  "youFound": "You found {correctAnswers} out of {totalQuestions}",
+  "yourScore": "Your Score:",
+  "yourScoreIs": "Your score is: {percentage}%"
 }

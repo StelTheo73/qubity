@@ -44,7 +44,7 @@ class _RadioGroupState extends State<RadioGroup> {
 
   String? _validate() {
     if (_answer == null) {
-      return 'Please select an answer';
+      return AppLocalizations.of(context)!.selectAnAnswer;
     }
     return null;
   }

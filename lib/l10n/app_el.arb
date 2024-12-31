@@ -1,5 +1,6 @@
 {
   "@@locale": "el",
+  "correctAnswer": "Σωστή απάντηση: {correctAnswer}",
   "deleteGameData": "Διαγραφή Δεδομένων",
   "exit": "Έξοδος",
   "help": "Βοήθεια",
@@ -14,6 +15,8 @@
   "restart": "Επανεκκίνηση",
   "resume": "Συνέχεια",
   "settings": "Ρυθμίσεις",
+  "selectAllAnswers": "Παρακαλώ απαντήστε σε όλες τις ερωτήσεις πριν υποβάλετε",
+  "selectAnAnswer": "Παρακαλώ επιλέξτε μια απάντηση",
   "selectLanguage": "Επιλογή Γλώσσας",
   "spaceships": "Διαστημόπλοια",
   "spaceshipSelect": "Επιλογή Διαστημοπλοίου",
@@ -22,5 +25,7 @@
   "takeQuiz": "Κάντε ένα κουίζ για να ελέγξετε τις γνώσεις σας",
   "testYourKnowledge": "Ελέγξτε τις γνώσεις σας",
   "tutorial": "Επίδειξη",
-  "yourScore": "Το σκορ σας:"
+  "youFound": "Βρήκατε {correctAnswers} από {totalQuestions}",
+  "yourScore": "Το σκορ σας:",
+  "yourScoreIs": "Το σκορ σας είναι: {percentage}%"
 }

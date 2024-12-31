@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/button/base_button.dart';
 import '../../components/text/roboto.dart';
@@ -49,12 +51,12 @@ class _QuizResultsState extends State<QuizResults> {
             children: <Widget>[
               const SizedBox(height: 20),
               RobotoText(
-                text: 'Your score is: $percentage%',
+                text: AppLocalizations.of(context)!.yourScoreIs(percentage),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
               RobotoText(
-                text: 'You found $score out of $total',
+                text: AppLocalizations.of(context)!.youFound(score, total),
                 fontSize: 16,
                 color: Palette.black,
               ),
@@ -68,11 +70,12 @@ class _QuizResultsState extends State<QuizResults> {
                 ),
               const SizedBox(height: 20),
               BaseButton(
-                text: 'Back',
+                text: AppLocalizations.of(context)!.exit,
                 onPressed: () {
                   quizSubmissionNotifier.reset();
                   Navigator.pop(context);
                 },
+                icon: Icons.exit_to_app,
                 width: 200,
               ),
               const SizedBox(height: 20),

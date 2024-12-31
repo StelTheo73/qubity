@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../components/text/roboto.dart';
 import '../../../constants/colors.dart';
@@ -42,7 +43,7 @@ class Answer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16.0, top: 4.0),
             child: RobotoText(
-              text: 'Correct answer: $correctAnswer',
+              text: AppLocalizations.of(context)!.correctAnswer(correctAnswer),
               color: Palette.black,
               fontSize: 12,
               fontWeight: FontWeight.bold,

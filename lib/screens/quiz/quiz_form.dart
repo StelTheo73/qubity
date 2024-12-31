@@ -48,16 +48,13 @@ class _QuizFormState extends State<QuizForm> {
       if (widget.quizController.isCompleted(widget.quiz.numberOfQuestions)) {
         quizSubmissionNotifier.submit();
         widget.quizController.onSubmit();
-      } else {
-        setState(() {
-          _errorMessage = 'Please answer all questions before submitting.';
-        });
+        return;
       }
-    } else {
-      setState(() {
-        _errorMessage = 'Please answer all questions before submitting.';
-      });
     }
+
+    setState(() {
+      _errorMessage = AppLocalizations.of(context)!.selectAllAnswers;
+    });
     _scrollToTop();
   }
 
@@ -99,6 +96,7 @@ class _QuizFormState extends State<QuizForm> {
                       onPressed: _submitForm,
                       text: AppLocalizations.of(context)!.submit,
                       width: 200,
+                      icon: Icons.send,
                     ),
                     const SizedBox(height: 20),
                   ],
