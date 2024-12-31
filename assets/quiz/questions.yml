@@ -1,85 +1,193 @@
 questions:
   - id: 1
     question:
-      en: 'What is the capital of France?'
-      el: 'Ποια είναι η πρωτεύουσα της Γαλλίας;'
+      en: 'What is the name of the basic unit of information in quantum computers?'
+      el: 'Πώς ονομάζεται η βασική μονάδα πληροφορίας στους κβαντικούς υπολογιστές;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Berlin'
-        el: 'Βερολίνο'
-      - en: 'Madrid'
-        el: 'Μαδρίτη'
+      - en: 'Qubit'
+        el: 'Qubit'
+      - en: 'Bit'
+        el: 'Bit'
+      - en: 'Byte'
+        el: 'Byte'
+      - en: 'Quantum'
+        el: 'Quantum'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
     correct: 0
   - id: 2
     question:
-      en: 'What is the capital of Germany?'
-      el: 'Ποια είναι η πρωτεύουσα της Γερμανίας;'
+      en: 'What is superposition?'
+      el: 'Τι είναι η υπέρθεση;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Berlin'
-        el: 'Βερολίνο'
-      - en: 'Madrid'
-        el: 'Μαδρίτη'
-    correct: 2
+      - en: 'A state in which a qubit is |0⟩'
+        el: 'Μια κατάσταση στην οποία ένα qubit είναι |0⟩'
+      - en: 'A state in which a qubit can exist in multiple states at once'
+        el: 'Μία κατάσταση στην οποία ένα qubit μπορεί να υπάρχει σε πολλαπλές καταστάσεις ταυτόχρονα'
+      - en: 'A state in which a qubit is either |0⟩ or |1⟩'
+        el: 'Μια κατάσταση στην οποία ένα qubit είναι είτε |0⟩ είτε |1⟩'
+      - en: 'A gate used to perform quantum operations'
+        el: 'Μία πύλη που χρησιμοποιείται για να εκτελεί κβαντικούς υπολογισμούς'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 1
   - id: 3
     question:
-      en: 'What is the capital of Spain?'
-      el: 'Ποια είναι η πρωτεύουσα της Ισπανίας;'
+      en: 'What is the result of the operation:\nX|0⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nX|0⟩;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Berlin'
-        el: 'Βερολίνο'
-      - en: 'Madrid'
-        el: 'Μαδρίτη'
-    correct: 3
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '|0⟩ + |1⟩'
+        el: '|0⟩ + |1⟩'
+      - en: '|0⟩ - |1⟩'
+        el: '|0⟩ - |1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 1
   - id: 4
     question:
-      en: 'What is the capital of the United Kingdom?'
-      el: 'Ποια είναι η πρωτεύουσα του Ηνωμένου Βασιλείου;'
+      en: 'Which gate is used to create superposition?'
+      el: 'Ποιά πύλη χρησιμοποιείται για να δημιουργήσει υπέρθεση;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Berlin'
-        el: 'Βερολίνο'
-      - en: 'Madrid'
-        el: 'Μαδρίτη'
+      - en: 'X'
+        el: 'X'
+      - en: 'H'
+        el: 'H'
+      - en: 'Z'
+        el: 'Z'
+      - en: 'Y'
+        el: 'Y'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
     correct: 1
   - id: 5
     question:
-      en: 'What is the capital of Italy?'
-      el: 'Ποια είναι η πρωτεύουσα της Ιταλίας;'
+      en: 'What is the result of the operation:\nH|0⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nH|0⟩;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Rome'
-        el: 'Ρώμη'
-      - en: 'Madrid'
-        el: 'Μαδρίτη'
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '|0⟩ + |1⟩'
+        el: '|0⟩ + |1⟩'
+      - en: '|0⟩ - |1⟩'
+        el: '|0⟩ - |1⟩'
+      - en : "I don't know"
+        el: 'Δε γνωρίζω'
     correct: 2
   - id: 6
     question:
-      en: 'What is the capital of Greece?'
-      el: 'Ποια είναι η πρωτεύουσα της Ελλάδας;'
+      en: 'What is the result of the operation:\nH|1⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nH|1⟩;'
     answers:
-      - en: 'Paris'
-        el: 'Παρίσι'
-      - en: 'London'
-        el: 'Λονδίνο'
-      - en: 'Berlin'
-        el: 'Βερολίνο'
-      - en: 'Athens'
-        el: 'Αθήνα'
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '|0⟩ + |1⟩'
+        el: '|0⟩ + |1⟩'
+      - en: '|0⟩ - |1⟩'
+        el: '|0⟩ - |1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
     correct: 3
+  - id: 7
+    question:
+      en: 'What is the result of the operation:\n-X|1⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\n-X|1⟩;'
+    answers:
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '-|0⟩'
+        el: '-|0⟩'
+      - en: '-|1⟩'
+        el: '-|1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 2
+  - id: 8
+    question:
+      en: 'What is the result of the operation:\nZ|0⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nZ|0⟩;'
+    answers:
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '-|0⟩'
+        el: '-|0⟩'
+      - en: '-|1⟩'
+        el: '-|1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 0
+  - id: 9
+    question:
+      en: 'What is the result of the operation:\nY|1⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nY|1⟩;'
+    answers:
+      - en: '-|0⟩'
+        el: '-|0⟩'
+      - en: 'i|1⟩'
+        el: 'i|1⟩'
+      - en: '-i|0⟩'
+        el: '-i|0⟩'
+      - en: '-i|1⟩'
+        el: '-i|1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 2
+  - id: 10
+    question:
+      en: 'What is the result of the operation:\nZ|1⟩?'
+      el: 'Ποιό είναι το αποτέλεσμα της πράξης:\nZ|1⟩;'
+    answers:
+      - en: '|0⟩'
+        el: '|0⟩'
+      - en: '|1⟩'
+        el: '|1⟩'
+      - en: '-|0⟩'
+        el: '-|0⟩'
+      - en: '-|1⟩'
+        el: '-|1⟩'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 3
+  - id: 11
+    question:
+      en: 'Which gate would you apply to the left qubit to perform the following computation:\n|00⟩ - |10⟩ → |10⟩?'
+      el: 'Ποια πύλη θα εφαρμόζατε στο αριστερό qubit για να εκτελέσετε τον ακόλουθο υπολογισμό:\n|00⟩ - |10⟩ → |10⟩;'
+    answers:
+      - en: 'X'
+        el: 'X'
+      - en: 'H'
+        el: 'H'
+      - en: 'Z'
+        el: 'Z'
+      - en: 'Y'
+        el: 'Y'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 1
+  - id: 12
+    question:
+      en: 'Which gate would you apply to the right qubit to perform the following computation:\n|00⟩ - |10⟩ → |00⟩ + |10⟩?'
+      el: 'Ποια πύλη θα εφαρμόζατε στο δεξί qubit για να εκτελέσετε τον ακόλουθο υπολογισμό:\n|00⟩ - |10⟩ → |00⟩ + |10⟩;'
+    answers:
+      - en: 'X'
+        el: 'X'
+      - en: 'H'
+        el: 'H'
+      - en: 'Z'
+        el: 'Z'
+      - en: 'Y'
+        el: 'Y'
+      - en: "I don't know"
+        el: 'Δε γνωρίζω'
+    correct: 2

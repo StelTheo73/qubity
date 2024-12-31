@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../store/current_score_notifier.dart';
 import '../../store/level_state_notifier.dart';
@@ -18,8 +19,8 @@ class HighScoreWidget extends StatelessWidget {
       listenable: currentScoreNotifier,
       builder: (BuildContext context, Widget? child) {
         if (currentScoreNotifier.highScore) {
-          return const RobotoText(
-            text: 'New High Score!',
+          return RobotoText(
+            text: AppLocalizations.of(context)!.levelNewHighScore,
             fontSize: 12,
             fontWeight: FontWeight.bold,
           );
@@ -43,12 +44,14 @@ class NextLevelWidget extends StatelessWidget {
         if (levelStateNotifier.nextLevelId <= Configuration.noOfLevels) {
           return BaseButton(
             onPressed: loadNextLevel,
-            text: 'Next Level',
+            text: AppLocalizations.of(context)!.nextLevel,
             width: 200,
+            icon: Icons.arrow_forward,
+            mainAxisAlignment: MainAxisAlignment.start,
           );
         }
-        return const RobotoText(
-          text: 'You have completed the game!',
+        return RobotoText(
+          text: AppLocalizations.of(context)!.gameCompleted,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         );
@@ -83,8 +86,8 @@ class LevelCompletionOverlay extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const RobotoText(
-            text: 'Level Completed!',
+          RobotoText(
+            text: AppLocalizations.of(context)!.levelCompleted,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -99,14 +102,18 @@ class LevelCompletionOverlay extends StatelessWidget {
           const SizedBox(height: 20),
           BaseButton(
             onPressed: reloadLevel,
-            text: 'Restart Level',
+            text: AppLocalizations.of(context)!.restartLevel,
             width: 200,
+            icon: Icons.refresh,
+            mainAxisAlignment: MainAxisAlignment.start,
           ),
           const SizedBox(height: 20),
           BaseButton(
             onPressed: onExit,
-            text: 'Level Selection',
+            text: AppLocalizations.of(context)!.levelSelection,
             width: 200,
+            icon: Icons.format_list_numbered,
+            mainAxisAlignment: MainAxisAlignment.start,
           ),
         ],
       ),

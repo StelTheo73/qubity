@@ -4,6 +4,6 @@ defaultLanguage: 'en'
 debugMode: false
 levels: 30
 locales: ['en', 'gr']
-maxQuizScoreHistory: 3
+maxQuizScoreHistory: 30
 music: false
 tutorialLevelId: 0

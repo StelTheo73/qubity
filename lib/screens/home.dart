@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PageButton(
                 buttonText: AppLocalizations.of(context)!.levels,
                 navigateTo: AppRoute.levels.route,
-                icon: Icons.videogame_asset,
+                icon: Icons.format_list_numbered,
               ),
               const SizedBox(height: 20),
               PageButton(

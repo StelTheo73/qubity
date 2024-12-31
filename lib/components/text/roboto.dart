@@ -21,19 +21,28 @@ class RobotoText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      style: GoogleFonts.roboto(
-        textStyle: TextStyle(
-          color: color,
-          decoration: TextDecoration.none,
-          fontStyle: FontStyle.normal,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: text
+          .split(r'\n')
+          .map(
+            (String line) => Text(
+              line,
+              textAlign: textAlign,
+              overflow: overflow,
+              style: GoogleFonts.roboto(
+                textStyle: TextStyle(
+                  color: color,
+                  decoration: TextDecoration.none,
+                  fontStyle: FontStyle.normal,
+                  fontSize: fontSize,
+                  fontWeight: fontWeight,
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
