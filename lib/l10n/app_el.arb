@@ -25,6 +25,7 @@
   "takeQuiz": "Κάντε ένα κουίζ για να ελέγξετε τις γνώσεις σας",
   "testYourKnowledge": "Ελέγξτε τις γνώσεις σας",
   "tutorial": "Επίδειξη",
+  "tutorial1": "1. Επιλέξτε μια πύλη",
   "youFound": "Βρήκατε {correctAnswers} από {totalQuestions}",
   "yourScore": "Το σκορ σας:",
   "yourScoreIs": "Το σκορ σας είναι: {percentage}%"

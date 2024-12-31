@@ -1,12 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../constants/colors.dart';
 import '../store/level_state_notifier.dart';
 import '../store/tutorial_notifier.dart';
 import '../utils/level.dart';
+import 'components/tutorial_box.dart';
 import 'qubity_game.dart';
 import 'state/level_state.dart';
 
@@ -42,12 +41,12 @@ class TutorialGame extends QubityGame {
     await Future.wait(<Future<void>>[
       super.setupUI(),
       super.setupGame(),
-      super.loadTutorial(),
+      // super.loadTutorial(),
     ]);
 
     await setupGameTutorial();
 
-    pauseLevel(addOverlay: false);
+    // pauseLevel(addOverlay: false);
   }
 
   @override
@@ -104,108 +103,33 @@ class TutorialGame extends QubityGame {
   }
 
   Future<void> setupGameTutorial() async {
-    print('Setting up tutorial');
-
     final Vector2 lastGatePosition =
         LevelStates.levelGateComponents.last.position;
     final Vector2 registerPosition = registerComponent.position;
     final Vector2 shootPosition = shootButton.position;
 
-    gateTutorial = RectangleComponent(
-      anchor: Anchor.center,
+    gateTutorial = TutorialBoxComponent(
       position: Vector2(lastGatePosition.x + 120, lastGatePosition.y),
+      state: TutorialState.gate,
       size: Vector2(150, 60),
-      paint: Paint()..color = Palette.primary,
-      children: <Component>[
-        TextBoxComponent<TextPaint>(
-          text: '1. Select a gate',
-          align: Anchor.center,
-          textRenderer: TextPaint(
-            style: GoogleFonts.roboto(
-              textStyle: const TextStyle(
-                color: Palette.black,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          size: Vector2(150, 60),
-          anchor: Anchor.topLeft,
-        ),
-      ],
     );
 
-    registerTutorial = RectangleComponent(
-      anchor: Anchor.center,
+    registerTutorial = TutorialBoxComponent(
       position: Vector2(registerPosition.x + 250, registerPosition.y + 100),
-      size: Vector2(120, 60),
-      paint: Paint()..color = Palette.primary,
-      children: <Component>[
-        TextBoxComponent<TextPaint>(
-          text: "2. Tap on a '+' icon to apply the gate to a qubit",
-          align: Anchor.center,
-          textRenderer: TextPaint(
-            style: GoogleFonts.roboto(
-              textStyle: const TextStyle(
-                color: Palette.black,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          size: Vector2(120, 60),
-          anchor: Anchor.topLeft,
-        ),
-      ],
+      state: TutorialState.register,
+      size: Vector2(130, 100),
     );
 
-    shootTutorial = RectangleComponent(
-      anchor: Anchor.center,
-      position: Vector2(shootPosition.x, shootPosition.y + 100),
-      size: Vector2(120, 60),
-      paint: Paint()..color = Palette.primary,
-      children: <Component>[
-        TextBoxComponent<TextPaint>(
-          text: '3. Tap on the shoot button to fire the missiles',
-          align: Anchor.center,
-          textRenderer: TextPaint(
-            style: GoogleFonts.roboto(
-              textStyle: const TextStyle(
-                color: Palette.black,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          size: Vector2(120, 60),
-          anchor: Anchor.topLeft,
-        ),
-      ],
+    shootTutorial = TutorialBoxComponent(
+      position: Vector2(registerPosition.x + 250, shootPosition.y + 100),
+      state: TutorialState.shoot,
+      size: Vector2(130, 100),
     );
 
-    exitTutorial = RectangleComponent(
-      anchor: Anchor.center,
+    exitTutorial = TutorialBoxComponent(
       position: Vector2(size.x / 2, size.y * 0.4),
-      size: Vector2(200, 60),
-      paint: Paint()..color = Palette.primary,
-      children: <Component>[
-        TextBoxComponent<TextPaint>(
-          text:
-              'Click the pause button on the top right corner to exit tutorial',
-          align: Anchor.center,
-          textRenderer: TextPaint(
-            style: GoogleFonts.roboto(
-              textStyle: const TextStyle(
-                color: Palette.black,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          size: Vector2(200, 60),
-          anchor: Anchor.topLeft,
-        ),
-      ],
+      state: TutorialState.completed,
+      size: Vector2(200, 80),
     );
 
     add(gateTutorial);
