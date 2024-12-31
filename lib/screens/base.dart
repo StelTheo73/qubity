@@ -10,12 +10,14 @@ class BaseScreen extends StatelessWidget {
     required this.body,
     this.showBackButton = true,
     this.hasBackground = true,
+    this.onBackButtonPressed,
   });
 
   final Widget body;
   final bool showBackButton;
   final String title;
   final bool hasBackground;
+  final void Function()? onBackButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class BaseScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: title,
         showBackButton: showBackButton,
+        onBackButtonPressed: onBackButtonPressed,
       ),
       body: Container(
         height: double.infinity,

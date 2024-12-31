@@ -40,6 +40,7 @@ class _QuizScreenState extends State<QuizScreen> {
         return BaseScreen(
           title: AppLocalizations.of(context)!.testYourKnowledge,
           hasBackground: false,
+          onBackButtonPressed: quizSubmissionNotifier.reset,
           body: FutureBuilder<List<Question>>(
             future: questionsFuture,
             builder:

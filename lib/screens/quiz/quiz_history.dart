@@ -57,7 +57,7 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
                             const SizedBox(width: 5),
                             RobotoText(
                               text:
-                                  '${quizScore.score} / ${quizScore.noOfQuestions}',
+                                  '${(quizScore.score / quizScore.noOfQuestions * 100).toStringAsFixed(2)}%',
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -66,6 +66,11 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
                         subtitle: RobotoText(
                           text: quizScore.formattedDate,
                           fontSize: 16,
+                          color: Palette.black,
+                        ),
+                        trailing: RobotoText(
+                          text: '${quizScore.score}/${quizScore.noOfQuestions}',
+                          fontSize: 20,
                           color: Palette.black,
                         ),
                       ),

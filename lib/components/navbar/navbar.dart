@@ -8,9 +8,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.showBackButton = true,
+    this.onBackButtonPressed,
   });
   final String title;
   final bool showBackButton;
+  final void Function()? onBackButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
+                if (onBackButtonPressed != null) {
+                  onBackButtonPressed!();
+                }
                 Navigator.pop(context);
               },
             )
