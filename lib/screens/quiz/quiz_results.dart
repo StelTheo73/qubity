@@ -77,6 +77,7 @@ class _QuizResultsState extends State<QuizResults> {
                 },
                 icon: Icons.exit_to_app,
                 width: 200,
+                mainAxisAlignment: MainAxisAlignment.start,
               ),
               const SizedBox(height: 20),
             ],

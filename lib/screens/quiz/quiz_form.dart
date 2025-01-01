@@ -97,6 +97,7 @@ class _QuizFormState extends State<QuizForm> {
                       text: AppLocalizations.of(context)!.submit,
                       width: 200,
                       icon: Icons.send,
+                      mainAxisAlignment: MainAxisAlignment.start,
                     ),
                     const SizedBox(height: 20),
                   ],

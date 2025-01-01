@@ -36,6 +36,7 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
         return BaseScreen(
           title: AppLocalizations.of(context)!.quizHistory,
           body: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -75,6 +76,7 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
                         ),
                       ),
                     ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
