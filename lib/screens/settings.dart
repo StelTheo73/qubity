@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../components/alert/delete_data.dart';
 import '../components/button/base_button.dart';
 import '../components/form/language/language_selector.dart';
 import '../constants/colors.dart';
@@ -27,7 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const LanguageSelector(),
             const SizedBox(height: 100),
             BaseButton(
-              onPressed: Utils.resetGame,
+              onPressed: () => DeleteDataAlert.show(context),
               text: AppLocalizations.of(context)!.deleteGameData,
               color: Palette.danger,
               width: 200,
