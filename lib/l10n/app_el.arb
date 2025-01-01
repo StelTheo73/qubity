@@ -16,6 +16,7 @@
   "questionId": "Ερώτηση {questionId}",
   "quiz": "Κουίζ",
   "quizHistory": "Ιστορικό",
+  "quizHistoryEmpty": "Δεν υπάρχουν προηγούμενα αποτελέσματα κουίζ",
   "quizHistoryView": "Προβολή προηγούμενων αποτελεσμάτων",
   "restart": "Επανεκκίνηση",
   "restartLevel": "Επανεκκίνηση",

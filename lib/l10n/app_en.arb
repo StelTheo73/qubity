@@ -16,6 +16,7 @@
   "questionId": "Question {questionId}",
   "quiz": "Quiz",
   "quizHistory": "Previous Quiz Results",
+  "quizHistoryEmpty": "No previous quiz results",
   "quizHistoryView": "View previous quiz results",
   "restart": "Restart",
   "restartLevel": "Restart Level",
