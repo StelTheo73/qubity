@@ -5,7 +5,6 @@ import '../components/alert/delete_data.dart';
 import '../components/button/base_button.dart';
 import '../components/form/language/language_selector.dart';
 import '../constants/colors.dart';
-import '../utils/utils.dart';
 import 'base.dart';
 
 class SettingsScreen extends StatefulWidget {

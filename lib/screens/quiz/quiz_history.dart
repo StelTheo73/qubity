@@ -33,64 +33,73 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
     return FutureBuilder<List<QuizScore>>(
       future: quizHistoryFuture,
       builder: (BuildContext context, AsyncSnapshot<List<QuizScore>> snapshot) {
-        return BaseScreen(
-          title: AppLocalizations.of(context)!.quizHistory,
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 30),
-            child: Column(
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasData && snapshot.data!.isEmpty) {
+          return BaseScreen(
+            title: AppLocalizations.of(context)!.quizHistory,
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: RobotoText(
+                    text: AppLocalizations.of(context)!.quizHistoryEmpty,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return BaseScreen(
+            title: AppLocalizations.of(context)!.quizHistory,
+            body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 20),
-                if (snapshot.hasData)
-                  if (snapshot.data!.isEmpty)
-                    Center(
-                      child: RobotoText(
-                        text: AppLocalizations.of(context)!.quizHistoryEmpty,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  else
-                    for (final QuizScore quizScore in snapshot.data!.reversed)
-                      Card(
-                        elevation: 2.0,
-                        color: Palette.white,
-                        child: ListTile(
-                          title: Row(
-                            children: <Widget>[
-                              RobotoText(
-                                text: AppLocalizations.of(context)!.yourScore,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.black,
-                              ),
-                              const SizedBox(width: 5),
-                              RobotoText(
-                                text:
-                                    '${(quizScore.score / quizScore.noOfQuestions * 100).toStringAsFixed(2)}%',
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ],
-                          ),
-                          subtitle: RobotoText(
-                            text: quizScore.formattedDate,
-                            fontSize: 16,
-                            color: Palette.black,
-                          ),
-                          trailing: RobotoText(
-                            text:
-                                '${quizScore.score}/${quizScore.noOfQuestions}',
+                for (final QuizScore quizScore in snapshot.data!.reversed)
+                  Card(
+                    elevation: 2.0,
+                    color: Palette.white,
+                    child: ListTile(
+                      title: Row(
+                        children: <Widget>[
+                          RobotoText(
+                            text: AppLocalizations.of(context)!.yourScore,
                             fontSize: 20,
+                            fontWeight: FontWeight.bold,
                             color: Palette.black,
                           ),
-                        ),
+                          const SizedBox(width: 5),
+                          RobotoText(
+                            text:
+                                '${(quizScore.score / quizScore.noOfQuestions * 100).toStringAsFixed(2)}%',
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
                       ),
+                      subtitle: RobotoText(
+                        text: quizScore.formattedDate,
+                        fontSize: 16,
+                        color: Palette.black,
+                      ),
+                      trailing: RobotoText(
+                        text: '${quizScore.score}/${quizScore.noOfQuestions}',
+                        fontSize: 20,
+                        color: Palette.black,
+                      ),
+                    ),
+                  ),
                 const SizedBox(height: 20),
               ],
             ),
-          ),
-        );
+          );
+        }
       },
     );
   }

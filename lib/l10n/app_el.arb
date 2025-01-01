@@ -1,7 +1,11 @@
 {
   "@@locale": "el",
+  "cancel": "Ακύρωση",
   "correctAnswer": "Σωστή απάντηση: {correctAnswer}",
+  "delete": "Διαγραφή",
   "deleteGameData": "Διαγραφή Δεδομένων",
+  "deleteGameDataConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε όλα τα δεδομένα του παιχνιδιού;",
+  "deleteGameDataHeader": "Διαγραφή Δεδομένων Παιχνιδιού",
   "exit": "Έξοδος",
   "gameCompleted": "Ολοκληρώσατε το παιχνίδι!",
   "help": "Βοήθεια",

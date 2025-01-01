@@ -1,7 +1,11 @@
 {
   "@@locale": "en",
+  "cancel": "Cancel",
   "correctAnswer": "Correct answer: {correctAnswer}",
+  "delete": "Delete",
   "deleteGameData": "Delete Data",
+  "deleteGameDataConfirmation": "Are you sure you want to delete all game data?",
+  "deleteGameDataHeader": "Delete Game Data",
   "exit": "Exit",
   "gameCompleted": "You have completed the game!",
   "help": "Help",

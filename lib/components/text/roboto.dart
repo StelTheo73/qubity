@@ -24,6 +24,7 @@ class RobotoText extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: text
           .split(r'\n')
           .map(

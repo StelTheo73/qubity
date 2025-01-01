@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants/colors.dart';
 import '../../utils/utils.dart';
@@ -35,14 +36,14 @@ class DeleteDataAlert extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         AlertDialog(
-          title: const RobotoText(
-            text: 'Delete Game Data',
+          title: RobotoText(
+            text: AppLocalizations.of(context)!.deleteGameDataHeader,
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Palette.danger,
           ),
-          content: const RobotoText(
-            text: 'Are you sure you want to delete all game data?',
+          content: RobotoText(
+            text: AppLocalizations.of(context)!.deleteGameDataConfirmation,
             color: Palette.black,
             fontSize: 14,
           ),
@@ -50,16 +51,16 @@ class DeleteDataAlert extends StatelessWidget {
             BaseButton(
               onPressed: () => onYes(context),
               color: Palette.danger,
-              text: 'Delete',
+              text: AppLocalizations.of(context)!.delete,
               fontSize: 14,
-              width: 100,
+              width: 115,
             ),
             BaseButton(
               onPressed: () => onNo(context),
-              text: 'Cancel',
+              text: AppLocalizations.of(context)!.cancel,
               fontSize: 14,
               color: Palette.white,
-              width: 100,
+              width: 115,
             ),
           ],
         ),
