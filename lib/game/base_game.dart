@@ -19,6 +19,7 @@ import '../store/level_state_notifier.dart';
 import '../store/tutorial_notifier.dart';
 import '../utils/device_store.dart';
 import '../utils/level.dart';
+import '../utils/spaceship.dart';
 import '../utils/utils.dart';
 import 'components/menu_button.dart';
 import 'components/shoot_button.dart';
@@ -35,6 +36,7 @@ class BaseGame extends FlameGame<World>
 
   // State
   // -----
+  bool hasUnlockedSpaceship = false;
   int asteroidHits = 0;
   int gatesUsed = 0;
   int shotsFired = 0;
@@ -60,6 +62,10 @@ class BaseGame extends FlameGame<World>
 
   Future<void> onLevelCompletion() async {
     pauseLevel(addOverlay: false);
+
+    hasUnlockedSpaceship = await SpaceshipLoader.hasUnlockedSpaceship(
+      levelStateNotifier.levelId,
+    );
 
     await Future.wait(<Future<void>>[
       _calculateScore(),
@@ -232,6 +238,7 @@ class BaseGame extends FlameGame<World>
     gatesUsed = 0;
     shotsFired = 0;
     score = 3;
+    hasUnlockedSpaceship = false;
 
     closeOverlays();
 
@@ -372,6 +379,11 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> _unlockNextLevel() async {
-    DeviceStore.setUnlockedLevel(levelStateNotifier.nextLevelId);
+    final int lastUnlockedLevel = await DeviceStore.getUnlockedLevel();
+    if (levelStateNotifier.nextLevelId <= lastUnlockedLevel) {
+      return;
+    }
+
+    await DeviceStore.setUnlockedLevel(levelStateNotifier.nextLevelId);
   }
 }

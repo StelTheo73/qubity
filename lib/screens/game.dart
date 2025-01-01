@@ -28,6 +28,7 @@ final Map<String, Widget Function(BuildContext context, QubityGame game)>
         reloadLevel: game.reloadLevel,
         gameSize: game.size,
         score: game.score,
+        hasUnlockedSpaceship: game.hasUnlockedSpaceship,
       ),
   LevelHelpOverlay.overlayKey: (BuildContext context, QubityGame game) =>
       LevelHelpOverlay(

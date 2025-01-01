@@ -25,7 +25,8 @@
     "qartvm",
     "qubit",
     "Qubity",
-    "roboto"
+    "roboto",
+    "toastification"
   ],
   "cSpell.ignorePaths": [
     "analysis_options.yaml",

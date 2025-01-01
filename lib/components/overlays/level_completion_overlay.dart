@@ -1,7 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:toastification/toastification.dart';
 
+import '../../constants/colors.dart';
 import '../../store/current_score_notifier.dart';
 import '../../store/level_state_notifier.dart';
 import '../../utils/config.dart';
@@ -68,6 +70,7 @@ class LevelCompletionOverlay extends StatelessWidget {
     required this.reloadLevel,
     required this.onExit,
     required this.score,
+    required this.hasUnlockedSpaceship,
   });
 
   final Vector2 gameSize;
@@ -75,12 +78,47 @@ class LevelCompletionOverlay extends StatelessWidget {
   final VoidCallback onExit;
   final VoidCallback reloadLevel;
   final double score;
+  final bool hasUnlockedSpaceship;
 
   static const String overlayKey = 'level_completion_overlay';
   static const int priority = 2;
 
+  void _loadToast(BuildContext context) {
+    toastification.show(
+      context: context,
+      closeOnClick: true,
+      autoCloseDuration: const Duration(seconds: 5),
+      showIcon: true,
+      icon: const Icon(
+        Icons.rocket_launch,
+        color: Palette.primary,
+      ),
+      title: RobotoText(
+        text: AppLocalizations.of(context)!.spaceshipUnlockedTitle,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      description: RobotoText(
+        text: AppLocalizations.of(context)!.spaceshipUnlockedMessage,
+        fontSize: 12,
+        color: Colors.black,
+      ),
+      animationDuration: const Duration(milliseconds: 300),
+      animationBuilder: (BuildContext context, Animation<double> animation,
+              Alignment alignment, Widget child) =>
+          FadeTransition(
+        opacity: animation,
+        child: child,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (hasUnlockedSpaceship) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _loadToast(context));
+    }
+
     return BaseOverlay(
       gameSize: gameSize,
       child: Column(

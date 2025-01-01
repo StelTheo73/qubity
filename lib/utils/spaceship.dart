@@ -12,6 +12,23 @@ class SpaceshipLoader {
         defaultSpaceshipId;
   }
 
+  static Future<bool> hasUnlockedSpaceship(int levelId) async {
+    final int lastUnlockedLevel = await DeviceStore.getUnlockedLevel();
+    if (levelId < lastUnlockedLevel) {
+      return false;
+    }
+
+    for (final Map<String, dynamic> spaceship in spaceships.values) {
+      final int spaceshipUnlockLevel = spaceship['level']! as int;
+      if (lastUnlockedLevel <= spaceshipUnlockLevel &&
+          levelId >= spaceshipUnlockLevel) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   static Future<void> setSelectedSpaceship(String spaceshipId) async {
     await DeviceStore.prefs
         .setString(DeviceStoreKeys.spaceshipId.key, spaceshipId);

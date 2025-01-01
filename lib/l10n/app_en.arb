@@ -31,6 +31,8 @@
   "settings": "Settings",
   "spaceships": "Spaceships",
   "spaceshipSelect": "Select a Spaceship",
+  "spaceshipUnlockedTitle": "New spaceship unlocked!",
+  "spaceshipUnlockedMessage": "Check it out in the spaceship selection screen",
   "startLevel": "Start Level",
   "submit": "Submit",
   "takeQuiz": "Take a quiz to test your knowledge",

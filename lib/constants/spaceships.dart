@@ -3,17 +3,17 @@ const String defaultSpaceshipId = '001';
 const Map<String, Map<String, dynamic>> spaceships =
     <String, Map<String, dynamic>>{
   '001': <String, dynamic>{
-    'level': 1,
+    'level': 0,
     'name': 'Gray Spaceship',
     'image': 'assets/images/spaceships/001_default.png',
   },
   '002': <String, dynamic>{
-    'level': 1,
+    'level': 0,
     'name': 'Pink Spaceship',
     'image': 'assets/images/spaceships/002_unlocked.png',
   },
   '003': <String, dynamic>{
-    'level': 1,
+    'level': 0,
     'name': 'Blue Spaceship',
     'image': 'assets/images/spaceships/003_unlocked.png',
   },
