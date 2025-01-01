@@ -64,6 +64,7 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
                         return LockedSpaceship(
                           spaceshipName: spaceshipName,
                           imagePath: imagePath,
+                          unlockLevel: unlockLevel,
                         );
                       }
                       return UnlockedSpaceShip(

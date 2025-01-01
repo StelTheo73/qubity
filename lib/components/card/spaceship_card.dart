@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../../store/spaceship_notifier.dart';
 import '../../utils/spaceship.dart';
+import '../text/roboto.dart';
 import '../text/spaceship_name.dart';
 import './gesture_detector_card.dart';
 
@@ -73,10 +74,12 @@ class LockedSpaceship extends StatelessWidget {
     super.key,
     required this.spaceshipName,
     required this.imagePath,
+    required this.unlockLevel,
   });
 
   final String spaceshipName;
   final String imagePath;
+  final int unlockLevel;
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +106,13 @@ class LockedSpaceship extends StatelessWidget {
                   ),
                   Icon(
                     Icons.lock,
-                    size: 40.0,
-                    color: Colors.grey.withOpacity(0.9),
+                    size: 70.0,
+                    color: Colors.grey.withOpacity(1),
+                  ),
+                  RobotoText(
+                    text: unlockLevel.toString(),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
                 ],
               ),
