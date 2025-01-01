@@ -25,8 +25,8 @@ Future<void> main() async {
 
   Utils.init();
   await Utils.exitFullScreen();
-  await DeviceStore.init();
   await Configuration.init();
+  await DeviceStore.init();
   await LevelLoader.init();
 
   await Future.wait(<Future<void>>[
