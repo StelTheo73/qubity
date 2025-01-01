@@ -41,9 +41,6 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
 
             return Column(
               children: <Widget>[
-                const SizedBox(
-                  height: 40,
-                ),
                 Expanded(
                   child: GridView.builder(
                     gridDelegate:
