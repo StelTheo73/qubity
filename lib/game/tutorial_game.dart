@@ -19,10 +19,10 @@ enum TutorialState {
 class TutorialGame extends QubityGame {
   TutorialGame({required super.level});
 
-  late final RectangleComponent gateTutorial;
-  late final RectangleComponent registerTutorial;
-  late final RectangleComponent shootTutorial;
-  late final RectangleComponent exitTutorial;
+  late final TutorialBoxComponent gateTutorial;
+  late final TutorialBoxComponent registerTutorial;
+  late final TutorialBoxComponent shootTutorial;
+  late final TutorialBoxComponent exitTutorial;
 
   TutorialState tutorialState = TutorialState.gate;
 
@@ -41,12 +41,12 @@ class TutorialGame extends QubityGame {
     await Future.wait(<Future<void>>[
       super.setupUI(),
       super.setupGame(),
-      // super.loadTutorial(),
+      super.loadTutorial(),
     ]);
 
     await setupGameTutorial();
 
-    // pauseLevel(addOverlay: false);
+    pauseLevel(addOverlay: false);
   }
 
   @override
@@ -80,15 +80,17 @@ class TutorialGame extends QubityGame {
   Future<void> reloadLevel() async {
     await super.reloadLevel();
 
-    if (gateTutorial.isMounted) {
-      remove(gateTutorial);
+    for (final TutorialBoxComponent tutorialBox in <TutorialBoxComponent>[
+      gateTutorial,
+      registerTutorial,
+      shootTutorial,
+      exitTutorial,
+    ]) {
+      if (tutorialBox.isMounted) {
+        remove(tutorialBox);
+      }
     }
-    if (registerTutorial.isMounted) {
-      remove(registerTutorial);
-    }
-    if (shootTutorial.isMounted) {
-      remove(shootTutorial);
-    }
+
     tutorialState = TutorialState.gate;
     add(gateTutorial);
   }
