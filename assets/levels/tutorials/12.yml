@@ -1,0 +1,9 @@
+slides:
+  en:
+    - title: 'Hadamard Gate'
+      description: |+
+        The Hadamard Gate can also remove the superposition, restoring the qubit to its original state.
+  el:
+    - title: 'Πύλη Hadamard'
+      description: |+
+        Η Πύλη Hadamard μπορεί επίσης να αναιρέσει την υπέρθεση, επαναφέροντας το κβαντικό bit στην αρχική του κατάσταση.

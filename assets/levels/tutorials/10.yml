@@ -1,0 +1,40 @@
+slides:
+  en:
+    - title: 'Superposition'
+      description: |+
+        A classical bit can be in one of two states: 0 or 1.
+
+        A qubit can be in a superposition of states.
+
+        This means that it can be in a combination of |0⟩ and |1⟩ at the same time.
+
+        When a qubit is measured, it collapses to one of the two states.
+    - title: 'Hadamard Gate'
+      description: |+
+        In this level you will learn about the Hadamard gate.
+
+        The Hadamard gate is a fundamental gate in quantum computing. It creates a superposition of the |0⟩ and |1⟩ states.
+
+        If the qubit is in state |0⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and |1⟩.
+
+        If the qubit is in state |1⟩, applying a Hadamard gate puts it in a superposition of |0⟩ and -|1⟩.
+  el:
+    - title: 'Υπέρθεση'
+      description: |+
+        Ένα κλασσικό bit μπορεί να βρίσκεται σε μία από δύο καταστάσεις: 0 ή 1.
+
+        Ένα Qubit μπορεί να βρίσκεται σε υπέρθεση καταστάσεων.
+
+        Αυτό σημαίνει ότι μπορεί να βρίσκεται σε συνδυασμό των |0⟩ και |1⟩ ταυτόχρονα.
+
+        Όταν ένα Qubit μετριέται, καταρρέει σε μία από τις δύο καταστάσεις.
+
+    - title: 'Πύλη Hadamard'
+      description: |+
+        Σε αυτό το επίπεδο θα μάθετε για την πύλη Hadamard.
+
+        Η πύλη Hadamard είναι μια βασική πύλη στην κβαντική υπολογιστική. Δημιουργεί υπέρθεση των καταστάσεων |0⟩ και |1⟩.
+
+        Εάν το κβαντικό bit είναι στην κατάσταση |0⟩, η εφαρμογή μιας πύλης Hadamard το τοποθετεί σε υπέρθεση των καταστάσεων |0⟩ και |1⟩.
+
+        Εάν το κβαντικό bit είναι στην κατάσταση |1⟩, η εφαρμογή μιας πύλης Hadamard το τοποθετεί σε υπέρθεση των καταστάσεων |0⟩ και -|1⟩.

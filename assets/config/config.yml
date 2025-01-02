@@ -1,0 +1,9 @@
+app:
+  name: 'Qubity'
+defaultLanguage: 'en'
+debugMode: false
+levels: 30
+locales: ['en', 'gr']
+maxQuizScoreHistory: 30
+music: false
+tutorialLevelId: 0

@@ -1,0 +1,250 @@
+title: Game Levels
+
+levels:
+  - id: 0
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|00>', '-|10>']
+    target_image: enemy_003
+    steps: 2
+    gates: 'hx'
+
+  - id: 1
+    states: 'x'
+    initial: [['1', '0']]
+    targets: ['|1>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'x'
+
+  - id: 2
+    states: 'x'
+    initial: [['0', '1']]
+    targets: ['|0>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'x'
+
+  - id: 3
+    states: 'y'
+    initial: [['1', '0']]
+    targets: ['i|1>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'y'
+
+  - id: 4
+    states: 'y'
+    initial: [['0', '1']]
+    targets: ['-i|0>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'y'
+
+  - id: 5
+    states: 'y'
+    initial: [['0', 'i']]
+    targets: ['|0>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'y'
+
+  - id: 6
+    states: 'y'
+    initial: [['-i', '0']]
+    targets: ['|1>']
+    target_image: enemy_001
+    steps: 1
+    gates: 'y'
+
+  - id: 7
+    states: 'xy'
+    initial: [['0', '-i']]
+    targets: ['|1>']
+    target_image: enemy_001
+    steps: 2
+    gates: 'xy'
+
+  - id: 8
+    states: 'xy'
+    initial: [['0', '-i']]
+    targets: ['i|0>']
+    target_image: enemy_001
+    steps: 3
+    gates: 'xy'
+
+  - id: 9
+    states: 'h'
+    initial: [['1', '0']]
+    targets: ['-|0>']
+    target_image: enemy_001
+    steps: 3
+    gates: 'xz'
+
+  - id: 10
+    states: 'h'
+    initial: [['1', '0']]
+    targets: ['|0>', '|1>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'h'
+
+  - id: 11
+    states: 'h'
+    initial: [['0', '1']]
+    targets: ['|0>', '-|1>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'h'
+
+  - id: 12
+    states: 'h'
+    initial: [['sqrt(2)/2', '-sqrt(2)/2']]
+    targets: ['|1>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'h'
+
+  - id: 13
+    states: 'h'
+    initial: [['sqrt(2)/2', 'sqrt(2)/2']]
+    targets: ['|0>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'h'
+
+  - id: 14
+    states: 'h'
+    initial: [['1', '0']]
+    targets: ['|0>', '-|1>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'hx'
+
+  - id: 15
+    states: 'h'
+    initial: [['0', '1']]
+    targets: ['|0>', '|1>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'hx'
+
+  - id: 16
+    states: 'h'
+    initial: [['0', '1']]
+    targets: ['|1>', '-|0>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'hx'
+
+  - id: 17
+    states: 'h'
+    initial: [['sqrt(2)/2', '-sqrt(2)/2']]
+    targets: ['-|1>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'hx'
+
+  - id: 18
+    states: '2bits'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|10>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'x'
+
+  - id: 19
+    states: '2bits'
+    initial: [['0', '1'], ['0', '1']]
+    targets: ['|01>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'x'
+
+  - id: 20
+    states: '2bits'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|11>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'x'
+
+  - id: 21
+    states: '2bits'
+    initial: [['0', '1'], ['0', '1']]
+    targets: ['|00>']
+    target_image: enemy_002
+    steps: 2
+    gates: 'x'
+
+  - id: 22
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|00>', '|01>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'hx'
+
+  - id: 23
+    states: '2bits_phase'
+    initial: [['0', '1'], ['0', '1']]
+    targets: ['|01>', '-|11>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'hx'
+
+  - id: 24
+    states: '2bits_phase'
+    initial: [['sqrt(2)/2', 'sqrt(2)/2'], ['0', '1']]
+    targets: ['|01>']
+    target_image: enemy_002
+    steps: 1
+    gates: 'hx'
+
+  - id: 25
+    states: '2bits_phase'
+    initial: [['sqrt(2)/2', '-sqrt(2)/2'], ['0', '1']]
+    targets: ['|11>']
+    target_image: enemy_003
+    steps: 1
+    gates: 'hx'
+
+  - id: 26
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|00>', '|01>', '|10>', '|11>']
+    target_image: enemy_003
+    steps: 2
+    gates: 'hx'
+
+  - id: 27
+    states: '2bits_phase'
+    initial: [['1', '0'], ['sqrt(2)/2', 'sqrt(2)/2']]
+    targets: ['|00>', '|01>', '|10>', '|11>']
+    target_image: enemy_003
+    steps: 2
+    gates: 'hx'
+
+  - id: 28
+    states: '2bits_phase'
+    initial: [['1', '0'], ['0', '1']]
+    targets: ['-|00>', '|01>']
+    target_image: enemy_003
+    steps: 2
+    gates: 'hx'
+
+  - id: 29
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['|00>', '-|10>']
+    target_image: enemy_003
+    steps: 2
+    gates: 'hxz'
+
+  - id: 30
+    states: '2bits_phase'
+    initial: [['1', '0'], ['1', '0']]
+    targets: ['-|00>', '|10>']
+    target_image: enemy_003
+    steps: 3
+    gates: 'hxz'

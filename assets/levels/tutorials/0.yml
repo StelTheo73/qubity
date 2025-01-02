@@ -1,0 +1,64 @@
+description: Tutorial for Tutorial Level
+slides:
+  en:
+    - title: 'Qubit'
+      description: |+
+        A qubit is the fundamental unit of quantum information.
+
+        A classical bit can be in one of two states: 0 or 1.
+
+        A qubit can be in a state that is a linear combination of |0⟩ and |1⟩.
+    - title: 'Superposition'
+      description: |+
+        A classical bit can be in one of two states: 0 or 1.
+
+        A qubit can be in a superposition of states.
+
+        This means that it can be in a combination of |0⟩ and |1⟩ at the same time.
+
+        When a qubit is measured, it collapses to one of the two states.
+    - title: 'Quantum Gates'
+      description: |+
+        Quantum gates are the building blocks of quantum circuits.
+
+        They are used to manipulate qubits and perform quantum computations.
+
+        A quantum gate is a unitary operator that acts on one or more qubits.
+    - title: 'Quantum Register'
+      description: |+
+        A quantum register is a collection of qubits.
+
+        It is the quantum equivalent of a classical register, which is a collection of bits.
+
+        A quantum register can be in a superposition of states, just like a single qubit.
+  el:
+    - title: 'Κβαντικό Bit (Qubit)'
+      description: |+
+        Ένα Qubit είναι η βασική μονάδα της κβαντικής πληροφορίας.
+
+        Ένα κλασσικό bit μπορεί να βρίσκεται σε μία από δύο καταστάσεις: 0 ή 1.
+
+        Ένα Qubit μπορεί να βρίσκεται σε μία κατάσταση που είναι γραμμικός συνδυασμός των |0⟩ και |1⟩.
+    - title: 'Υπέρθεση'
+      description: |+
+        Ένα κλασσικό bit μπορεί να βρίσκεται σε μία από δύο καταστάσεις: 0 ή 1.
+
+        Ένα Qubit μπορεί να βρίσκεται σε υπέρθεση καταστάσεων.
+
+        Αυτό σημαίνει ότι μπορεί να βρίσκεται σε συνδυασμό των |0⟩ και |1⟩ ταυτόχρονα.
+
+        Όταν ένα Qubit μετριέται, καταρρέει σε μία από τις δύο καταστάσεις.
+    - title: 'Κβαντικές Πύλες'
+      description: |+
+        Οι κβαντικές πύλες είναι τα θεμελιώδη στοιχεία των κβαντικών κυκλωμάτων.
+
+        Χρησιμοποιούνται για την χειρισμό των Qubits και την εκτέλεση κβαντικών υπολογισμών.
+
+        Μια κβαντική πύλη είναι ένας μοναδιαίος τελεστής που δρα σε έναν ή περισσότερους Qubits.
+    - title: 'Κβαντικός Καταχωρητής'
+      description: |+
+        Ένας κβαντικός καταχωρητής είναι μια συλλογή από Qubits.
+
+        Είναι το κβαντικό αντίστοιχο ενός κλασσικού καταχωρητή, ο οποίος είναι μια συλλογή από bits.
+
+        Ένας κβαντικός καταχωρητής μπορεί να βρίσκεται σε υπέρθεση καταστάσεων, όπως και ένα μόνο Qubit.
