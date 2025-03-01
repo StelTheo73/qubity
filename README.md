@@ -7,6 +7,12 @@ Educational Mobile Game for Quantum Computing
 [![Powered by Flame](https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg)](https://flame-engine.org)
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
 
+## Installation
+
+Download the APK from the following destination and install it on your Android device or emulator:
+
+https://github.com/StelTheo73/qubity/tree/main/release/
+
 ## Contributors
 
 [@garachovitis](https://github.com/garachovitis): Contributed to game assets and designed the background image.<br>
