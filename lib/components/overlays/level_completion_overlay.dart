@@ -101,7 +101,7 @@ class LevelCompletionOverlay extends StatelessWidget {
       description: RobotoText(
         text: AppLocalizations.of(context)!.spaceshipUnlockedMessage,
         fontSize: 12,
-        color: Colors.black,
+        color: Palette.black,
       ),
       animationDuration: const Duration(milliseconds: 300),
       animationBuilder: (BuildContext context, Animation<double> animation,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:toastification/toastification.dart';
 import 'package:yaml/yaml.dart';
 
+import 'api/db_client.dart';
 import 'constants/routes.dart';
 import 'l10n/app_localizations.dart';
 import 'screens/game.dart';
@@ -28,6 +30,7 @@ Future<void> main() async {
   await Configuration.init();
   await DeviceStore.init();
   await LevelLoader.init();
+  await DatabaseClient.init();
 
   await Future.wait(<Future<void>>[
     localeNotifier.init(),
@@ -45,42 +48,44 @@ class QubityApp extends StatelessWidget {
     return ListenableBuilder(
       listenable: localeNotifier,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: Configuration.appName,
-          locale: localeNotifier.locale,
-          // ignore: strict_raw_type, always_specify_types
-          localizationsDelegates: const <LocalizationsDelegate>[
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          routes: <String, WidgetBuilder>{
-            AppRoute.game.route: (BuildContext context) {
-              final YamlMap level =
-                  ModalRoute.of(context)!.settings.arguments! as YamlMap;
-              return GameScreen(initialLevel: level);
+        return ToastificationWrapper(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: Configuration.appName,
+            locale: localeNotifier.locale,
+            // ignore: strict_raw_type, always_specify_types
+            localizationsDelegates: const <LocalizationsDelegate>[
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            routes: <String, WidgetBuilder>{
+              AppRoute.game.route: (BuildContext context) {
+                final YamlMap level =
+                    ModalRoute.of(context)!.settings.arguments! as YamlMap;
+                return GameScreen(initialLevel: level);
+              },
+              AppRoute.home.route: (BuildContext context) => const HomeScreen(),
+              AppRoute.levels.route: (BuildContext context) =>
+                  const LevelsScreen(),
+              AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
+              AppRoute.quizMenu.route: (BuildContext context) =>
+                  const QuizMenuScreen(),
+              AppRoute.quizHistory.route: (BuildContext context) =>
+                  const QuizHistoryScreen(),
+              AppRoute.spaceships.route: (BuildContext context) =>
+                  const SpaceshipsScreen(),
+              AppRoute.settings.route: (BuildContext context) =>
+                  const SettingsScreen(),
+              AppRoute.tutorial.route: (BuildContext context) {
+                final YamlMap level =
+                    ModalRoute.of(context)!.settings.arguments! as YamlMap;
+                return TutorialScreen(tutorialLevel: level);
+              }
             },
-            AppRoute.home.route: (BuildContext context) => const HomeScreen(),
-            AppRoute.levels.route: (BuildContext context) =>
-                const LevelsScreen(),
-            AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
-            AppRoute.quizMenu.route: (BuildContext context) =>
-                const QuizMenuScreen(),
-            AppRoute.quizHistory.route: (BuildContext context) =>
-                const QuizHistoryScreen(),
-            AppRoute.spaceships.route: (BuildContext context) =>
-                const SpaceshipsScreen(),
-            AppRoute.settings.route: (BuildContext context) =>
-                const SettingsScreen(),
-            AppRoute.tutorial.route: (BuildContext context) {
-              final YamlMap level =
-                  ModalRoute.of(context)!.settings.arguments! as YamlMap;
-              return TutorialScreen(tutorialLevel: level);
-            }
-          },
+          ),
         );
       },
     );

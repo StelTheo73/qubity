@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.4
+  sdk: ^3.7.0
 
 dependencies:
   cupertino_icons: ^1.0.8
@@ -18,7 +18,7 @@ dependencies:
   function_tree: ^0.9.1
   google_fonts: ^6.2.1
   language_picker: ^0.4.5
-  # mongo_dart: ^0.10.4
+  mongo_dart: ^0.10.3
   intl: ^0.19.0
   qartvm: ^0.0.5
   shared_preferences: ^2.3.3

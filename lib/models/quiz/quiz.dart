@@ -1,10 +1,14 @@
 import 'dart:convert';
+
 import 'package:yaml/yaml.dart';
 
+import '../../api/db_client.dart';
+import '../../components/toast/score_save_toast.dart';
 import '../../constants/assets.dart';
 import '../../store/locale_notifier.dart';
 import '../../utils/device_store.dart';
 import '../../utils/utils.dart';
+import '../schemas/quiz.dart';
 
 class QuizController {
   final Map<int, bool> _answers = <int, bool>{};
@@ -38,6 +42,20 @@ class QuizController {
     return _answers.values.where((bool answer) => answer).length;
   }
 
+  Future<DbClientResponse> saveScore(
+      int correct, int total, DateTime date) async {
+    final String userId = await DeviceStore.getUserId();
+    final QuizSchema quizSchema = QuizSchema(
+      userId: userId,
+      correct: correct,
+      total: total,
+      date: date,
+    );
+
+    final DbClientResponse res = await DatabaseClient.insertScore(quizSchema);
+    return res;
+  }
+
   Future<void> onSubmit() async {
     final int score = getScore();
     final QuizScore quizScore = QuizScore(
@@ -45,7 +63,17 @@ class QuizController {
       noOfQuestions: _answers.length,
       date: Utils.getUtcTime(),
     );
+    // Save locally
     await quizScore.save();
+    // Save to database
+    final DbClientResponse res =
+        await saveScore(score, _answers.length, quizScore.date);
+
+    final ScoreSaveToast toast = ScoreSaveToast(
+      success: res.success,
+      message: res.message,
+    );
+    toast.show();
   }
 }
 

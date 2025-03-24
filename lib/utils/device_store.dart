@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 import '../constants/spaceships.dart';
 import '../models/quiz/quiz.dart';
@@ -11,7 +12,8 @@ enum DeviceStoreKeys {
   levelScores('levelScores'),
   quizScore('quizScore'),
   spaceshipId('spaceship'),
-  unlockedLevel('unlockedLevel');
+  unlockedLevel('unlockedLevel'),
+  userId('userId');
 
   const DeviceStoreKeys(this.key);
 
@@ -69,6 +71,10 @@ class DeviceStore {
     return (await prefs.getInt(DeviceStoreKeys.unlockedLevel.key)) ?? 1;
   }
 
+  static Future<String> getUserId() async {
+    return await prefs.getString(DeviceStoreKeys.userId.key) ?? _createUserId();
+  }
+
   static Future<void> setLanguage(String language) async {
     await prefs.setString(DeviceStoreKeys.language.key, language);
   }
@@ -104,12 +110,20 @@ class DeviceStore {
         prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId),
         prefs.setString(DeviceStoreKeys.levelScores.key, '{}'),
         prefs.setString(DeviceStoreKeys.quizScore.key, '[]'),
+        prefs.setString(DeviceStoreKeys.userId.key, ''),
       ],
     );
+
+    await _createUserId();
   }
 
   // Private Methods
   // ---------------
+  static Future<String> _createUserId() async {
+    final String userId = const Uuid().v4();
+    await prefs.setString(DeviceStoreKeys.userId.key, userId);
+    return userId;
+  }
 
   static Future<void> _setupDeviceStore() async {
     final String language =
@@ -144,6 +158,12 @@ class DeviceStore {
         jsonDecode(scoresString) as Map<String, dynamic>;
     if (scoresMap.isEmpty) {
       await prefs.setString(DeviceStoreKeys.levelScores.key, '{}');
+    }
+
+    final String userId =
+        await prefs.getString(DeviceStoreKeys.userId.key) ?? '';
+    if (userId.isEmpty) {
+      await _createUserId();
     }
   }
 }

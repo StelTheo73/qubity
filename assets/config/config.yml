@@ -7,3 +7,10 @@ locales: ['en', 'gr']
 maxQuizScoreHistory: 30
 music: false
 tutorialLevelId: 0
+database:
+  cluster: qubity.cqczg
+  database: qubity
+  username: player
+  password: sgU7tWLCvPs9AO5z
+  collections:
+    score: score
