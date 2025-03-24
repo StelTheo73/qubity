@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/text/roboto.dart';
 import '../../constants/colors.dart';
 import '../../constants/routes.dart';
+import '../../l10n/app_localizations.dart';
 import '../base.dart';
 
 class QuizMenuScreen extends StatefulWidget {

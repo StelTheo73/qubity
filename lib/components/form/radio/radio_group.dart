@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../constants/colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../text/roboto.dart';
 
 class RadioGroup extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../components/alert/delete_data.dart';
 import '../components/button/base_button.dart';
 import '../components/form/language/language_selector.dart';
 import '../constants/colors.dart';
+import '../l10n/app_localizations.dart';
 import 'base.dart';
 
 class SettingsScreen extends StatefulWidget {

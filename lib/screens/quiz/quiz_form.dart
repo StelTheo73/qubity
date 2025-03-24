@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/button/base_button.dart';
 import '../../components/form/radio/quiz_radio_group.dart';
 import '../../components/text/roboto.dart';
 import '../../constants/colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../models/quiz/quiz.dart';
 import '../../store/quiz_submission_notifier.dart';
 

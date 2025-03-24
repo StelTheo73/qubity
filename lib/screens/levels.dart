@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yaml/yaml.dart';
 
 import '../components/card/level_card.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/level.dart';
 import 'base.dart';
 

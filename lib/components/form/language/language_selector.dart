@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:language_picker/language_picker_dropdown.dart';
 import 'package:language_picker/languages.dart';
 
 import '../../../constants/colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../store/locale_notifier.dart';
 import '../../../utils/utils.dart';
 import '../../text/roboto.dart';

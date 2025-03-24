@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/text/roboto.dart';
 import '../../constants/colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../models/quiz/quiz.dart';
 import '../base.dart';
 

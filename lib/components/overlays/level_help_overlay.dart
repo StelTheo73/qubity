@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants/colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../store/level_help_notifier.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';

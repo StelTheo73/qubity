@@ -1,9 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../constants/colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../store/current_score_notifier.dart';
 import '../../store/level_state_notifier.dart';
 import '../../utils/config.dart';
