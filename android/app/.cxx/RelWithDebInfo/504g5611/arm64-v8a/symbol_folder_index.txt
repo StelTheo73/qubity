@@ -1,0 +1,1 @@
+/home/steltheo73/Desktop/Thesis/app/qubity/build/app/intermediates/cxx/RelWithDebInfo/504g5611/obj/arm64-v8a
