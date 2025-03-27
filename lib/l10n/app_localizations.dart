@@ -293,6 +293,12 @@ abstract class AppLocalizations {
   /// **'Check it out in the spaceship selection screen'**
   String get spaceshipUnlockedMessage;
 
+  /// No description provided for @startJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Your Journey'**
+  String get startJourney;
+
   /// No description provided for @startLevel.
   ///
   /// In en, this message translates to:

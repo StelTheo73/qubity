@@ -116,6 +116,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get spaceshipUnlockedMessage => 'Θα το βρείτε στην οθόνη επιλογής διαστημοπλοίων';
 
   @override
+  String get startJourney => 'Έναρξη του Ταξιδιού σας';
+
+  @override
   String get startLevel => 'Έναρξη';
 
   @override

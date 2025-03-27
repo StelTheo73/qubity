@@ -9,6 +9,7 @@ import 'l10n/app_localizations.dart';
 import 'screens/game.dart';
 import 'screens/home.dart';
 import 'screens/levels.dart';
+import 'screens/onboarding.dart';
 import 'screens/quiz/quiz.dart';
 import 'screens/quiz/quiz_history.dart';
 import 'screens/quiz/quiz_menu.dart';
@@ -20,6 +21,7 @@ import 'store/locale_notifier.dart';
 import 'utils/config.dart';
 import 'utils/device_store.dart';
 import 'utils/level.dart';
+import 'utils/onboarding.dart';
 import 'utils/utils.dart';
 
 Future<void> main() async {
@@ -30,18 +32,23 @@ Future<void> main() async {
   await Configuration.init();
   await DeviceStore.init();
   await LevelLoader.init();
-  await DatabaseClient.init();
+
+  await Future.wait(<Future<void>>[Onboarding.init(), DatabaseClient.init()]);
 
   await Future.wait(<Future<void>>[
     localeNotifier.init(),
     levelScoreNotifier.init(),
   ]);
 
-  runApp(const QubityApp());
+  final bool isOnboardingCompleted = await DeviceStore.getOnboardingCompleted();
+
+  runApp(QubityApp(isOnboardingCompleted: isOnboardingCompleted));
 }
 
 class QubityApp extends StatelessWidget {
-  const QubityApp({super.key});
+  const QubityApp({super.key, required this.isOnboardingCompleted});
+
+  final bool isOnboardingCompleted;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +68,10 @@ class QubityApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
+            initialRoute:
+                !isOnboardingCompleted
+                    ? AppRoute.onboarding.route
+                    : AppRoute.home.route,
             routes: <String, WidgetBuilder>{
               AppRoute.game.route: (BuildContext context) {
                 final YamlMap level =
@@ -70,6 +81,8 @@ class QubityApp extends StatelessWidget {
               AppRoute.home.route: (BuildContext context) => const HomeScreen(),
               AppRoute.levels.route:
                   (BuildContext context) => const LevelsScreen(),
+              AppRoute.onboarding.route:
+                  (BuildContext context) => const OnboardingScreen(),
               AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
               AppRoute.quizMenu.route:
                   (BuildContext context) => const QuizMenuScreen(),

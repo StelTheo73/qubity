@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 
 class BaseOverlay extends StatelessWidget {
-  const BaseOverlay({
-    super.key,
-    required this.child,
-    required this.gameSize,
-  });
+  const BaseOverlay({super.key, required this.child, required this.gameSize});
 
   final Vector2 gameSize;
   final Widget child;

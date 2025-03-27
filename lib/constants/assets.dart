@@ -50,3 +50,6 @@ const String shootButtonPath = 'assets/images/rest/shoot_button.png';
 // Quiz
 //
 const String questionsPath = 'assets/quiz/questions.yml';
+// Onboarding
+//
+const String onboardingPath = 'assets/onboarding/onboarding.yml';

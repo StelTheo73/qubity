@@ -1,0 +1,41 @@
+slides:
+  en:
+    - title: 'Welcome to Qubity'
+      description: |+
+        Qubity is an educational mobile game
+        that introduces you to the fascinating world of quantum computing.
+
+        By playing this game, you will learn about quantum bits, quantum registers,
+        quantum gates, and the concept of superposition, traveling with a spaceship.
+    - title: 'Your Journey'
+      description: |+
+        The position of your spaceship is controlled by the state of a quantum register.
+
+        On your journey, you will encounter asteroids that block your path.
+
+        You will need to use quantum gates to move the spaceship to the right position
+        and neutralize the asteroids.
+    - title: 'Controls'
+      description: |+
+        We recommend that you play the Tutorial Level to get familiar with the controls
+        before starting your journey.
+  el:
+    - title: 'Καλώς ήρθατε στο Qubity'
+      description: |+
+        Το Qubity είναι ένα εκπαιδευτικό παιχνίδι για κινητά
+        που θα σας εισάγει στον συναρπαστικό κόσμο της κβαντικής υπολογιστικής.
+
+        Παίζοντας αυτό το παιχνίδι, θα μάθετε για τα κβαντικά bit, τους κβαντικούς καταχωρητές,
+        τις κβαντικές πύλες και την έννοια της υπέρθεσης, ταξιδεύοντας με ένα διαστημόπλοιο.
+    - title: 'Το Ταξίδι σας'
+      description: |+
+        Η θέση του διαστημοπλοίου σας ελέγχεται από την κατάσταση ενός κβαντικού καταχωρητή.
+
+        Στο ταξίδι σας, θα συναντήσετε αστεροειδείς που σταματούν την πορεία σας.
+
+        Θα χρειαστεί να χρησιμοποιήσετε τις κβαντικές πύλες για να μετακινήσετε το διαστημόπλοιο
+        στη σωστή θέση και να εξουδετερώσετε τους αστεροειδείς.
+    - title: 'Χειρισμός'
+      description: |+
+        Σας συμβουλεύουμε να παίξετε το Επίπεδο Επίδειξης για να εξοικειωθείτε με το χειρισμό,
+        πριν ξεκινήσετε το ταξίδι σας.

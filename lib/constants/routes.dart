@@ -3,6 +3,7 @@ enum AppRoute {
   game('/game'),
   home('/'),
   levels('/levels'),
+  onboarding('/onboarding'),
   quiz('/quiz'),
   quizHistory('/quiz-history'),
   quizMenu('/quiz-menu'),

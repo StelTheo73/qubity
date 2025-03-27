@@ -10,6 +10,7 @@ import 'config.dart';
 enum DeviceStoreKeys {
   language('language'),
   levelScores('levelScores'),
+  onboardingCompleted('onboardingCompleted'),
   quizScore('quizScore'),
   spaceshipId('spaceship'),
   unlockedLevel('unlockedLevel'),
@@ -45,8 +46,15 @@ class DeviceStore {
         await prefs.getString(DeviceStoreKeys.levelScores.key) ?? '{}';
     final Map<String, dynamic> scoresMap =
         jsonDecode(scoresString) as Map<String, dynamic>;
-    return scoresMap.map((String key, dynamic value) =>
-        MapEntry<String, double>(key, double.parse(value.toString())));
+    return scoresMap.map(
+      (String key, dynamic value) =>
+          MapEntry<String, double>(key, double.parse(value.toString())),
+    );
+  }
+
+  static Future<bool> getOnboardingCompleted() async {
+    return await prefs.getBool(DeviceStoreKeys.onboardingCompleted.key) ??
+        false;
   }
 
   static Future<List<QuizScore>> getQuizScore() async {
@@ -57,11 +65,13 @@ class DeviceStore {
 
     final List<QuizScore> quizScores = <QuizScore>[];
     for (final dynamic quizScore in quizScoreList) {
-      quizScores.add(QuizScore(
-        score: quizScore['score'] as int,
-        noOfQuestions: (quizScore['noOfQuestions'] ?? 0) as int,
-        date: DateTime.parse(quizScore['date'] as String),
-      ));
+      quizScores.add(
+        QuizScore(
+          score: quizScore['score'] as int,
+          noOfQuestions: (quizScore['noOfQuestions'] ?? 0) as int,
+          date: DateTime.parse(quizScore['date'] as String),
+        ),
+      );
     }
 
     return quizScores;
@@ -85,6 +95,10 @@ class DeviceStore {
     await prefs.setString(DeviceStoreKeys.levelScores.key, jsonEncode(scores));
   }
 
+  static Future<void> setOnboardingCompleted() async {
+    await prefs.setBool(DeviceStoreKeys.onboardingCompleted.key, true);
+  }
+
   static Future<void> setQuizScore(QuizScore quizScore) async {
     final List<QuizScore> scores = await getQuizScore();
     scores.add(quizScore);
@@ -104,15 +118,13 @@ class DeviceStore {
   }
 
   static Future<void> resetDeviceStore() async {
-    Future.wait(
-      <Future<void>>[
-        prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1),
-        prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId),
-        prefs.setString(DeviceStoreKeys.levelScores.key, '{}'),
-        prefs.setString(DeviceStoreKeys.quizScore.key, '[]'),
-        prefs.setString(DeviceStoreKeys.userId.key, ''),
-      ],
-    );
+    Future.wait(<Future<void>>[
+      prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1),
+      prefs.setString(DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId),
+      prefs.setString(DeviceStoreKeys.levelScores.key, '{}'),
+      prefs.setString(DeviceStoreKeys.quizScore.key, '[]'),
+      prefs.setString(DeviceStoreKeys.userId.key, ''),
+    ]);
 
     await _createUserId();
   }
@@ -130,13 +142,21 @@ class DeviceStore {
         await prefs.getString(DeviceStoreKeys.language.key) ?? '';
     if (language.isEmpty) {
       await prefs.setString(
-          DeviceStoreKeys.language.key, Configuration.defaultLanguage);
+        DeviceStoreKeys.language.key,
+        Configuration.defaultLanguage,
+      );
     }
 
     final int level =
         await prefs.getInt(DeviceStoreKeys.unlockedLevel.key) ?? -1;
     if (level == -1) {
       await prefs.setInt(DeviceStoreKeys.unlockedLevel.key, 1);
+    }
+
+    final bool onboardingCompleted =
+        await prefs.getBool(DeviceStoreKeys.onboardingCompleted.key) ?? false;
+    if (!onboardingCompleted) {
+      await prefs.setBool(DeviceStoreKeys.onboardingCompleted.key, false);
     }
 
     final String quizScore =
@@ -149,7 +169,9 @@ class DeviceStore {
         await prefs.getString(DeviceStoreKeys.spaceshipId.key) ?? '';
     if (spaceship.isEmpty) {
       await prefs.setString(
-          DeviceStoreKeys.spaceshipId.key, defaultSpaceshipId);
+        DeviceStoreKeys.spaceshipId.key,
+        defaultSpaceshipId,
+      );
     }
 
     final String scoresString =

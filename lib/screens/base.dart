@@ -21,24 +21,28 @@ class BaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: title,
-        showBackButton: showBackButton,
-        onBackButtonPressed: onBackButtonPressed,
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: hasBackground
-            ? const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(backgroundSmallScreenPath),
-                  fit: BoxFit.cover,
-                ),
-              )
-            : null,
-        child: body,
+    return PopScope(
+      onPopInvoked: (bool didPop) => false,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: title,
+          showBackButton: showBackButton,
+          onBackButtonPressed: onBackButtonPressed,
+        ),
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration:
+              hasBackground
+                  ? const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(backgroundSmallScreenPath),
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                  : null,
+          child: body,
+        ),
       ),
     );
   }

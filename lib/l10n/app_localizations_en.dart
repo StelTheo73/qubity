@@ -116,6 +116,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spaceshipUnlockedMessage => 'Check it out in the spaceship selection screen';
 
   @override
+  String get startJourney => 'Start Your Journey';
+
+  @override
   String get startLevel => 'Start Level';
 
   @override

@@ -17,17 +17,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: showBackButton
-          ? IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                if (onBackButtonPressed != null) {
-                  onBackButtonPressed!();
-                }
-                Navigator.pop(context);
-              },
-            )
-          : null,
+      automaticallyImplyLeading: false,
+      leading:
+          showBackButton
+              ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  if (onBackButtonPressed != null) {
+                    onBackButtonPressed!();
+                  }
+                  Navigator.pop(context);
+                },
+              )
+              : null,
       title: RobotoText(
         text: title,
         fontSize: 24,
