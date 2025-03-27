@@ -40,15 +40,16 @@ class Configuration {
     GoogleFonts.config.allowRuntimeFetching = false;
 
     LicenseRegistry.addLicense(() async* {
-      final String license =
-          await rootBundle.loadString('google_fonts/LICENSE.txt');
+      final String license = await rootBundle.loadString(
+        'google_fonts/LICENSE.txt',
+      );
       yield LicenseEntryWithLineBreaks(<String>['google_fonts'], license);
     });
   }
 
   static List<Locale> _getSupportedLocales(YamlList locales) {
     final List<Locale> supportedLocales = <Locale>[];
-    for (final locale in locales.value) {
+    for (final dynamic locale in locales.value) {
       supportedLocales.add(Locale(locale as String));
     }
     return supportedLocales;

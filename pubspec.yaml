@@ -8,8 +8,8 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.8
-  flame: ^1.18.0
-  flame_audio: ^2.10.4
+  flame: ^1.26.1
+  flame_audio: ^2.11.2
   flame_noise: ^0.3.2+1
   flutter:
     sdk: flutter

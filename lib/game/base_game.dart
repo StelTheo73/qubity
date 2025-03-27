@@ -67,10 +67,7 @@ class BaseGame extends FlameGame<World>
       levelStateNotifier.levelId,
     );
 
-    await Future.wait(<Future<void>>[
-      _calculateScore(),
-      _unlockNextLevel(),
-    ]);
+    await Future.wait(<Future<void>>[_calculateScore(), _unlockNextLevel()]);
 
     overlays.add(
       LevelCompletionOverlay.overlayKey,
@@ -132,8 +129,9 @@ class BaseGame extends FlameGame<World>
   }
 
   Future<void> loadHelp() async {
-    final List<Map<String, String>> help =
-        await LevelLoader.getLevelHelp(level);
+    final List<Map<String, String>> help = await LevelLoader.getLevelHelp(
+      level,
+    );
     levelHelpNotifier.setLevelHelpMap(help);
   }
 
@@ -143,10 +141,7 @@ class BaseGame extends FlameGame<World>
     );
     level = nextLevel;
     await reloadLevel();
-    await Future.wait(<Future<void>>[
-      loadTutorial(),
-      loadHelp(),
-    ]);
+    await Future.wait(<Future<void>>[loadTutorial(), loadHelp()]);
   }
 
   Future<void> loadTutorial() async {
@@ -174,10 +169,7 @@ class BaseGame extends FlameGame<World>
     pauseEngine();
     running = false;
     addOverlay &&
-        overlays.add(
-          PauseOverlay.overlayKey,
-          priority: PauseOverlay.priority,
-        );
+        overlays.add(PauseOverlay.overlayKey, priority: PauseOverlay.priority);
   }
 
   void renderLevelStateOverlay(Canvas canvas) {
@@ -257,11 +249,7 @@ class BaseGame extends FlameGame<World>
     shootButton = ShootButton();
     pauseButton = PauseButton();
     restartButton = RestartButton();
-    await addAll(<Component>[
-      shootButton,
-      pauseButton,
-      restartButton,
-    ]);
+    await addAll(<Component>[shootButton, pauseButton, restartButton]);
   }
 
   void showHelp() {
@@ -339,14 +327,13 @@ class BaseGame extends FlameGame<World>
 
   Future<void> _setupRegister() async {
     final YamlList initialQubits = level['initial'] as YamlList;
-    final List<Qbit> initialQubitsList = initialQubits
-        .map(
-          (dynamic qubit) => CreateQBit.createQBit(
-            qubit[0] as String,
-            qubit[1] as String,
-          ),
-        )
-        .toList();
+    final List<Qbit> initialQubitsList =
+        initialQubits
+            .map(
+              (dynamic qubit) =>
+                  CreateQBit.createQBit(qubit[0] as String, qubit[1] as String),
+            )
+            .toList();
 
     gameRegister = QRegister(initialQubitsList);
     registerComponent = RegisterComponent(size, gameRegister);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
 
 import '../components/card/spaceship_card.dart';
 import '../constants/spaceships.dart';
+import '../l10n/app_localizations.dart';
 import '../store/spaceship_notifier.dart';
 import '../utils/device_store.dart';
 import '../utils/spaceship.dart';
@@ -45,12 +45,13 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
+                          crossAxisCount: 2,
+                        ),
                     itemCount: spaceships.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final String spaceshipKey =
-                          spaceships.keys.elementAt(index);
+                      final String spaceshipKey = spaceships.keys.elementAt(
+                        index,
+                      );
                       final Map<String, dynamic> spaceship =
                           spaceships[spaceshipKey]!;
                       final String spaceshipName = spaceship['name'] as String;
@@ -77,9 +78,7 @@ class _SpaceshipsScreenState extends State<SpaceshipsScreen> {
             );
           } else {
             if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
+              return Center(child: Text('Error: ${snapshot.error}'));
             }
             return const Center(child: CircularProgressIndicator());
           }

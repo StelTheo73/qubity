@@ -68,22 +68,22 @@ class QubityApp extends StatelessWidget {
                 return GameScreen(initialLevel: level);
               },
               AppRoute.home.route: (BuildContext context) => const HomeScreen(),
-              AppRoute.levels.route: (BuildContext context) =>
-                  const LevelsScreen(),
+              AppRoute.levels.route:
+                  (BuildContext context) => const LevelsScreen(),
               AppRoute.quiz.route: (BuildContext context) => const QuizScreen(),
-              AppRoute.quizMenu.route: (BuildContext context) =>
-                  const QuizMenuScreen(),
-              AppRoute.quizHistory.route: (BuildContext context) =>
-                  const QuizHistoryScreen(),
-              AppRoute.spaceships.route: (BuildContext context) =>
-                  const SpaceshipsScreen(),
-              AppRoute.settings.route: (BuildContext context) =>
-                  const SettingsScreen(),
+              AppRoute.quizMenu.route:
+                  (BuildContext context) => const QuizMenuScreen(),
+              AppRoute.quizHistory.route:
+                  (BuildContext context) => const QuizHistoryScreen(),
+              AppRoute.spaceships.route:
+                  (BuildContext context) => const SpaceshipsScreen(),
+              AppRoute.settings.route:
+                  (BuildContext context) => const SettingsScreen(),
               AppRoute.tutorial.route: (BuildContext context) {
                 final YamlMap level =
                     ModalRoute.of(context)!.settings.arguments! as YamlMap;
                 return TutorialScreen(tutorialLevel: level);
-              }
+              },
             },
           ),
         );

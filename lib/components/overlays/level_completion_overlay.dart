@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:toastification/toastification.dart';
 
-import '../../constants/colors.dart';
+import '../../constants/sounds.dart';
 import '../../l10n/app_localizations.dart';
 import '../../store/current_score_notifier.dart';
 import '../../store/level_state_notifier.dart';
@@ -10,6 +10,7 @@ import '../../utils/config.dart';
 import '../button/base_button.dart';
 import '../score/score.dart';
 import '../text/roboto.dart';
+import '../toast/achievement_toast.dart';
 import 'base_overlay.dart';
 
 class HighScoreWidget extends StatelessWidget {
@@ -83,41 +84,15 @@ class LevelCompletionOverlay extends StatelessWidget {
   static const String overlayKey = 'level_completion_overlay';
   static const int priority = 2;
 
-  void _loadToast(BuildContext context) {
-    toastification.show(
-      context: context,
-      closeOnClick: true,
-      autoCloseDuration: const Duration(seconds: 5),
-      showIcon: true,
-      icon: const Icon(
-        Icons.rocket_launch,
-        color: Palette.primary,
-      ),
-      title: RobotoText(
-        text: AppLocalizations.of(context)!.spaceshipUnlockedTitle,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-      description: RobotoText(
-        text: AppLocalizations.of(context)!.spaceshipUnlockedMessage,
-        fontSize: 12,
-        color: Palette.black,
-      ),
-      animationDuration: const Duration(milliseconds: 300),
-      animationBuilder: (BuildContext context, Animation<double> animation,
-              Alignment alignment, Widget child) =>
-          FadeTransition(
-        opacity: animation,
-        child: child,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     if (hasUnlockedSpaceship) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _loadToast(context));
+      FlameAudio.play(Sounds.Achievement.sound);
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => AchievementToast(context).show(),
+      );
     }
+    FlameAudio.play(Sounds.Completion.sound);
 
     return BaseOverlay(
       gameSize: gameSize,
@@ -134,9 +109,7 @@ class LevelCompletionOverlay extends StatelessWidget {
           const SizedBox(height: 5),
           const HighScoreWidget(),
           const SizedBox(height: 20),
-          NextLevelWidget(
-            loadNextLevel: loadNextLevel,
-          ),
+          NextLevelWidget(loadNextLevel: loadNextLevel),
           const SizedBox(height: 20),
           BaseButton(
             onPressed: reloadLevel,

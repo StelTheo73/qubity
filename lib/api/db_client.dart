@@ -58,15 +58,17 @@ class DatabaseClient {
         .collection(scoreCollection)
         .insertOne(quiz.toMap())
         .then((WriteResult result) {
-      if (result.nInserted == 0) {
-        throw Exception(result.writeError?.errmsg ?? 'Unknown error');
-      }
-      status = true;
-      message = '';
-    }).catchError((Object e) {
-      status = false;
-      message = e.toString();
-    }).whenComplete(() => db.close());
+          if (result.nInserted == 0) {
+            throw Exception(result.writeError?.errmsg ?? 'Unknown error');
+          }
+          status = true;
+          message = '';
+        })
+        .catchError((Object e) {
+          status = false;
+          message = e.toString();
+        })
+        .whenComplete(() => db.close());
 
     return DbClientResponse(status, message!);
   }

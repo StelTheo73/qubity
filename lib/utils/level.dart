@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,6 +9,7 @@ import '../constants/assets.dart'
         levelStatesPath,
         levelTutorialsPath,
         levelsPath;
+import '../constants/sounds.dart';
 import '../store/locale_notifier.dart';
 import 'config.dart';
 import 'utils.dart';
@@ -27,6 +29,8 @@ class LevelLoader {
     levelGates = results[0];
     levelStates = results[1];
     tutorialLevel = results[2];
+
+    await _loadSounds();
   }
 
   static Future<YamlMap> getLevelById(
@@ -41,9 +45,9 @@ class LevelLoader {
   }
 
   static List<String> getLevelGates(YamlMap level) {
-    return (levelGates[level['gates'] as String] as YamlList)
-        .value
-        .map((dynamic gate) {
+    return (levelGates[level['gates'] as String] as YamlList).value.map((
+      dynamic gate,
+    ) {
       return gate as String;
     }).toList();
   }
@@ -62,24 +66,31 @@ class LevelLoader {
     final String language = localeNotifier.locale.languageCode;
 
     final List<YamlMap> gateSlides =
-        levelGates.map((gate) => helpYaml['gates'][gate] as YamlMap).toList();
+        levelGates
+            .map((dynamic gate) => helpYaml['gates'][gate] as YamlMap)
+            .toList();
 
-    final List<Map<String, String>> slides = gateSlides.expand((gate) {
-      return (gate['slides'][language] as YamlList)
-          .map((slide) => Map<String, String>.from(slide as YamlMap));
-    }).toList();
+    final List<Map<String, String>> slides =
+        gateSlides.expand((dynamic gate) {
+          return (gate['slides'][language] as YamlList).map(
+            (dynamic slide) => Map<String, String>.from(slide as YamlMap),
+          );
+        }).toList();
 
     return slides;
   }
 
   static Future<List<Map<String, String>>> getLevelTutorial(int levelId) async {
     try {
-      final YamlMap tutorialYaml =
-          await Utils.loadYamlMap('$levelTutorialsPath$levelId.yml');
+      final YamlMap tutorialYaml = await Utils.loadYamlMap(
+        '$levelTutorialsPath$levelId.yml',
+      );
       final String language = localeNotifier.locale.languageCode;
       final List<Map<String, String>> slides =
           (tutorialYaml['slides'][language] as YamlList)
-              .map((slide) => Map<String, String>.from(slide as YamlMap))
+              .map(
+                (dynamic slide) => Map<String, String>.from(slide as YamlMap),
+              )
               .toList();
 
       return slides;
@@ -99,7 +110,7 @@ class LevelLoader {
     }
 
     return YamlList.wrap(
-      levelsList.where((level) {
+      levelsList.where((dynamic level) {
         return level['id'] != Configuration.tutorialLevelId;
       }).toList(),
     );
@@ -110,6 +121,13 @@ class LevelLoader {
   static Future<YamlMap> _loadGates() async {
     final String levelGates = await rootBundle.loadString(levelGatesPath);
     return loadYaml(levelGates)['gates'] as YamlMap;
+  }
+
+  static Future<void> _loadSounds() async {
+    final List<String> sounds =
+        Sounds.values.map((Sounds sound) => sound.sound).toList();
+
+    await FlameAudio.audioCache.loadAll(sounds);
   }
 
   static Future<YamlMap> _loadStates() async {
