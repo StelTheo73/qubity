@@ -15,6 +15,7 @@ class Configuration {
   static late final int maxQuizScoreHistory;
   static late final bool music;
   static late final int noOfLevels;
+  static late final bool revealQuizAnswers;
   static late final int tutorialLevelId;
 
   static Future<void> init() async {
@@ -30,10 +31,16 @@ class Configuration {
     defaultLanguage = configMap['defaultLanguage'] as String;
     debugMode = configMap['debugMode'] as bool;
     locales = _getSupportedLocales(configMap['locales'] as YamlList);
-    maxQuizScoreHistory = configMap['maxQuizScoreHistory'] as int;
     music = configMap['music'] as bool;
     noOfLevels = configMap['levels'] as int;
     tutorialLevelId = configMap['tutorialLevelId'] as int;
+
+    _loadQuizConfig(configMap);
+  }
+
+  static void _loadQuizConfig(YamlMap configMap) {
+    maxQuizScoreHistory = configMap['quiz']['maxScoreHistory'] as int;
+    revealQuizAnswers = configMap['quiz']['revealAnswers'] as bool;
   }
 
   static void _loadGoogleFonts() {

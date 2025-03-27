@@ -6,6 +6,7 @@ import '../../constants/colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/quiz/quiz.dart';
 import '../../store/quiz_submission_notifier.dart';
+import '../../utils/config.dart';
 import 'components/answer.dart';
 
 class QuizResults extends StatefulWidget {
@@ -60,13 +61,15 @@ class _QuizResultsState extends State<QuizResults> {
                 color: Palette.black,
               ),
               const SizedBox(height: 10),
-              for (final Question question in widget.questions)
-                Answer(
-                  question: question.question,
-                  correctAnswer: question.answers[question.correctAnswer],
-                  selectedAnswer: question.answers[
-                      widget.quizController.getSelectedAnswer(question.id)!],
-                ),
+              if (Configuration.revealQuizAnswers)
+                for (final Question question in widget.questions)
+                  Answer(
+                    question: question.question,
+                    correctAnswer: question.answers[question.correctAnswer],
+                    selectedAnswer:
+                        question.answers[widget.quizController
+                            .getSelectedAnswer(question.id)!],
+                  ),
               const SizedBox(height: 20),
               BaseButton(
                 text: AppLocalizations.of(context)!.exit,
