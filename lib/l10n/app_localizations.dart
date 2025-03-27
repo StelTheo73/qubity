@@ -101,6 +101,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @continuePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continuePrompt;
+
   /// No description provided for @correctAnswer.
   ///
   /// In en, this message translates to:
@@ -196,6 +202,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next Level'**
   String get nextLevel;
+
+  /// No description provided for @onboarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding'**
+  String get onboarding;
+
+  /// No description provided for @previous.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previous;
 
   /// No description provided for @questionId.
   ///
@@ -293,11 +311,11 @@ abstract class AppLocalizations {
   /// **'Check it out in the spaceship selection screen'**
   String get spaceshipUnlockedMessage;
 
-  /// No description provided for @startJourney.
+  /// No description provided for @startGame.
   ///
   /// In en, this message translates to:
-  /// **'Start Your Journey'**
-  String get startJourney;
+  /// **'Start'**
+  String get startGame;
 
   /// No description provided for @startLevel.
   ///
@@ -328,6 +346,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tutorial'**
   String get tutorial;
+
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Qubity!'**
+  String get welcome;
+
+  /// No description provided for @welcomeSelectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select your preferred language'**
+  String get welcomeSelectLanguage;
+
+  /// No description provided for @welcomeChangeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this later in the settings'**
+  String get welcomeChangeLater;
 
   /// No description provided for @youFound.
   ///

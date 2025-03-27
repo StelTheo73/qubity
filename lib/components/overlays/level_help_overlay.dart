@@ -6,14 +6,10 @@ import '../../l10n/app_localizations.dart';
 import '../../store/level_help_notifier.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';
-import 'base_overlay.dart';
+import 'base_stack_overlay.dart';
 
 class HelpWidget extends StatelessWidget {
-  const HelpWidget({
-    super.key,
-    required this.title,
-    required this.description,
-  });
+  const HelpWidget({super.key, required this.title, required this.description});
 
   final String title;
   final String description;
@@ -22,17 +18,9 @@ class HelpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        RobotoText(
-          text: title,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+        RobotoText(text: title, fontSize: 20, fontWeight: FontWeight.bold),
         const SizedBox(height: 10),
-        RobotoText(
-          text: description,
-          fontSize: 16,
-          color: Palette.black,
-        ),
+        RobotoText(text: description, fontSize: 16, color: Palette.black),
       ],
     );
   }
@@ -74,10 +62,7 @@ class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
         builder: (BuildContext context, int index, Widget? child) {
           return ListenableBuilder(
             listenable: levelHelpNotifier,
-            builder: (
-              BuildContext context,
-              Widget? child,
-            ) {
+            builder: (BuildContext context, Widget? child) {
               return HelpWidget(
                 title: levelHelpNotifier.levelHelpMap[index]['title'] ?? '',
                 description:
@@ -115,7 +100,7 @@ class _LevelHelpOverlayState extends State<LevelHelpOverlay> {
       );
     }
 
-    return BaseOverlay(
+    return BaseStackOverlay(
       gameSize: widget.gameSize,
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -11,7 +11,7 @@ import '../button/base_button.dart';
 import '../score/score.dart';
 import '../text/roboto.dart';
 import '../toast/achievement_toast.dart';
-import 'base_overlay.dart';
+import 'base_stack_overlay.dart';
 
 class HighScoreWidget extends StatelessWidget {
   const HighScoreWidget({super.key});
@@ -94,7 +94,7 @@ class LevelCompletionOverlay extends StatelessWidget {
     }
     FlameAudio.play(Sounds.Completion.sound);
 
-    return BaseOverlay(
+    return BaseStackOverlay(
       gameSize: gameSize,
       child: Column(
         mainAxisSize: MainAxisSize.min,

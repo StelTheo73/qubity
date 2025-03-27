@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../button/base_button.dart';
-import 'base_overlay.dart';
+import 'base_stack_overlay.dart';
 
 class PauseOverlay extends StatelessWidget {
   const PauseOverlay({
@@ -26,7 +26,7 @@ class PauseOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseOverlay(
+    return BaseStackOverlay(
       gameSize: gameSize,
       child: Column(
         mainAxisSize: MainAxisSize.min,

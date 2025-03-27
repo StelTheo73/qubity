@@ -12,6 +12,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get cancel => 'Ακύρωση';
 
   @override
+  String get continuePrompt => 'Συνέχεια';
+
+  @override
   String correctAnswer(Object correctAnswer) {
     return 'Σωστή απάντηση: $correctAnswer';
   }
@@ -66,6 +69,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get nextLevel => 'Επόμενο';
 
   @override
+  String get onboarding => 'Εισαγωγή';
+
+  @override
+  String get previous => 'Προηγούμενο';
+
+  @override
   String questionId(Object questionId) {
     return 'Ερώτηση $questionId';
   }
@@ -116,7 +125,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get spaceshipUnlockedMessage => 'Θα το βρείτε στην οθόνη επιλογής διαστημοπλοίων';
 
   @override
-  String get startJourney => 'Έναρξη του Ταξιδιού σας';
+  String get startGame => 'Ξεκινήστε';
 
   @override
   String get startLevel => 'Έναρξη';
@@ -132,6 +141,15 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get tutorial => 'Επίδειξη';
+
+  @override
+  String get welcome => 'Καλώς ήρθατε στο Qubity!';
+
+  @override
+  String get welcomeSelectLanguage => 'Παρακαλώ επιλέξτε την προτιμώμενη γλώσσα';
+
+  @override
+  String get welcomeChangeLater => 'Μπορείτε να την αλλάξετε αργότερα στις ρυθμίσεις';
 
   @override
   String youFound(Object correctAnswers, Object totalQuestions) {

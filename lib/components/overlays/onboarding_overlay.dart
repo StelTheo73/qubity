@@ -6,6 +6,7 @@ import '../../store/onboarding_notifier.dart';
 import '../../utils/device_store.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';
+import 'base_overlay.dart';
 
 class OnboardingWidget extends StatelessWidget {
   const OnboardingWidget({
@@ -21,17 +22,6 @@ class OnboardingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Palette.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Palette.black.withOpacity(0.2),
-            blurRadius: 10,
-            spreadRadius: 5,
-          ),
-        ],
-      ),
       child: Column(
         children: <Widget>[
           RobotoText(text: title, fontSize: 20, fontWeight: FontWeight.bold),
@@ -46,9 +36,6 @@ class OnboardingWidget extends StatelessWidget {
 class OnboardingOverlay extends StatefulWidget {
   const OnboardingOverlay({super.key});
 
-  static const String overlayKey = 'onboarding_overlay';
-  static const int priority = 3;
-
   @override
   State<StatefulWidget> createState() => _OnboardingOverlayState();
 }
@@ -58,6 +45,9 @@ class _OnboardingOverlayState extends State<OnboardingOverlay> {
   int index = 0;
   late Widget visibleChild;
   late bool showStartButton;
+  late bool showPreviousButton;
+
+  static const double buttonWidth = 150;
 
   @override
   void initState() {
@@ -65,6 +55,7 @@ class _OnboardingOverlayState extends State<OnboardingOverlay> {
 
     setState(() {
       showStartButton = (onboardingNotifier.onboardingMap.length == 1);
+      showPreviousButton = false;
 
       visibleChild = ValueListenableBuilder<int>(
         valueListenable: indexNotifier,
@@ -85,9 +76,27 @@ class _OnboardingOverlayState extends State<OnboardingOverlay> {
     });
   }
 
+  void _loadPreviousSlide() {
+    setState(() {
+      if (indexNotifier.value == 0) {
+        return;
+      }
+      indexNotifier.value = indexNotifier.value - 1;
+
+      if (indexNotifier.value == 0) {
+        showPreviousButton = false;
+      }
+
+      if (indexNotifier.value < onboardingNotifier.onboardingMap.length - 1) {
+        showStartButton = false;
+      }
+    });
+  }
+
   void _loadNextSlide() {
     setState(() {
       indexNotifier.value = indexNotifier.value + 1;
+      showPreviousButton = true;
       if (indexNotifier.value == onboardingNotifier.onboardingMap.length - 1) {
         showStartButton = true;
       }
@@ -95,33 +104,46 @@ class _OnboardingOverlayState extends State<OnboardingOverlay> {
   }
 
   void _completeOnboarding() {
-    indexNotifier.value = 0;
     DeviceStore.setOnboardingCompleted();
+    onboardingNotifier.setOnboardingCompleted(true);
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          visibleChild,
-          const SizedBox(height: 10),
-          if (showStartButton)
-            BaseButton(
-              onPressed: _completeOnboarding,
-              text: AppLocalizations.of(context)!.startJourney,
-              width: 200,
-            )
-          else
-            BaseButton(
-              onPressed: _loadNextSlide,
-              text: AppLocalizations.of(context)!.next,
-              width: 200,
-            ),
-        ],
-      ),
+    return BaseOverlay(
+      children: <Widget>[
+        visibleChild,
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            if (showPreviousButton)
+              BaseButton(
+                onPressed: _loadPreviousSlide,
+                text: AppLocalizations.of(context)!.previous,
+                width: buttonWidth,
+                color: Palette.grey,
+                icon: Icons.arrow_back,
+              )
+            else
+              const SizedBox(width: buttonWidth),
+            if (showStartButton)
+              BaseButton(
+                onPressed: _completeOnboarding,
+                text: AppLocalizations.of(context)!.startGame,
+                width: buttonWidth,
+              )
+            else
+              BaseButton(
+                onPressed: _loadNextSlide,
+                text: AppLocalizations.of(context)!.next,
+                width: buttonWidth,
+                icon: Icons.arrow_forward,
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

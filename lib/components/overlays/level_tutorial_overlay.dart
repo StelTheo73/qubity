@@ -6,7 +6,7 @@ import '../../l10n/app_localizations.dart';
 import '../../store/tutorial_notifier.dart';
 import '../button/base_button.dart';
 import '../text/roboto.dart';
-import 'base_overlay.dart';
+import 'base_stack_overlay.dart';
 
 class TutorialWidget extends StatelessWidget {
   const TutorialWidget({
@@ -22,17 +22,9 @@ class TutorialWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        RobotoText(
-          text: title,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+        RobotoText(text: title, fontSize: 20, fontWeight: FontWeight.bold),
         const SizedBox(height: 10),
-        RobotoText(
-          text: description,
-          fontSize: 16,
-          color: Palette.black,
-        ),
+        RobotoText(text: description, fontSize: 16, color: Palette.black),
       ],
     );
   }
@@ -78,10 +70,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
         builder: (BuildContext context, int index, Widget? child) {
           return ListenableBuilder(
             listenable: tutorialNotifier,
-            builder: (
-              BuildContext context,
-              Widget? child,
-            ) {
+            builder: (BuildContext context, Widget? child) {
               return TutorialWidget(
                 title: tutorialNotifier.tutorialMap[index]['title'] ?? '',
                 description:
@@ -105,7 +94,7 @@ class _LevelTutorialOverlayState extends State<LevelTutorialOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseOverlay(
+    return BaseStackOverlay(
       gameSize: widget.gameSize,
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -18,10 +18,10 @@ import 'screens/spaceships.dart';
 import 'screens/tutorial/tutorial.dart';
 import 'store/level_score_notifier.dart';
 import 'store/locale_notifier.dart';
+import 'store/onboarding_notifier.dart';
 import 'utils/config.dart';
 import 'utils/device_store.dart';
 import 'utils/level.dart';
-import 'utils/onboarding.dart';
 import 'utils/utils.dart';
 
 Future<void> main() async {
@@ -32,23 +32,19 @@ Future<void> main() async {
   await Configuration.init();
   await DeviceStore.init();
   await LevelLoader.init();
-
-  await Future.wait(<Future<void>>[Onboarding.init(), DatabaseClient.init()]);
+  await DatabaseClient.init();
 
   await Future.wait(<Future<void>>[
     localeNotifier.init(),
     levelScoreNotifier.init(),
+    onboardingNotifier.init(),
   ]);
 
-  final bool isOnboardingCompleted = await DeviceStore.getOnboardingCompleted();
-
-  runApp(QubityApp(isOnboardingCompleted: isOnboardingCompleted));
+  runApp(const QubityApp());
 }
 
 class QubityApp extends StatelessWidget {
-  const QubityApp({super.key, required this.isOnboardingCompleted});
-
-  final bool isOnboardingCompleted;
+  const QubityApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +64,7 @@ class QubityApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            initialRoute:
-                !isOnboardingCompleted
-                    ? AppRoute.onboarding.route
-                    : AppRoute.home.route,
+            initialRoute: AppRoute.home.route,
             routes: <String, WidgetBuilder>{
               AppRoute.game.route: (BuildContext context) {
                 final YamlMap level =

@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get continuePrompt => 'Continue';
+
+  @override
   String correctAnswer(Object correctAnswer) {
     return 'Correct answer: $correctAnswer';
   }
@@ -66,6 +69,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextLevel => 'Next Level';
 
   @override
+  String get onboarding => 'Onboarding';
+
+  @override
+  String get previous => 'Previous';
+
+  @override
   String questionId(Object questionId) {
     return 'Question $questionId';
   }
@@ -116,7 +125,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spaceshipUnlockedMessage => 'Check it out in the spaceship selection screen';
 
   @override
-  String get startJourney => 'Start Your Journey';
+  String get startGame => 'Start';
 
   @override
   String get startLevel => 'Start Level';
@@ -132,6 +141,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tutorial => 'Tutorial';
+
+  @override
+  String get welcome => 'Welcome to Qubity!';
+
+  @override
+  String get welcomeSelectLanguage => 'Please select your preferred language';
+
+  @override
+  String get welcomeChangeLater => 'You can change this later in the settings';
 
   @override
   String youFound(Object correctAnswers, Object totalQuestions) {
