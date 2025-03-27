@@ -25,6 +25,8 @@
   "quizHistory": "Ιστορικό",
   "quizHistoryEmpty": "Δεν υπάρχουν προηγούμενα αποτελέσματα κουίζ",
   "quizHistoryView": "Προβολή προηγούμενων αποτελεσμάτων",
+  "quizScoreSavedMessage": "Το σκορ σας αποθηκεύτηκε με επιτυχία!",
+  "quizScoreErrorMessage": "Αποτυχία αποθήκευσης στη βάση δεδομένων:",
   "restart": "Επανεκκίνηση",
   "restartLevel": "Επανεκκίνηση",
   "resume": "Συνέχεια",

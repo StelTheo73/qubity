@@ -25,6 +25,8 @@
   "quizHistory": "Previous Quiz Results",
   "quizHistoryEmpty": "No previous quiz results",
   "quizHistoryView": "View previous quiz results",
+  "quizScoreSavedMessage": "Your score has been saved successfully!",
+  "quizScoreErrorMessage": "Failed to save to database:",
   "restart": "Restart",
   "restartLevel": "Restart Level",
   "resume": "Resume",

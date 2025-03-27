@@ -245,6 +245,18 @@ abstract class AppLocalizations {
   /// **'View previous quiz results'**
   String get quizHistoryView;
 
+  /// No description provided for @quizScoreSavedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your score has been saved successfully!'**
+  String get quizScoreSavedMessage;
+
+  /// No description provided for @quizScoreErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save to database:'**
+  String get quizScoreErrorMessage;
+
   /// No description provided for @restart.
   ///
   /// In en, this message translates to:

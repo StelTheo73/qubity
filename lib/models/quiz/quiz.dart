@@ -43,7 +43,10 @@ class QuizController {
   }
 
   Future<DbClientResponse> saveScore(
-      int correct, int total, DateTime date) async {
+    int correct,
+    int total,
+    DateTime date,
+  ) async {
     final String userId = await DeviceStore.getUserId();
     final QuizSchema quizSchema = QuizSchema(
       userId: userId,
@@ -66,14 +69,17 @@ class QuizController {
     // Save locally
     await quizScore.save();
     // Save to database
-    final DbClientResponse res =
-        await saveScore(score, _answers.length, quizScore.date);
+    final DbClientResponse res = await saveScore(
+      score,
+      _answers.length,
+      quizScore.date,
+    );
 
     final ScoreSaveToast toast = ScoreSaveToast(
       success: res.success,
       message: res.message,
     );
-    toast.show();
+    await toast.show();
   }
 }
 
@@ -134,10 +140,10 @@ class Quiz {
     return Question(
       id: question['id'] as int,
       question: question['question'][language] as String,
-      answers: (question['answers'] as YamlList)
-          .value
-          .map((dynamic answer) => answer[language] as String)
-          .toList(),
+      answers:
+          (question['answers'] as YamlList).value
+              .map((dynamic answer) => answer[language] as String)
+              .toList(),
       correctAnswer: question['correct'] as int,
     );
   }

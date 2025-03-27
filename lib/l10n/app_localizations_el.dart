@@ -92,6 +92,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get quizHistoryView => 'Προβολή προηγούμενων αποτελεσμάτων';
 
   @override
+  String get quizScoreSavedMessage => 'Το σκορ σας αποθηκεύτηκε με επιτυχία!';
+
+  @override
+  String get quizScoreErrorMessage => 'Αποτυχία αποθήκευσης στη βάση δεδομένων:';
+
+  @override
   String get restart => 'Επανεκκίνηση';
 
   @override

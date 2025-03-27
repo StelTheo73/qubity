@@ -92,6 +92,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quizHistoryView => 'View previous quiz results';
 
   @override
+  String get quizScoreSavedMessage => 'Your score has been saved successfully!';
+
+  @override
+  String get quizScoreErrorMessage => 'Failed to save to database:';
+
+  @override
   String get restart => 'Restart';
 
   @override

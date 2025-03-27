@@ -17,9 +17,10 @@ class DbClientUnknownErrorResponse extends DbClientResponse {
 }
 
 class DatabaseClient {
-  static late final Db db;
+  static late final Db? db;
   static late final String url;
   static late final String scoreCollection;
+  static String error = '';
 
   static Future<void> init() async {
     final String config = await rootBundle.loadString(configPath);
@@ -34,19 +35,28 @@ class DatabaseClient {
 
     scoreCollection = configMap['database']['collections']['score'] as String;
 
-    db = await Db.create(url);
+    try {
+      db = await Db.create(url);
+    } catch (e) {
+      error = e.toString();
+      db = null;
+    }
   }
 
   static Future<DbClientResponse> insertScore(QuizSchema quiz) async {
     String? message;
     bool status = false;
 
-    await db.open().catchError((Object e) {
+    if (db == null) {
+      return DbClientResponse(status, error);
+    }
+
+    await db!.open().catchError((Object e) {
       message = 'Could not connect to database: $e';
       return null;
     });
 
-    if (!db.isConnected) {
+    if (!db!.isConnected) {
       if (message == null) {
         return const DbClientUnknownErrorResponse();
       }
@@ -54,7 +64,7 @@ class DatabaseClient {
       return DbClientResponse(status, message!);
     }
 
-    await db
+    await db!
         .collection(scoreCollection)
         .insertOne(quiz.toMap())
         .then((WriteResult result) {
@@ -68,7 +78,7 @@ class DatabaseClient {
           status = false;
           message = e.toString();
         })
-        .whenComplete(() => db.close());
+        .whenComplete(() => db!.close());
 
     return DbClientResponse(status, message!);
   }
