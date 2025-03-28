@@ -1,8 +1,6 @@
 import 'package:flame/game.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/sounds.dart';
 import '../../l10n/app_localizations.dart';
 import '../../store/current_score_notifier.dart';
 import '../../store/level_state_notifier.dart';
@@ -87,12 +85,10 @@ class LevelCompletionOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (hasUnlockedSpaceship) {
-      FlameAudio.play(Sounds.Achievement.sound);
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => AchievementToast(context).show(),
       );
     }
-    FlameAudio.play(Sounds.Completion.sound);
 
     return BaseStackOverlay(
       gameSize: gameSize,

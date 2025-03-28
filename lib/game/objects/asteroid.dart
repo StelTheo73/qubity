@@ -4,9 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/particles.dart';
 import 'package:flame/sprite.dart';
-import 'package:flame_audio/flame_audio.dart';
 
-import '../../constants/sounds.dart';
 import '../game_utils.dart';
 import '../qubity_game.dart';
 import 'missile.dart';
@@ -40,10 +38,10 @@ class Asteroid extends SpriteComponent
   ) async {
     super.onCollision(intersectionPoints, other);
     if (other is Missile) {
-      FlameAudio.play(Sounds.Explosion.sound);
       _explosionAnimation();
       removeFromParent();
       other.removeFromParent();
+      // await FlameAudio.play(Sounds.Explosion.sound);
     }
     await gameRef
         .sleep((2 * animationDuration * 1000).toInt())

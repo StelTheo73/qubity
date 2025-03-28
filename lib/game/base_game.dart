@@ -67,6 +67,11 @@ class BaseGame extends FlameGame<World>
       levelStateNotifier.levelId,
     );
 
+    // if (hasUnlockedSpaceship) {
+    //   await FlameAudio.play(Sounds.Achievement.sound);
+    // }
+    // await FlameAudio.play(Sounds.Completion.sound);
+
     await Future.wait(<Future<void>>[_calculateScore(), _unlockNextLevel()]);
 
     overlays.add(

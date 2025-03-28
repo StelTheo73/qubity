@@ -1,9 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flame_audio/flame_audio.dart';
 
 import '../../constants/assets.dart';
-import '../../constants/sounds.dart';
 import '../game_utils.dart';
 import '../objects/spaceship.dart';
 import '../qubity_game.dart';
@@ -25,12 +23,12 @@ class ShootButton extends SpriteComponent
   }
 
   @override
-  void onTapUp(TapUpEvent event) {
+  Future<void> onTapUp(TapUpEvent event) async {
     if (!gameRef.running) {
       return;
     }
 
-    FlameAudio.play(Sounds.Shot.sound);
+    // await FlameAudio.play(Sounds.Shot.sound);
 
     for (final Spaceship spaceship in LevelStates.levelSpaceships) {
       spaceship.shoot();
