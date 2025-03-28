@@ -125,8 +125,6 @@ class DeviceStore {
       prefs.setString(DeviceStoreKeys.quizScore.key, '[]'),
       prefs.setString(DeviceStoreKeys.userId.key, ''),
     ]);
-
-    await _createUserId();
   }
 
   // Private Methods
