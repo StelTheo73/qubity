@@ -20,7 +20,7 @@ https://github.com/StelTheo73/qubity/tree/main/release/
 
 ## Attributions
 
-### Freepik Icons
+### Icons from Freepik
 
 - <a href="https://www.freepik.com/search">Icons by Freepik</a>
 - <a href="https://www.freepik.com/search">Icons by photo3idea_studio</a>
@@ -40,3 +40,10 @@ https://github.com/StelTheo73/qubity/tree/main/release/
 - <a href="https://www.freepik.com/icon/rocket_8089316">Icon by Freepik</a>
 - <a href="https://www.freepik.com/icon/target_7205464#fromView=search&page=2&position=38&uuid=b87e39d9-c26d-4f41-9cab-6b601c99abd7">Icon by IYAHICON</a>
 - <a href="https://www.freepik.com/icon/star_6336831#fromView=image_search_similar&page=6&position=58&uuid=b91c4827-34d9-4150-aacb-63b14c5d4075">Icon by Hasymi</a>
+
+### Sounds from Freesound
+
+- <a href="https://freesound.org/s/387232/">Coin Win.wav by steaq -- License: Creative Commons 0</a>
+- <a href="https://freesound.org/s/607206/">Explode by Fupicat -- License: Creative Commons 0</a>
+- <a href="https://freesound.org/s/274179/">Jingle_Win_Synth_01.wav by LittleRobotSoundFactory -- License: Attribution 4.0</a>
+- <a href="https://freesound.org/s/348163/">Laser one-shot #2.wav by djfroyd -- License: Attribution 3.0</a>
