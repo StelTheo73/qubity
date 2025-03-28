@@ -196,6 +196,7 @@ class BaseGame extends FlameGame<World>
   Future<void> reloadLevel() async {
     await teardown();
     await setupGame();
+    await loadHelp();
   }
 
   Future<void> setupParallax() async {
