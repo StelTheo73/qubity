@@ -2,7 +2,7 @@
 
 Educational Mobile Game for Quantum Computing
 
-[![Flutter](https://skillicons.dev/icons?i=flutter,dart)](https://skillicons.dev)<br>
+[![Flutter](https://skillicons.dev/icons?i=flutter,dart,mongo)](https://skillicons.dev)<br>
 
 [![Powered by Flame](https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg)](https://flame-engine.org)
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
@@ -13,10 +13,44 @@ Download the APK from the following destination and install it on your Android d
 
 https://github.com/StelTheo73/qubity/tree/main/release/
 
+## Research
+
+The game was developed as part of my Thesis; "Design and Development of Digital Learning Game".
+
+If you want to help us with our research, you could follow the steps below:
+
+1. Download and install the APK or build the game from the source code.
+2. Complete onboarding
+3. Play the Quiz *before* playing the game
+3. Complete the tutorial level
+4. Play the game
+5. Play the Quiz again *after* playing the game
+6. Fill out the following forms:
+    - [System Usability Scale (SUS)](https://docs.google.com/forms/d/e/1FAIpQLSdFN7qBBt3TbYVrEFmscCsofCgaNGPDow_Bla5FOG20So0tUA/viewform?usp=dialog)
+    - [Game User Experience Satisfaction Scale (GUESS-18)](https://docs.google.com/forms/d/e/1FAIpQLSdTZan1YuR6aBMlz4ur8n3PWubtjRx38Zm91kWHILC4ZhYd3g/viewform?usp=dialog)
+
 ## Contributors
 
 [@garachovitis](https://github.com/garachovitis): Contributed to game assets and designed the background image.<br>
 [@G-Myron](https://github.com/G-Myron): Helped with the integration of _qartvm_ and provided valuable feedback.<br>
+
+## How to build the game (Advanced)
+
+We recommend using the [pre-built APK](#installation), but if you want to build the game from the source code, follow the steps below:
+
+1. Install Flutter and Android Studio
+2. Clone the repository
+3. Run the following command in the terminal to build the game:
+
+```bash
+flutter build apk
+```
+
+4. The APK will be located in the following directory:
+
+```bash
+build/app/outputs/apk/release/app-release.apk
+```
 
 ## Attributions
 
