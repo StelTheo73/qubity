@@ -177,8 +177,8 @@ questions:
     correct: 1
   - id: 12
     question:
-      en: 'Which gate would you apply to the right qubit to perform the following computation:\n|00⟩ - |10⟩ → |00⟩ + |10⟩?'
-      el: 'Ποια πύλη θα εφαρμόζατε στο δεξί qubit για να εκτελέσετε τον ακόλουθο υπολογισμό:\n|00⟩ - |10⟩ → |00⟩ + |10⟩;'
+      en: 'Which gate would you apply to the left qubit to perform the following computation:\n|00⟩ - |10⟩ → |00⟩ + |10⟩?'
+      el: 'Ποια πύλη θα εφαρμόζατε στο αριστερό qubit για να εκτελέσετε τον ακόλουθο υπολογισμό:\n|00⟩ - |10⟩ → |00⟩ + |10⟩;'
     answers:
       - en: 'X'
         el: 'X'
